@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<db_xml>
+    <atelierb version="3_7_ubuntu-cvs" />
+    <project decomp_dir="C:\AtelierB_Workspace\Pokemon\bdp\expand_src" old_decomp_dir="C:\AtelierB_Workspace\Pokemon\bdp\src">
+        <!-- Definition directory list -->
+        <!-- Proof mechanisms -->
+        <!-- Component file list -->
+        <component_file path="C:/AtelierB_Workspace/Pokemon" name="Jogadores" suffix="mch" user="felip">
+            <component name="Jogadores" type="specification" />
+        </component_file>
+        <component_file path="C:/AtelierB_Workspace/Pokemon" name="cards" suffix="mch" user="felip">
+            <component name="cards" type="specification" />
+        </component_file>
+        <component_file path="C:/AtelierB_Workspace/Pokemon" name="jogoPokemon" suffix="mch" user="felip">
+            <component name="jogoPokemon" type="specification" />
+        </component_file>
+    </project>
+</db_xml>

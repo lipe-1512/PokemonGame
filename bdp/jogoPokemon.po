@@ -1,0 +1,71 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(3) & _f(4) & _f(5) & _f(6) & _f(19) & _f(20) & WellDefinedness_atacar_oponente.1,(_f(21) & _f(22) & _f(23) & _f(44) => _f(41));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.8,(_f(5) & _f(6) & _f(33) & _f(34) & _f(35) & _f(36) & _f(37) & _f(38) & _f(30) => _f(43));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.7,(_f(5) & _f(6) & _f(33) & _f(34) & _f(35) & _f(36) & _f(37) & _f(38) & _f(30) => _f(42));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.6,(_f(5) & _f(6) & _f(33) & _f(34) & _f(35) & _f(36) & _f(37) & _f(30) => _f(41));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.5,(_f(5) & _f(6) & _f(33) & _f(34) & _f(35) & _f(36) & _f(37) & _f(30) => _f(20));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.4,(_f(5) & _f(6) & _f(33) & _f(34) & _f(35) & _f(30) => _f(40));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.3,(_f(5) & _f(6) & _f(33) & _f(34) & _f(35) & _f(30) => _f(39));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.2,(_f(5) & _f(6) & _f(33) & _f(30) => _f(32));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_jogar_energia.1,(_f(5) & _f(6) & _f(33) & _f(30) => _f(31));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_baixar_pokemon.2,(_f(5) & _f(6) & _f(11) & _f(30) => _f(32));
+_f(1) & _f(2) & _f(3) & _f(4) & WellDefinednessPrecondition_baixar_pokemon.1,(_f(5) & _f(6) & _f(11) & _f(30) => _f(31));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(5) & _f(6) & _f(19) & _f(20) & Operation_atacar_oponente.1,(_f(21) & _f(22) & _f(23) & _f(10) => _f(25));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(5) & _f(6) & _f(11) & _f(12) & Operation_baixar_pokemon.3,(_f(10) => _f(15));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(5) & _f(6) & _f(11) & _f(12) & Operation_baixar_pokemon.2,(_f(10) => _f(14));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(5) & _f(6) & _f(11) & _f(12) & Operation_baixar_pokemon.1,(_f(10) => _f(13));
+_f(1) & _f(2) & _f(3) & _f(4) & _f(5) & _f(6) & Operation_comprar_carta_turno.1,(_f(10) => _f(7))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..3)*{TIPO_CARTA}): FIN(NATURAL*{TIPO_CARTA})& not(((1..3)*{TIPO_CARTA}) = {}) & ((1..3)*{ESTAGIO}): FIN(NATURAL*{ESTAGIO})& not(((1..3)*{ESTAGIO}) = {}) & CARTA: FIN(INTEGER) & not(CARTA = {}) & ((1..2)*{JOGADOR}): FIN(NATURAL*{JOGADOR})& not(((1..2)*{JOGADOR}) = {}) & tipo_da_carta : CARTA +-> ((1..3)*{TIPO_CARTA}) & dom(tipo_da_carta) = CARTA & ((tipo_da_carta) : (((CARTA) --> (((1..3)*{TIPO_CARTA}))))) & ((estagio_pokemon) : (((CARTA) +-> (((1..3)*{ESTAGIO}))))) & ((hp_base) : (((CARTA) +-> ((NAT-{0}))))) & ((dom(estagio_pokemon)) = (((tipo_da_carta)~ )[({(1|->TIPO_CARTA)})])) & ((dom(hp_base)) = (((tipo_da_carta)~ )[({(1|->TIPO_CARTA)})])) & ((max_cartas_deck) = (60)) & ((max_cartas_banco) = (5)) & ((max_cartas_premio) = (6));
+((dano) : (((CARTA) +-> (NAT)))) & ((energia_ligada) : (((CARTA) +-> (NAT)))) & deck : ((1..2)*{JOGADOR}) +-> seq(CARTA) & dom(deck) = ((1..2)*{JOGADOR}) & ((deck) : (((((1..2)*{JOGADOR})) --> (seq(CARTA))))) & mao : ((1..2)*{JOGADOR}) +-> POW(CARTA) & dom(mao) = ((1..2)*{JOGADOR}) & ((mao) : (((((1..2)*{JOGADOR})) --> (POW(CARTA))))) & ((ativo) : (((((1..2)*{JOGADOR})) +-> (CARTA)))) & banco : ((1..2)*{JOGADOR}) +-> POW(CARTA) & dom(banco) = ((1..2)*{JOGADOR}) & ((banco) : (((((1..2)*{JOGADOR})) --> (POW(CARTA))))) & premios : ((1..2)*{JOGADOR}) +-> POW(CARTA) & dom(premios) = ((1..2)*{JOGADOR}) & ((premios) : (((((1..2)*{JOGADOR})) --> (POW(CARTA))))) & descarte : ((1..2)*{JOGADOR}) +-> seq(CARTA) & dom(descarte) = ((1..2)*{JOGADOR}) & ((descarte) : (((((1..2)*{JOGADOR})) --> (seq(CARTA))))) & !(pp).(((((pp) : (((1..2)*{JOGADOR})))) => ((card((banco )(pp)) <= max_cartas_banco)))) & !(pp).(((((pp) : (((1..2)*{JOGADOR})))) => ((card((premios )(pp)) <= max_cartas_premio))));
+((turno) : (((1..2)*{JOGADOR}))) & ((energia_jogada_turno) : (BOOL));
+((pp) : (((1..2)*{JOGADOR})));
+((pp) = (turno));
+(0 +1 <= size((deck )(pp)));
+((deck) <+ (({((pp) |-> (tail((deck )(pp))))}))) : ((1..2)*{JOGADOR}) +-> seq(CARTA) & dom(((deck) <+ (({((pp) |-> (tail((deck )(pp))))})))) = ((1..2)*{JOGADOR}) & ((((deck) <+ (({((pp) |-> (tail((deck )(pp))))})))) : (((((1..2)*{JOGADOR})) --> (seq(CARTA)))));
+((mao) <+ (({((pp) |-> ((((mao )(pp)) \/ (({first((deck )(pp))})))))}))) : ((1..2)*{JOGADOR}) +-> POW(CARTA) & dom(((mao) <+ (({((pp) |-> ((((mao )(pp)) \/ (({first((deck )(pp))})))))})))) = ((1..2)*{JOGADOR}) & ((((mao) <+ (({((pp) |-> ((((mao )(pp)) \/ (({first((deck )(pp))})))))})))) : (((((1..2)*{JOGADOR})) --> (POW(CARTA)))));
+"Precondition predicate";
+((cc) : (CARTA));
+((cc) : ((mao )(pp)));
+(((tipo_da_carta )(cc)) = ((1|->TIPO_CARTA)));
+(((estagio_pokemon )(cc)) = ((1|->ESTAGIO)));
+(card((banco )(pp)) +1 <= max_cartas_banco);
+((mao) <+ (({((pp) |-> (((mao )(pp) - ({cc}))))}))) : ((1..2)*{JOGADOR}) +-> POW(CARTA) & dom(((mao) <+ (({((pp) |-> (((mao )(pp) - ({cc}))))})))) = ((1..2)*{JOGADOR}) & ((((mao) <+ (({((pp) |-> (((mao )(pp) - ({cc}))))})))) : (((((1..2)*{JOGADOR})) --> (POW(CARTA)))));
+((banco) <+ (({((pp) |-> ((((banco )(pp)) \/ (({cc})))))}))) : ((1..2)*{JOGADOR}) +-> POW(CARTA) & dom(((banco) <+ (({((pp) |-> ((((banco )(pp)) \/ (({cc})))))})))) = ((1..2)*{JOGADOR}) & ((((banco) <+ (({((pp) |-> ((((banco )(pp)) \/ (({cc})))))})))) : (((((1..2)*{JOGADOR})) --> (POW(CARTA)))));
+!(pp$1).(((((pp$1) : (((1..2)*{JOGADOR})))) => ((card((((banco) <+ (({((pp) |-> ((((banco )(pp)) \/ (({cc})))))}))) )(pp$1)) <= max_cartas_banco))));
+((valor_dano) : ((NAT-{0})));
+((pp) : (dom(ativo)));
+((oponente) : (((1..2)*{JOGADOR})));
+not(((oponente) = (pp)));
+((oponente) : (dom(ativo)));
+(((ativo )(oponente)) : (CARTA));
+(((ativo )(oponente)) : (dom(hp_base)));
+(((ativo )(oponente)) : (dom(dano)));
+((((dano) <+ (({(((ativo )(oponente)) |-> (((dano )((ativo )(oponente)) + valor_dano)))})))) : (((CARTA) +-> (NAT))));
+not((((ativo )(oponente)) : (dom(dano))));
+((((dano) <+ (({(((ativo )(oponente)) |-> (valor_dano))})))) : (((CARTA) +-> (NAT))));
+"Operation precondition is well defined";
+((pp) : (dom(mao)));
+((mao) : (((dom(mao)) +-> (ran(mao)))));
+((cc_energia) : (CARTA));
+((cc_energia) : ((mao )(pp)));
+((cc_alvo) : (CARTA));
+(((tipo_da_carta )(cc_energia)) = ((2|->TIPO_CARTA)));
+((energia_jogada_turno) = (FALSE));
+not(((cc_alvo) = ((ativo )(pp))));
+((cc_energia) : (dom(tipo_da_carta)));
+((tipo_da_carta) : (((dom(tipo_da_carta)) +-> (ran(tipo_da_carta)))));
+((ativo) : (((dom(ativo)) +-> (ran(ativo)))));
+((pp) : (dom(banco)));
+((banco) : (((dom(banco)) +-> (ran(banco)))));
+"Operation is well defined"
+END
+&
+THEORY EnumerateX IS
+ESTAGIO == {Basico,Estagio1,Estagio2};
+JOGADOR == {jogador1,jogador2};
+TIPO_CARTA == {Pokemon,Energia,Treinador}
+END

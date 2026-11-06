@@ -1,0 +1,7 @@
+digraph {
+Jogadores [ label=" Jogadores " shape= box ]
+cards [ label=" cards " shape= box ]
+jogoPokemon [ label=" jogoPokemon " shape= box ]
+
+"Jogadores" -> "cards" [style= dotted ]
+}

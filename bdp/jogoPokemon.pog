@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Proof_Obligations xmlns="https://www.atelierb.eu/Formats/pog" version="1.0">
+    <Define name="B definitions" hash="7128875304803749033">
+        <Exp_Comparison op="=">
+            <Id value="NAT" typref="0"/>
+            <Binary_Exp op=".." typref="0">
+                <Integer_Literal value="0" typref="1"/>
+                <Id value="MAXINT" typref="1"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op="=">
+            <Id value="INT" typref="0"/>
+            <Binary_Exp op=".." typref="0">
+                <Id value="MININT" typref="1"/>
+                <Id value="MAXINT" typref="1"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+    </Define>
+    <Define name="ctx" hash="0"/>
+    <Define name="seext" hash="0"/>
+    <Define name="lprp" hash="0"/>
+    <Define name="inprp" hash="10834456388790807822">
+        <Set>
+            <Id value="TIPO_CARTA" typref="0"/>
+            <Enumerated_Values>
+                <Id value="Pokemon" typref="1"/>
+                <Id value="Energia" typref="1"/>
+                <Id value="Treinador" typref="1"/>
+            </Enumerated_Values>
+        </Set>
+        <Set>
+            <Id value="ESTAGIO" typref="0"/>
+            <Enumerated_Values>
+                <Id value="Basico" typref="1"/>
+                <Id value="Estagio1" typref="1"/>
+                <Id value="Estagio2" typref="1"/>
+            </Enumerated_Values>
+        </Set>
+        <Set>
+            <Id value="CARTA" typref="0"/>
+        </Set>
+        <Set>
+            <Id value="JOGADOR" typref="0"/>
+            <Enumerated_Values>
+                <Id value="jogador1" typref="1"/>
+                <Id value="jogador2" typref="1"/>
+            </Enumerated_Values>
+        </Set>
+        <Exp_Comparison op=":">
+            <Id value="tipo_da_carta" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:1:1"/>
+            <Binary_Exp op="--&gt;" typref="3">
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:1:2:1"/>
+                <Id value="TIPO_CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:1:2:2"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="estagio_pokemon" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:2:1"/>
+            <Binary_Exp op="+-&gt;" typref="3">
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:2:2:1"/>
+                <Id value="ESTAGIO" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:2:2:2"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="hp_base" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:3:1"/>
+            <Binary_Exp op="+-&gt;" typref="3">
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:3:2:1"/>
+                <Id value="NAT1" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:3:2:2"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op="=">
+            <Unary_Exp op="dom" typref="0">
+                <Id value="estagio_pokemon" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:4:1:1"/>
+            </Unary_Exp>
+            <Binary_Exp op="[" typref="0">
+                <Unary_Exp op="~" typref="2">
+                    <Id value="tipo_da_carta" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:4:2:1:1"/>
+                </Unary_Exp>
+                <Nary_Exp op="{" typref="0">
+                    <Id value="Pokemon" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:4:2:2:1"/>
+                </Nary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op="=">
+            <Unary_Exp op="dom" typref="0">
+                <Id value="hp_base" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:5:1:1"/>
+            </Unary_Exp>
+            <Binary_Exp op="[" typref="0">
+                <Unary_Exp op="~" typref="2">
+                    <Id value="tipo_da_carta" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:5:2:1:1"/>
+                </Unary_Exp>
+                <Nary_Exp op="{" typref="0">
+                    <Id value="Pokemon" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:4:1:5:2:2:1"/>
+                </Nary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op="=">
+            <Id value="max_cartas_deck" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:5:1:1:1"/>
+            <Integer_Literal value="60" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:5:1:1:2"/>
+        </Exp_Comparison>
+        <Exp_Comparison op="=">
+            <Id value="max_cartas_banco" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:5:1:2:1"/>
+            <Integer_Literal value="5" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:5:1:2:2"/>
+        </Exp_Comparison>
+        <Exp_Comparison op="=">
+            <Id value="max_cartas_premio" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:5:1:3:1"/>
+            <Integer_Literal value="6" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:5:1:3:2"/>
+        </Exp_Comparison>
+    </Define>
+    <Define name="inext" hash="12175516108308081987">
+        <Exp_Comparison op=":">
+            <Id value="dano" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:1"/>
+            <Binary_Exp op="+-&gt;" typref="3">
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:2:1"/>
+                <Id value="NAT" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:2:2"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="energia_ligada" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:2:1"/>
+            <Binary_Exp op="+-&gt;" typref="3">
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:2:2:1"/>
+                <Id value="NAT" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:2:2:2"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="deck" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:1:1"/>
+            <Binary_Exp op="--&gt;" typref="5">
+                <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:1:2:1"/>
+                <Unary_Exp op="seq" typref="3">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:1:2:2:1"/>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="mao" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:1"/>
+            <Binary_Exp op="--&gt;" typref="7">
+                <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:2:1"/>
+                <Unary_Exp op="POW" typref="8">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:2:2:1"/>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="ativo" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:3:1"/>
+            <Binary_Exp op="+-&gt;" typref="3">
+                <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:3:2:1"/>
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:3:2:2"/>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:4:1"/>
+            <Binary_Exp op="--&gt;" typref="7">
+                <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:4:2:1"/>
+                <Unary_Exp op="POW" typref="8">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:4:2:2:1"/>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="premios" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:5:1"/>
+            <Binary_Exp op="--&gt;" typref="7">
+                <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:5:2:1"/>
+                <Unary_Exp op="POW" typref="8">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:5:2:2:1"/>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="descarte" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:6:1"/>
+            <Binary_Exp op="--&gt;" typref="5">
+                <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:6:2:1"/>
+                <Unary_Exp op="seq" typref="3">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:6:2:2:1"/>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Exp_Comparison>
+        <Quantified_Pred type="!">
+            <Variables>
+                <Id value="pp" typref="1"/>
+            </Variables>
+            <Body>
+                <Binary_Pred op="=&gt;">
+                    <Exp_Comparison op=":">
+                        <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:1:1"/>
+                        <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:1:2"/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op="&lt;=i">
+                        <Unary_Exp op="card" typref="1">
+                            <Binary_Exp op="(" typref="0">
+                                <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:2:1:1:1"/>
+                                <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:2:1:1:2"/>
+                            </Binary_Exp>
+                        </Unary_Exp>
+                        <Id value="max_cartas_banco" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:2:2"/>
+                    </Exp_Comparison>
+                </Binary_Pred>
+            </Body>
+        </Quantified_Pred>
+        <Quantified_Pred type="!">
+            <Variables>
+                <Id value="pp" typref="1"/>
+            </Variables>
+            <Body>
+                <Binary_Pred op="=&gt;">
+                    <Exp_Comparison op=":">
+                        <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:8:2:1:1:1"/>
+                        <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:8:2:1:1:2"/>
+                    </Exp_Comparison>
+                    <Exp_Comparison op="&lt;=i">
+                        <Unary_Exp op="card" typref="1">
+                            <Binary_Exp op="(" typref="0">
+                                <Id value="premios" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:8:2:1:2:1:1:1"/>
+                                <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:8:2:1:2:1:1:2"/>
+                            </Binary_Exp>
+                        </Unary_Exp>
+                        <Id value="max_cartas_premio" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:8:2:1:2:2"/>
+                    </Exp_Comparison>
+                </Binary_Pred>
+            </Body>
+        </Quantified_Pred>
+    </Define>
+    <Define name="inv" hash="7528353001429735220">
+        <Exp_Comparison op=":">
+            <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:3:1:1:1"/>
+            <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:3:1:1:2"/>
+        </Exp_Comparison>
+        <Exp_Comparison op=":">
+            <Id value="energia_jogada_turno" typref="9" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:3:1:2:1"/>
+            <Id value="BOOL" typref="10" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:3:1:2:2"/>
+        </Exp_Comparison>
+    </Define>
+    <Define name="ass" hash="0"/>
+    <Define name="cst" hash="0"/>
+    <Define name="sets" hash="0"/>
+    <Proof_Obligation goalHash="12187716288423485315">
+        <Tag>Operation_comprar_carta_turno</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:2:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op="=">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:2:1:2:1"/>
+                <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:2:1:2:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Exp_Comparison op="&gt;i">
+                <Unary_Exp op="size" typref="1">
+                    <Binary_Exp op="(" typref="2">
+                        <Id value="deck" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:2:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                        <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:2:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                    </Binary_Exp>
+                </Unary_Exp>
+                <Integer_Literal value="0" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:2:1:2:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="&lt;+" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:1:1">
+                    <Id value="deck" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                    <Nary_Exp op="{" typref="4">
+                        <Binary_Exp op="|-&gt;" typref="11">
+                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                            <Unary_Exp op="tail" typref="2">
+                                <Binary_Exp op="(" typref="2">
+                                    <Id value="deck" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:2:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                                    <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:2:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                                </Binary_Exp>
+                            </Unary_Exp>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Binary_Exp>
+                <Binary_Exp op="--&gt;" typref="5">
+                    <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:1:2:1"/>
+                    <Unary_Exp op="seq" typref="3">
+                        <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:1:2:2:1"/>
+                    </Unary_Exp>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="&lt;+" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:1">
+                    <Id value="mao" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                    <Nary_Exp op="{" typref="6">
+                        <Binary_Exp op="|-&gt;" typref="12">
+                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:1:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                            <Binary_Exp op="\/" typref="0">
+                                <Binary_Exp op="(" typref="0">
+                                    <Id value="mao" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                                    <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                                </Binary_Exp>
+                                <Nary_Exp op="{" typref="0">
+                                    <Unary_Exp op="first" typref="1">
+                                        <Binary_Exp op="(" typref="2">
+                                            <Id value="deck" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:1:2:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:3:1:1:2:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                                        </Binary_Exp>
+                                    </Unary_Exp>
+                                </Nary_Exp>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Binary_Exp>
+                <Binary_Exp op="--&gt;" typref="7">
+                    <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:2:1"/>
+                    <Unary_Exp op="POW" typref="8">
+                        <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:2:2:1"/>
+                    </Unary_Exp>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Precondition predicate</Tag>
+            <Goal>
+                <Exp_Comparison op="&gt;i">
+                    <Unary_Exp op="size" typref="1">
+                        <Binary_Exp op="(" typref="2">
+                            <Id value="deck" typref="4" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:2:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:2:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:2:1"/>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Integer_Literal value="0" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:1:2:1:2:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:1:3:1:1:1"/>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="1019263634197749900">
+        <Tag>Operation_baixar_pokemon</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op="=">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:2:1"/>
+                <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:2:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:3:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:3:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:1"/>
+                <Binary_Exp op="(" typref="0">
+                    <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:1"/>
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:2"/>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Exp_Comparison op="=">
+                <Binary_Exp op="(" typref="1">
+                    <Id value="tipo_da_carta" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:3:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                    <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:3:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                </Binary_Exp>
+                <Id value="Pokemon" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:3:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Exp_Comparison op="=">
+                <Binary_Exp op="(" typref="1">
+                    <Id value="estagio_pokemon" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:4:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                    <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:4:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                </Binary_Exp>
+                <Id value="Basico" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:4:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Exp_Comparison op="&lt;i">
+                <Unary_Exp op="card" typref="1">
+                    <Binary_Exp op="(" typref="0">
+                        <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:5:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                        <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:5:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                    </Binary_Exp>
+                </Unary_Exp>
+                <Id value="max_cartas_banco" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:5:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="4">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="&lt;+" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:1">
+                    <Id value="mao" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                    <Nary_Exp op="{" typref="6">
+                        <Binary_Exp op="|-&gt;" typref="12">
+                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                            <Binary_Exp op="-s" typref="0">
+                                <Binary_Exp op="(" typref="0">
+                                    <Id value="mao" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:2:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                                    <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:2:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                                </Binary_Exp>
+                                <Nary_Exp op="{" typref="0">
+                                    <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:2:2:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                                </Nary_Exp>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Binary_Exp>
+                <Binary_Exp op="--&gt;" typref="7">
+                    <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:2:1"/>
+                    <Unary_Exp op="POW" typref="8">
+                        <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:2:2:2:1"/>
+                    </Unary_Exp>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="5">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="&lt;+" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:4:1">
+                    <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                    <Nary_Exp op="{" typref="6">
+                        <Binary_Exp op="|-&gt;" typref="12">
+                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                            <Binary_Exp op="\/" typref="0">
+                                <Binary_Exp op="(" typref="0">
+                                    <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                                    <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                                </Binary_Exp>
+                                <Nary_Exp op="{" typref="0">
+                                    <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:2:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                                </Nary_Exp>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Binary_Exp>
+                <Binary_Exp op="--&gt;" typref="7">
+                    <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:4:2:1"/>
+                    <Unary_Exp op="POW" typref="8">
+                        <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:4:2:2:1"/>
+                    </Unary_Exp>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="6">
+            <Quantified_Pred type="!">
+                <Variables>
+                    <Id value="pp" suffix="1" typref="1"/>
+                </Variables>
+                <Body>
+                    <Binary_Pred op="=&gt;">
+                        <Exp_Comparison op=":">
+                            <Id value="pp" suffix="1" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:1:1"/>
+                            <Id value="JOGADOR" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:1:2"/>
+                        </Exp_Comparison>
+                        <Exp_Comparison op="&lt;=i">
+                            <Unary_Exp op="card" typref="1">
+                                <Binary_Exp op="(" typref="0">
+                                    <Binary_Exp op="&lt;+" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:2:1:1:1">
+                                        <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                                        <Nary_Exp op="{" typref="6">
+                                            <Binary_Exp op="|-&gt;" typref="12">
+                                                <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                                                <Binary_Exp op="\/" typref="0">
+                                                    <Binary_Exp op="(" typref="0">
+                                                        <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                                                        <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                                                    </Binary_Exp>
+                                                    <Nary_Exp op="{" typref="0">
+                                                        <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:3:1:1:2:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                                                    </Nary_Exp>
+                                                </Binary_Exp>
+                                            </Binary_Exp>
+                                        </Nary_Exp>
+                                    </Binary_Exp>
+                                    <Id value="pp" suffix="1" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:2:1:1:2"/>
+                                </Binary_Exp>
+                            </Unary_Exp>
+                            <Id value="max_cartas_banco" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:6:1:7:2:1:2:2"/>
+                        </Exp_Comparison>
+                    </Binary_Pred>
+                </Body>
+            </Quantified_Pred>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Precondition predicate</Tag>
+            <Goal>
+                <Exp_Comparison op="=">
+                    <Binary_Exp op="(" typref="1">
+                        <Id value="tipo_da_carta" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:3:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                        <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:3:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                    </Binary_Exp>
+                    <Id value="Pokemon" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:3:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Precondition predicate</Tag>
+            <Goal>
+                <Exp_Comparison op="=">
+                    <Binary_Exp op="(" typref="1">
+                        <Id value="estagio_pokemon" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:4:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                        <Id value="cc" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:4:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:2"/>
+                    </Binary_Exp>
+                    <Id value="Basico" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:4:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Precondition predicate</Tag>
+            <Goal>
+                <Exp_Comparison op="&lt;i">
+                    <Unary_Exp op="card" typref="1">
+                        <Binary_Exp op="(" typref="0">
+                            <Id value="banco" typref="6" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:5:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                            <Id value="pp" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:5:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:2:1"/>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Id value="max_cartas_banco" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/Jogadores.bxml:1:8:2:2:1:5:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:3:1:1:1"/>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="4609245819088823792">
+        <Tag>Operation_atacar_oponente</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op="=">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:2:1"/>
+                <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:2:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="valor_dano" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:3:1"/>
+                <Id value="NAT1" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:3:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:4:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:4:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Exp_Comparison op=":">
+                <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:1:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Unary_Pred op="not">
+                <Exp_Comparison op="=">
+                    <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:2:1"/>
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:2:2"/>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Exp_Comparison op=":">
+                <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:3:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:3:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="4">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                    <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                </Binary_Exp>
+                <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="5">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:2:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                    <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                </Binary_Exp>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="hp_base" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:2:1:2:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="6">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                    <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                </Binary_Exp>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="dano" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:1:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="7">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="&lt;+" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:1">
+                    <Id value="dano" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:2:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                    <Nary_Exp op="{" typref="2">
+                        <Binary_Exp op="|-&gt;" typref="13">
+                            <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:2:1:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                                <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                                <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                            </Binary_Exp>
+                            <Binary_Exp op="+i" typref="1">
+                                <Binary_Exp op="(" typref="1">
+                                    <Id value="dano" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:2:1:2:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                                    <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:2:1:2:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                                        <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                                        <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                                <Id value="valor_dano" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:2:1:2:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:2"/>
+                            </Binary_Exp>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Binary_Exp>
+                <Binary_Exp op="+-&gt;" typref="3">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:2:1"/>
+                    <Id value="NAT" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:2:2"/>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="8">
+            <Unary_Pred op="not">
+                <Exp_Comparison op=":">
+                    <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                        <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                        <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                    </Binary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="dano" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:1:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Local_Hyp num="9">
+            <Exp_Comparison op=":">
+                <Binary_Exp op="&lt;+" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:1">
+                    <Id value="dano" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:3:1:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                    <Nary_Exp op="{" typref="2">
+                        <Binary_Exp op="|-&gt;" typref="13">
+                            <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:3:1:1:1:2,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                                <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                                <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                            </Binary_Exp>
+                            <Id value="valor_dano" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:3:1:3:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:2"/>
+                        </Binary_Exp>
+                    </Nary_Exp>
+                </Binary_Exp>
+                <Binary_Exp op="+-&gt;" typref="3">
+                    <Id value="CARTA" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:2:1"/>
+                    <Id value="NAT" typref="0" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:5:1:1:2:2"/>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Precondition predicate</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Binary_Exp op="(" typref="1" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:2:1:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1">
+                        <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                        <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:2"/>
+                    </Binary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:/AtelierB_Workspace/Pokemon/bdp\/cards.bxml:1:7:1:2:1:2:2:1,C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:1:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="12047851726354208635">
+        <Tag>WellDefinednessPrecondition_baixar_pokemon</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Local_Hyp num="1">
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:1:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Exp_Comparison op="=">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:2:1"/>
+                <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:2:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:3:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:3:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:2"/>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:1"/>
+                    <Binary_Exp op="+-&gt;" typref="7">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="8">
+                            <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:2:2:1:4:2:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="7006942067149725539">
+        <Tag>WellDefinednessPrecondition_jogar_energia</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Local_Hyp num="1">
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:1:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Exp_Comparison op="=">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:2:1"/>
+                <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:2:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Exp_Comparison op=":">
+                <Id value="cc_energia" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:3:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:3:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="4">
+            <Exp_Comparison op=":">
+                <Id value="cc_energia" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:1"/>
+                <Binary_Exp op="(" typref="0">
+                    <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:1"/>
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:2"/>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="5">
+            <Exp_Comparison op=":">
+                <Id value="cc_alvo" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:5:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:5:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="6">
+            <Exp_Comparison op="=">
+                <Binary_Exp op="(" typref="1">
+                    <Id value="tipo_da_carta" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:1"/>
+                    <Id value="cc_energia" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:2"/>
+                </Binary_Exp>
+                <Id value="Energia" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="7">
+            <Exp_Comparison op="=">
+                <Id value="energia_jogada_turno" typref="9" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:7:1"/>
+                <Boolean_Literal value="FALSE" typref="9" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:7:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="8">
+            <Unary_Pred op="not">
+                <Exp_Comparison op="=">
+                    <Id value="cc_alvo" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:1"/>
+                    <Binary_Exp op="(" typref="1">
+                        <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:1"/>
+                        <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:2"/>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:2"/>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:1"/>
+                    <Binary_Exp op="+-&gt;" typref="7">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="8">
+                            <Id value="mao" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:4:2:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Ref_Hyp num="4"/>
+            <Ref_Hyp num="5"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="cc_energia" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:2"/>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="tipo_da_carta" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Ref_Hyp num="4"/>
+            <Ref_Hyp num="5"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="tipo_da_carta" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="tipo_da_carta" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="tipo_da_carta" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:6:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Ref_Hyp num="4"/>
+            <Ref_Hyp num="5"/>
+            <Ref_Hyp num="6"/>
+            <Ref_Hyp num="7"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:2"/>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Ref_Hyp num="4"/>
+            <Ref_Hyp num="5"/>
+            <Ref_Hyp num="6"/>
+            <Ref_Hyp num="7"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:1:2:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Ref_Hyp num="4"/>
+            <Ref_Hyp num="5"/>
+            <Ref_Hyp num="6"/>
+            <Ref_Hyp num="7"/>
+            <Ref_Hyp num="8"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:2:2:2"/>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="banco" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:2:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation precondition is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Ref_Hyp num="4"/>
+            <Ref_Hyp num="5"/>
+            <Ref_Hyp num="6"/>
+            <Ref_Hyp num="7"/>
+            <Ref_Hyp num="8"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="banco" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:2:2:1"/>
+                    <Binary_Exp op="+-&gt;" typref="7">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="banco" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:2:2:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="8">
+                            <Id value="banco" typref="6" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:3:2:1:8:2:2:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="6885404183099094017">
+        <Tag>WellDefinedness_atacar_oponente</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op="=">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:2:1"/>
+                <Id value="turno" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:2:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="valor_dano" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:3:1"/>
+                <Id value="NAT1" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:3:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:4:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:2:1:4:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Exp_Comparison op=":">
+                <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:1:1"/>
+                <Id value="JOGADOR" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:1:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Unary_Pred op="not">
+                <Exp_Comparison op="=">
+                    <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:2:1"/>
+                    <Id value="pp" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:2:2"/>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Exp_Comparison op=":">
+                <Id value="oponente" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:3:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:2:1:3:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="ativo" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\jogoPokemon.bxml:1:5:4:3:1:3:1:2:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <TypeInfos>
+        <Type id="0">
+            <Unary_Exp op="POW">
+                <Id value="INTEGER"/>
+            </Unary_Exp>
+        </Type>
+        <Type id="1">
+            <Id value="INTEGER"/>
+        </Type>
+        <Type id="2">
+            <Unary_Exp op="POW">
+                <Binary_Exp op="*">
+                    <Id value="INTEGER"/>
+                    <Id value="INTEGER"/>
+                </Binary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="3">
+            <Unary_Exp op="POW">
+                <Unary_Exp op="POW">
+                    <Binary_Exp op="*">
+                        <Id value="INTEGER"/>
+                        <Id value="INTEGER"/>
+                    </Binary_Exp>
+                </Unary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="4">
+            <Unary_Exp op="POW">
+                <Binary_Exp op="*">
+                    <Id value="INTEGER"/>
+                    <Unary_Exp op="POW">
+                        <Binary_Exp op="*">
+                            <Id value="INTEGER"/>
+                            <Id value="INTEGER"/>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                </Binary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="5">
+            <Unary_Exp op="POW">
+                <Unary_Exp op="POW">
+                    <Binary_Exp op="*">
+                        <Id value="INTEGER"/>
+                        <Unary_Exp op="POW">
+                            <Binary_Exp op="*">
+                                <Id value="INTEGER"/>
+                                <Id value="INTEGER"/>
+                            </Binary_Exp>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Unary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="6">
+            <Unary_Exp op="POW">
+                <Binary_Exp op="*">
+                    <Id value="INTEGER"/>
+                    <Unary_Exp op="POW">
+                        <Id value="INTEGER"/>
+                    </Unary_Exp>
+                </Binary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="7">
+            <Unary_Exp op="POW">
+                <Unary_Exp op="POW">
+                    <Binary_Exp op="*">
+                        <Id value="INTEGER"/>
+                        <Unary_Exp op="POW">
+                            <Id value="INTEGER"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Unary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="8">
+            <Unary_Exp op="POW">
+                <Unary_Exp op="POW">
+                    <Id value="INTEGER"/>
+                </Unary_Exp>
+            </Unary_Exp>
+        </Type>
+        <Type id="9">
+            <Id value="BOOL"/>
+        </Type>
+        <Type id="10">
+            <Unary_Exp op="POW">
+                <Id value="BOOL"/>
+            </Unary_Exp>
+        </Type>
+        <Type id="11">
+            <Binary_Exp op="*">
+                <Id value="INTEGER"/>
+                <Unary_Exp op="POW">
+                    <Binary_Exp op="*">
+                        <Id value="INTEGER"/>
+                        <Id value="INTEGER"/>
+                    </Binary_Exp>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Type>
+        <Type id="12">
+            <Binary_Exp op="*">
+                <Id value="INTEGER"/>
+                <Unary_Exp op="POW">
+                    <Id value="INTEGER"/>
+                </Unary_Exp>
+            </Binary_Exp>
+        </Type>
+        <Type id="13">
+            <Binary_Exp op="*">
+                <Id value="INTEGER"/>
+                <Id value="INTEGER"/>
+            </Binary_Exp>
+        </Type>
+    </TypeInfos>
+</Proof_Obligations>

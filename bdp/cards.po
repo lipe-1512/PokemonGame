@@ -1,0 +1,40 @@
+THEORY ProofList IS
+_f(1) & _f(2) & _f(5) & _f(6) & WellDefinedness_adicionar_energia.1,(_f(13) & _f(19) => _f(21));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_aplicar_dano.1,(_f(9) & _f(19) => _f(20));
+_f(1) & _f(2) & _f(5) & _f(6) & Operation_resetar_carta.2,(_f(3) => _f(18));
+_f(1) & _f(2) & _f(5) & _f(6) & Operation_resetar_carta.1,(_f(3) => _f(17));
+_f(1) & _f(2) & _f(5) & _f(6) & Operation_adicionar_energia.2,(_f(14) & _f(3) => _f(16));
+_f(1) & _f(2) & _f(5) & _f(6) & Operation_adicionar_energia.1,(_f(13) & _f(3) => _f(15));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_aplicar_dano.2,(_f(10) & _f(3) => _f(12));
+_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_aplicar_dano.1,(_f(9) & _f(3) => _f(11));
+_f(1) & _f(2) & Initialisation.1,(_f(3) => _f(4))
+END
+&
+THEORY Formulas IS
+((NAT) = (((0) .. (2147483647)))) & ((INT) = (((-2147483647) .. (2147483647))));
+((1..3)*{TIPO_CARTA}): FIN(NATURAL*{TIPO_CARTA})& not(((1..3)*{TIPO_CARTA}) = {}) & ((1..3)*{ESTAGIO}): FIN(NATURAL*{ESTAGIO})& not(((1..3)*{ESTAGIO}) = {}) & CARTA: FIN(INTEGER) & not(CARTA = {}) & tipo_da_carta : CARTA +-> ((1..3)*{TIPO_CARTA}) & dom(tipo_da_carta) = CARTA & ((tipo_da_carta) : (((CARTA) --> (((1..3)*{TIPO_CARTA}))))) & ((estagio_pokemon) : (((CARTA) +-> (((1..3)*{ESTAGIO}))))) & ((hp_base) : (((CARTA) +-> ((NAT-{0}))))) & ((dom(estagio_pokemon)) = (((tipo_da_carta)~ )[({(1|->TIPO_CARTA)})])) & ((dom(hp_base)) = (((tipo_da_carta)~ )[({(1|->TIPO_CARTA)})]));
+"Invariant is preserved";
+(({}) : (((CARTA) +-> (NAT))));
+((dano) : (((CARTA) +-> (NAT)))) & ((energia_ligada) : (((CARTA) +-> (NAT))));
+((cc) : (CARTA));
+((cc) : (dom(hp_base)));
+((valor) : ((NAT-{0})));
+((cc) : (dom(dano)));
+not(((cc) : (dom(dano))));
+((((dano) <+ (({((cc) |-> (((dano )(cc) + valor)))})))) : (((CARTA) +-> (NAT))));
+((((dano) <+ (({((cc) |-> (valor))})))) : (((CARTA) +-> (NAT))));
+((cc) : (dom(energia_ligada)));
+not(((cc) : (dom(energia_ligada))));
+((((energia_ligada) <+ (({((cc) |-> (((energia_ligada )(cc) + 1)))})))) : (((CARTA) +-> (NAT))));
+((((energia_ligada) <+ (({((cc) |-> (1))})))) : (((CARTA) +-> (NAT))));
+((((({cc})) <<| (dano))) : (((CARTA) +-> (NAT))));
+((((({cc})) <<| (energia_ligada))) : (((CARTA) +-> (NAT))));
+"Operation is well defined";
+((dano) : (((dom(dano)) +-> (ran(dano)))));
+((energia_ligada) : (((dom(energia_ligada)) +-> (ran(energia_ligada)))))
+END
+&
+THEORY EnumerateX IS
+ESTAGIO == {Basico,Estagio1,Estagio2};
+TIPO_CARTA == {Pokemon,Energia,Treinador}
+END
