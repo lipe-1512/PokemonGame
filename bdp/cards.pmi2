@@ -1,0 +1,106 @@
+THEORY BalanceX IS
+cards,24,0,20,0,0,0,0;
+Initialisation,2,0,2,0,0,0,0;
+Operation_adicionar_energia,2,0,1,0,0,0,0;
+Operation_aplicar_dano,4,0,2,0,0,0,0;
+Operation_curar_dano,4,0,3,0,0,0,0;
+Operation_resetar_carta,3,0,3,0,0,0,0;
+WellDefinedness_adicionar_energia,1,0,1,0,0,0,0;
+WellDefinedness_aplicar_dano,1,0,1,0,0,0,0;
+WellDefinedness_consultar_hp_restante,5,0,5,0,0,0,0;
+WellDefinedness_curar_dano,2,0,2,0,0,0,0
+END
+&
+THEORY ProofState IS
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Unproved;
+Proved(Rapide);
+Proved(Rapide);
+Proved(Rapide);
+Unproved;
+Proved(Rapide);
+Unproved;
+Proved(Rapide);
+Unproved;
+Proved(Rapide);
+Proved(Rapide)
+END
+&
+THEORY MethodList IS
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+pr;
+?;
+pr;
+pr;
+pr;
+?;
+pr;
+?;
+pr;
+?;
+pr;
+pr
+END
+&
+THEORY PassList IS
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(0),(?; Rapide);
+Force(Rapide),?;
+Force(Rapide),?;
+Force(Rapide),?;
+Force(0),(?; Rapide);
+Force(Rapide),?;
+Force(0),(?; Rapide);
+Force(Rapide),?;
+Force(0),(?; Rapide);
+Force(Rapide),?;
+Force(Rapide),?
+END
+&
+THEORY Status IS
+cards,24,0,20,0,0,0;
+Initialisation,2,0,2,0,0,0;
+Operation_adicionar_energia,2,0,1,0,0,0;
+Operation_aplicar_dano,4,0,2,0,0,0;
+Operation_curar_dano,4,0,3,0,0,0;
+Operation_resetar_carta,3,0,3,0,0,0;
+WellDefinedness_adicionar_energia,1,0,1,0,0,0;
+WellDefinedness_aplicar_dano,1,0,1,0,0,0;
+WellDefinedness_consultar_hp_restante,5,0,5,0,0,0;
+WellDefinedness_curar_dano,2,0,2,0,0,0
+END

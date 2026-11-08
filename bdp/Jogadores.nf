@@ -56,8 +56,8 @@ THEORY ListInvariantX IS
   Gluing_List_Invariant(Machine(Jogadores))==(btrue);
   Expanded_List_Invariant(Machine(Jogadores))==(btrue);
   Abstract_List_Invariant(Machine(Jogadores))==(btrue);
-  Context_List_Invariant(Machine(Jogadores))==(dano: CARTA +-> NAT & energia_ligada: CARTA +-> NAT);
-  List_Invariant(Machine(Jogadores))==(deck: JOGADOR --> seq(CARTA) & mao: JOGADOR --> POW(CARTA) & ativo: JOGADOR +-> CARTA & banco: JOGADOR --> POW(CARTA) & premios: JOGADOR --> POW(CARTA) & descarte: JOGADOR --> seq(CARTA) & !pp.(pp: JOGADOR => card(banco(pp))<=max_cartas_banco) & !pp.(pp: JOGADOR => card(premios(pp))<=max_cartas_premio))
+  Context_List_Invariant(Machine(Jogadores))==(dano: CARTA +-> NAT & energia_ligada: CARTA +-> NAT & dom(dano) <: dom(hp_base));
+  List_Invariant(Machine(Jogadores))==(deck: JOGADOR --> seq(CARTA) & mao: JOGADOR --> POW(CARTA) & ativo: JOGADOR +-> CARTA & banco: JOGADOR --> seq(CARTA) & premios: JOGADOR --> seq(CARTA) & descarte: JOGADOR --> seq(CARTA) & ran(ativo) <: dom(hp_base) & !pp.(pp: JOGADOR => size(banco(pp))<=max_cartas_banco) & !pp.(pp: JOGADOR => size(premios(pp))<=max_cartas_premio))
 END
 &
 THEORY ListAssertionsX IS
@@ -76,9 +76,9 @@ THEORY ListExclusivityX IS
 END
 &
 THEORY ListInitialisationX IS
-  Expanded_List_Initialisation(Machine(Jogadores))==(@(deck$0).(deck$0: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_deck} ==> deck:=deck$0) || mao:={jogador1|->{},jogador2|->{}} || ativo:={} || banco:={jogador1|->{},jogador2|->{}} || premios:={jogador1|->{},jogador2|->{}} || descarte:={jogador1|-><>,jogador2|-><>});
+  Expanded_List_Initialisation(Machine(Jogadores))==(@(deck$0).(deck$0: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_deck} ==> deck:=deck$0) || mao:={jogador1|->{},jogador2|->{}} || ativo:={} || banco:={jogador1|-><>,jogador2|-><>} || @(premios$0).(premios$0: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_premio} ==> premios:=premios$0) || descarte:={jogador1|-><>,jogador2|-><>});
   Context_List_Initialisation(Machine(Jogadores))==(skip);
-  List_Initialisation(Machine(Jogadores))==(deck:: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_deck} || mao:={jogador1|->{},jogador2|->{}} || ativo:={} || banco:={jogador1|->{},jogador2|->{}} || premios:={jogador1|->{},jogador2|->{}} || descarte:={jogador1|-><>,jogador2|-><>})
+  List_Initialisation(Machine(Jogadores))==(deck:: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_deck} || mao:={jogador1|->{},jogador2|->{}} || ativo:={} || banco:={jogador1|-><>,jogador2|-><>} || premios:: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_premio} || descarte:={jogador1|-><>,jogador2|-><>})
 END
 &
 THEORY ListParametersX IS
@@ -95,49 +95,61 @@ THEORY ListConstraintsX IS
 END
 &
 THEORY ListOperationsX IS
-  Internal_List_Operations(Machine(Jogadores))==(comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo);
-  List_Operations(Machine(Jogadores))==(comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo)
+  Internal_List_Operations(Machine(Jogadores))==(comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo,evoluir_pokemon_banco,coletar_premio);
+  List_Operations(Machine(Jogadores))==(comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo,evoluir_pokemon_banco,coletar_premio)
 END
 &
 THEORY ListInputX IS
   List_Input(Machine(Jogadores),comprar_carta_jogador)==(pp);
   List_Input(Machine(Jogadores),mover_mao_para_banco)==(pp,cc);
   List_Input(Machine(Jogadores),remover_carta_mao)==(pp,cc);
-  List_Input(Machine(Jogadores),definir_ativo)==(pp,cc)
+  List_Input(Machine(Jogadores),definir_ativo)==(pp,cc);
+  List_Input(Machine(Jogadores),evoluir_pokemon_banco)==(pp,idx,cc_nova);
+  List_Input(Machine(Jogadores),coletar_premio)==(pp)
 END
 &
 THEORY ListOutputX IS
   List_Output(Machine(Jogadores),comprar_carta_jogador)==(?);
   List_Output(Machine(Jogadores),mover_mao_para_banco)==(?);
   List_Output(Machine(Jogadores),remover_carta_mao)==(?);
-  List_Output(Machine(Jogadores),definir_ativo)==(?)
+  List_Output(Machine(Jogadores),definir_ativo)==(?);
+  List_Output(Machine(Jogadores),evoluir_pokemon_banco)==(?);
+  List_Output(Machine(Jogadores),coletar_premio)==(?)
 END
 &
 THEORY ListHeaderX IS
   List_Header(Machine(Jogadores),comprar_carta_jogador)==(comprar_carta_jogador(pp));
   List_Header(Machine(Jogadores),mover_mao_para_banco)==(mover_mao_para_banco(pp,cc));
   List_Header(Machine(Jogadores),remover_carta_mao)==(remover_carta_mao(pp,cc));
-  List_Header(Machine(Jogadores),definir_ativo)==(definir_ativo(pp,cc))
+  List_Header(Machine(Jogadores),definir_ativo)==(definir_ativo(pp,cc));
+  List_Header(Machine(Jogadores),evoluir_pokemon_banco)==(evoluir_pokemon_banco(pp,idx,cc_nova));
+  List_Header(Machine(Jogadores),coletar_premio)==(coletar_premio(pp))
 END
 &
 THEORY ListOperationGuardX END
 &
 THEORY ListPreconditionX IS
   List_Precondition(Machine(Jogadores),comprar_carta_jogador)==(pp: JOGADOR & size(deck(pp))>0);
-  List_Precondition(Machine(Jogadores),mover_mao_para_banco)==(pp: JOGADOR & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & estagio_pokemon(cc) = Basico & card(banco(pp))<max_cartas_banco);
-  List_Precondition(Machine(Jogadores),remover_carta_mao)==(pp: JOGADOR & cc: mao(pp));
-  List_Precondition(Machine(Jogadores),definir_ativo)==(pp: JOGADOR & pp/:dom(ativo) & cc: mao(pp) & tipo_da_carta(cc) = Pokemon)
+  List_Precondition(Machine(Jogadores),mover_mao_para_banco)==(pp: JOGADOR & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(estagio_pokemon) & estagio_pokemon(cc) = Basico & size(banco(pp))<max_cartas_banco);
+  List_Precondition(Machine(Jogadores),remover_carta_mao)==(pp: JOGADOR & cc: CARTA & cc: mao(pp));
+  List_Precondition(Machine(Jogadores),definir_ativo)==(pp: JOGADOR & pp/:dom(ativo) & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(hp_base));
+  List_Precondition(Machine(Jogadores),evoluir_pokemon_banco)==(pp: JOGADOR & idx: dom(banco(pp)) & cc_nova: CARTA & cc_nova: mao(pp) & tipo_da_carta(cc_nova) = Pokemon & cc_nova: dom(estagio_pokemon) & estagio_pokemon(cc_nova)/=Basico);
+  List_Precondition(Machine(Jogadores),coletar_premio)==(pp: JOGADOR & size(premios(pp))>0)
 END
 &
 THEORY ListSubstitutionX IS
-  Expanded_List_Substitution(Machine(Jogadores),definir_ativo)==(pp: JOGADOR & pp/:dom(ativo) & cc: mao(pp) & tipo_da_carta(cc) = Pokemon | ativo,mao:=ativo<+{pp|->cc},mao<+{pp|->mao(pp)-{cc}});
-  Expanded_List_Substitution(Machine(Jogadores),remover_carta_mao)==(pp: JOGADOR & cc: mao(pp) | mao:=mao<+{pp|->mao(pp)-{cc}});
-  Expanded_List_Substitution(Machine(Jogadores),mover_mao_para_banco)==(pp: JOGADOR & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & estagio_pokemon(cc) = Basico & card(banco(pp))<max_cartas_banco | banco,mao:=banco<+{pp|->(banco(pp)\/{cc})},mao<+{pp|->mao(pp)-{cc}});
+  Expanded_List_Substitution(Machine(Jogadores),coletar_premio)==(pp: JOGADOR & size(premios(pp))>0 | mao,premios:=mao<+{pp|->(mao(pp)\/{first(premios(pp))})},premios<+{pp|->tail(premios(pp))});
+  Expanded_List_Substitution(Machine(Jogadores),evoluir_pokemon_banco)==(pp: JOGADOR & idx: dom(banco(pp)) & cc_nova: CARTA & cc_nova: mao(pp) & tipo_da_carta(cc_nova) = Pokemon & cc_nova: dom(estagio_pokemon) & estagio_pokemon(cc_nova)/=Basico | @cc_antiga.(cc_antiga = banco(pp)(idx) ==> banco,mao,descarte:=banco<+{pp|->(banco(pp)<+{idx|->cc_nova})},mao<+{pp|->mao(pp)-{cc_nova}},descarte<+{pp|->(descarte(pp)^[cc_antiga])}));
+  Expanded_List_Substitution(Machine(Jogadores),definir_ativo)==(pp: JOGADOR & pp/:dom(ativo) & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(hp_base) | ativo,mao:=ativo<+{pp|->cc},mao<+{pp|->mao(pp)-{cc}});
+  Expanded_List_Substitution(Machine(Jogadores),remover_carta_mao)==(pp: JOGADOR & cc: CARTA & cc: mao(pp) | mao:=mao<+{pp|->mao(pp)-{cc}});
+  Expanded_List_Substitution(Machine(Jogadores),mover_mao_para_banco)==(pp: JOGADOR & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(estagio_pokemon) & estagio_pokemon(cc) = Basico & size(banco(pp))<max_cartas_banco | banco,mao:=banco<+{pp|->(banco(pp)^[cc])},mao<+{pp|->mao(pp)-{cc}});
   Expanded_List_Substitution(Machine(Jogadores),comprar_carta_jogador)==(pp: JOGADOR & size(deck(pp))>0 | mao,deck:=mao<+{pp|->(mao(pp)\/{first(deck(pp))})},deck<+{pp|->tail(deck(pp))});
   List_Substitution(Machine(Jogadores),comprar_carta_jogador)==(mao(pp):=mao(pp)\/{first(deck(pp))} || deck(pp):=tail(deck(pp)));
-  List_Substitution(Machine(Jogadores),mover_mao_para_banco)==(banco(pp):=banco(pp)\/{cc} || mao(pp):=mao(pp)-{cc});
+  List_Substitution(Machine(Jogadores),mover_mao_para_banco)==(banco(pp):=banco(pp)^[cc] || mao(pp):=mao(pp)-{cc});
   List_Substitution(Machine(Jogadores),remover_carta_mao)==(mao(pp):=mao(pp)-{cc});
-  List_Substitution(Machine(Jogadores),definir_ativo)==(ativo(pp):=cc || mao(pp):=mao(pp)-{cc})
+  List_Substitution(Machine(Jogadores),definir_ativo)==(ativo(pp):=cc || mao(pp):=mao(pp)-{cc});
+  List_Substitution(Machine(Jogadores),evoluir_pokemon_banco)==(LET cc_antiga BE cc_antiga = banco(pp)(idx) IN banco(pp):=banco(pp)<+{idx|->cc_nova} || mao(pp):=mao(pp)-{cc_nova} || descarte(pp):=descarte(pp)^[cc_antiga] END);
+  List_Substitution(Machine(Jogadores),coletar_premio)==(mao(pp):=mao(pp)\/{first(premios(pp))} || premios(pp):=tail(premios(pp)))
 END
 &
 THEORY ListConstantsX IS
@@ -177,19 +189,23 @@ THEORY ListPropertiesX IS
 END
 &
 THEORY ListSeenInfoX IS
-  Seen_Internal_List_Operations(Machine(Jogadores),Machine(cards))==(aplicar_dano,adicionar_energia,resetar_carta);
+  Seen_Internal_List_Operations(Machine(Jogadores),Machine(cards))==(aplicar_dano,adicionar_energia,curar_dano,resetar_carta,consultar_hp_restante);
   Seen_Context_List_Enumerated(Machine(Jogadores))==(?);
   Seen_Context_List_Invariant(Machine(Jogadores))==(btrue);
   Seen_Context_List_Assertions(Machine(Jogadores))==(btrue);
   Seen_Context_List_Properties(Machine(Jogadores))==(btrue);
   Seen_List_Constraints(Machine(Jogadores))==(btrue);
+  Seen_List_Precondition(Machine(Jogadores),consultar_hp_restante)==(cc: CARTA & cc: dom(hp_base));
+  Seen_Expanded_List_Substitution(Machine(Jogadores),consultar_hp_restante)==(cc: dom(dano) ==> (hp_base(cc)>dano(cc) ==> hp_restante:=hp_base(cc)-dano(cc) [] not(hp_base(cc)>dano(cc)) ==> hp_restante:=0) [] not(cc: dom(dano)) ==> hp_restante:=hp_base(cc));
   Seen_List_Precondition(Machine(Jogadores),resetar_carta)==(cc: CARTA);
   Seen_Expanded_List_Substitution(Machine(Jogadores),resetar_carta)==(dano,energia_ligada:={cc}<<|dano,{cc}<<|energia_ligada);
+  Seen_List_Precondition(Machine(Jogadores),curar_dano)==(cc: CARTA & cc: dom(dano) & valor_cura: NAT1);
+  Seen_Expanded_List_Substitution(Machine(Jogadores),curar_dano)==(dano(cc)<=valor_cura ==> dano:={cc}<<|dano [] not(dano(cc)<=valor_cura) ==> dano:=dano<+{cc|->dano(cc)-valor_cura});
   Seen_List_Precondition(Machine(Jogadores),adicionar_energia)==(cc: CARTA);
   Seen_Expanded_List_Substitution(Machine(Jogadores),adicionar_energia)==(cc: dom(energia_ligada) ==> energia_ligada:=energia_ligada<+{cc|->energia_ligada(cc)+1} [] not(cc: dom(energia_ligada)) ==> energia_ligada:=energia_ligada<+{cc|->1});
   Seen_List_Precondition(Machine(Jogadores),aplicar_dano)==(cc: CARTA & cc: dom(hp_base) & valor: NAT1);
   Seen_Expanded_List_Substitution(Machine(Jogadores),aplicar_dano)==(cc: dom(dano) ==> dano:=dano<+{cc|->dano(cc)+valor} [] not(cc: dom(dano)) ==> dano:=dano<+{cc|->valor});
-  Seen_List_Operations(Machine(Jogadores),Machine(cards))==(aplicar_dano,adicionar_energia,resetar_carta);
+  Seen_List_Operations(Machine(Jogadores),Machine(cards))==(aplicar_dano,adicionar_energia,curar_dano,resetar_carta,consultar_hp_restante);
   Seen_Expanded_List_Invariant(Machine(Jogadores),Machine(cards))==(btrue)
 END
 &
@@ -197,16 +213,18 @@ THEORY ListANYVarX IS
   List_ANY_Var(Machine(Jogadores),comprar_carta_jogador)==(?);
   List_ANY_Var(Machine(Jogadores),mover_mao_para_banco)==(?);
   List_ANY_Var(Machine(Jogadores),remover_carta_mao)==(?);
-  List_ANY_Var(Machine(Jogadores),definir_ativo)==(?)
+  List_ANY_Var(Machine(Jogadores),definir_ativo)==(?);
+  List_ANY_Var(Machine(Jogadores),evoluir_pokemon_banco)==(?);
+  List_ANY_Var(Machine(Jogadores),coletar_premio)==(?)
 END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(Jogadores)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio,JOGADOR,jogador1,jogador2 | ? | descarte,premios,banco,ativo,mao,deck | ? | comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo | ? | seen(Machine(cards)) | ? | Jogadores);
+  List_Of_Ids(Machine(Jogadores)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio,JOGADOR,jogador1,jogador2 | ? | descarte,premios,banco,ativo,mao,deck | ? | comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo,evoluir_pokemon_banco,coletar_premio | ? | seen(Machine(cards)) | ? | Jogadores);
   List_Of_HiddenCst_Ids(Machine(Jogadores)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(Jogadores)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio);
   List_Of_VisibleVar_Ids(Machine(Jogadores)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(Jogadores)) == (?: ?);
-  List_Of_Ids(Machine(cards)) == (tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | ? | energia_ligada,dano | ? | aplicar_dano,adicionar_energia,resetar_carta | ? | ? | ? | cards);
+  List_Of_Ids(Machine(cards)) == (tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | ? | energia_ligada,dano | ? | aplicar_dano,adicionar_energia,curar_dano,resetar_carta,consultar_hp_restante | ? | ? | ? | cards);
   List_Of_HiddenCst_Ids(Machine(cards)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(cards)) == (tipo_da_carta,estagio_pokemon,hp_base);
   List_Of_VisibleVar_Ids(Machine(cards)) == (? | ?);
@@ -222,11 +240,11 @@ THEORY ConstantsEnvX IS
 END
 &
 THEORY VariablesEnvX IS
-  Variables(Machine(Jogadores)) == (Type(descarte) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(premios) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(banco) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(ativo) == Mvl(SetOf(etype(JOGADOR,?,?)*atype(CARTA,?,?)));Type(mao) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(deck) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?)))))
+  Variables(Machine(Jogadores)) == (Type(descarte) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(premios) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(banco) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(ativo) == Mvl(SetOf(etype(JOGADOR,?,?)*atype(CARTA,?,?)));Type(mao) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(deck) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?)))))
 END
 &
 THEORY OperationsEnvX IS
-  Operations(Machine(Jogadores)) == (Type(definir_ativo) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(remover_carta_mao) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(mover_mao_para_banco) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(comprar_carta_jogador) == Cst(No_type,etype(JOGADOR,?,?)))
+  Operations(Machine(Jogadores)) == (Type(coletar_premio) == Cst(No_type,etype(JOGADOR,?,?));Type(evoluir_pokemon_banco) == Cst(No_type,etype(JOGADOR,?,?)*btype(INTEGER,?,?)*atype(CARTA,?,?));Type(definir_ativo) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(remover_carta_mao) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(mover_mao_para_banco) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(comprar_carta_jogador) == Cst(No_type,etype(JOGADOR,?,?)))
 END
 &
 THEORY TCIntRdX IS

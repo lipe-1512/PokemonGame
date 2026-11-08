@@ -88,7 +88,7 @@
     </Define>
     <Define name="inprp" hash="0"/>
     <Define name="inext" hash="0"/>
-    <Define name="inv" hash="10702483478749449547">
+    <Define name="inv" hash="604369702920938303">
         <Exp_Comparison op=":">
             <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:1"/>
             <Binary_Exp op="+-&gt;" typref="3">
@@ -102,6 +102,14 @@
                 <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:2:2:1"/>
                 <Id value="NAT" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:2:2:2"/>
             </Binary_Exp>
+        </Exp_Comparison>
+        <Exp_Comparison op="&lt;:">
+            <Unary_Exp op="dom" typref="0">
+                <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1"/>
+            </Unary_Exp>
+            <Unary_Exp op="dom" typref="0">
+                <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+            </Unary_Exp>
         </Exp_Comparison>
     </Define>
     <Define name="ass" hash="0"/>
@@ -127,7 +135,7 @@
             <Id value="CARTA" typref="0"/>
         </Set>
     </Define>
-    <Proof_Obligation goalHash="7204534801820583529">
+    <Proof_Obligation goalHash="10556122723920311429">
         <Tag>Initialisation</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
@@ -148,8 +156,21 @@
                 </Exp_Comparison>
             </Goal>
         </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Goal>
+                <Exp_Comparison op="&lt;:">
+                    <Unary_Exp op="dom" typref="0">
+                        <EmptySet typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1,C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:6:1:1:2:1"/>
+                    </Unary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
     </Proof_Obligation>
-    <Proof_Obligation goalHash="7417106540575666031">
+    <Proof_Obligation goalHash="13937758531903629442">
         <Tag>Operation_aplicar_dano</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
@@ -227,6 +248,34 @@
         </Simple_Goal>
         <Simple_Goal>
             <Tag>Invariant is preserved</Tag>
+            <Ref_Hyp num="1"/>
+            <Goal>
+                <Exp_Comparison op="&lt;:">
+                    <Unary_Exp op="dom" typref="0">
+                        <Binary_Exp op="&lt;+" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:2:1:1:1:1"/>
+                            <Nary_Exp op="{" typref="2">
+                                <Binary_Exp op="|-&gt;" typref="4">
+                                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:2:1:1:1:2"/>
+                                    <Binary_Exp op="+i" typref="1">
+                                        <Binary_Exp op="(" typref="1">
+                                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:2:1:2:1:1:1"/>
+                                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:2:1:2:1:1:2"/>
+                                        </Binary_Exp>
+                                        <Id value="valor" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:2:1:2:1:2"/>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                            </Nary_Exp>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
             <Ref_Hyp num="2"/>
             <Goal>
                 <Exp_Comparison op=":">
@@ -246,8 +295,30 @@
                 </Exp_Comparison>
             </Goal>
         </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Ref_Hyp num="2"/>
+            <Goal>
+                <Exp_Comparison op="&lt;:">
+                    <Unary_Exp op="dom" typref="0">
+                        <Binary_Exp op="&lt;+" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:3:1:1:1:1"/>
+                            <Nary_Exp op="{" typref="2">
+                                <Binary_Exp op="|-&gt;" typref="4">
+                                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:3:1:1:1:2"/>
+                                    <Id value="valor" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:1:3:1:3:1:2:1"/>
+                                </Binary_Exp>
+                            </Nary_Exp>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
     </Proof_Obligation>
-    <Proof_Obligation goalHash="13768834784687476664">
+    <Proof_Obligation goalHash="12177117132059093766">
         <Tag>Operation_adicionar_energia</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
@@ -331,7 +402,151 @@
             </Goal>
         </Simple_Goal>
     </Proof_Obligation>
-    <Proof_Obligation goalHash="5068372664561899403">
+    <Proof_Obligation goalHash="10426790873951003541">
+        <Tag>Operation_curar_dano</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:1:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:2:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:2:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:3:1"/>
+                <Id value="NAT1" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:3:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Exp_Comparison op="&lt;=i">
+                <Binary_Exp op="(" typref="1">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:1"/>
+                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:2"/>
+                </Binary_Exp>
+                <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:2"/>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Unary_Pred op="not">
+                <Exp_Comparison op="&lt;=i">
+                    <Binary_Exp op="(" typref="1">
+                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:1"/>
+                        <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:2"/>
+                    </Binary_Exp>
+                    <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:2"/>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Ref_Hyp num="1"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Binary_Exp op="&lt;&lt;|" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:1">
+                        <Nary_Exp op="{" typref="0">
+                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:2:1:2:1:1:1"/>
+                        </Nary_Exp>
+                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:2:1:2:1:2"/>
+                    </Binary_Exp>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:2:1"/>
+                        <Id value="NAT" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:2:2"/>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Ref_Hyp num="1"/>
+            <Goal>
+                <Exp_Comparison op="&lt;:">
+                    <Unary_Exp op="dom" typref="0">
+                        <Binary_Exp op="&lt;&lt;|" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1">
+                            <Nary_Exp op="{" typref="0">
+                                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:2:1:2:1:1:1"/>
+                            </Nary_Exp>
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:2:1:2:1:2"/>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Ref_Hyp num="2"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Binary_Exp op="&lt;+" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:1">
+                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:1:1:1"/>
+                        <Nary_Exp op="{" typref="2">
+                            <Binary_Exp op="|-&gt;" typref="4">
+                                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:1:1:2"/>
+                                <Binary_Exp op="-i" typref="1">
+                                    <Binary_Exp op="(" typref="1">
+                                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:1"/>
+                                        <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:2"/>
+                                    </Binary_Exp>
+                                    <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:2"/>
+                                </Binary_Exp>
+                            </Binary_Exp>
+                        </Nary_Exp>
+                    </Binary_Exp>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:2:1"/>
+                        <Id value="NAT" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:2:2"/>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Ref_Hyp num="2"/>
+            <Goal>
+                <Exp_Comparison op="&lt;:">
+                    <Unary_Exp op="dom" typref="0">
+                        <Binary_Exp op="&lt;+" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:1:1:1"/>
+                            <Nary_Exp op="{" typref="2">
+                                <Binary_Exp op="|-&gt;" typref="4">
+                                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:1:1:2"/>
+                                    <Binary_Exp op="-i" typref="1">
+                                        <Binary_Exp op="(" typref="1">
+                                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:1"/>
+                                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:2"/>
+                                        </Binary_Exp>
+                                        <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:2"/>
+                                    </Binary_Exp>
+                                </Binary_Exp>
+                            </Nary_Exp>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="997197335714937093">
         <Tag>Operation_resetar_carta</Tag>
         <Definition name="B definitions"/>
         <Definition name="ctx"/>
@@ -344,8 +559,8 @@
         <Definition name="ass"/>
         <Hypothesis>
             <Exp_Comparison op=":">
-                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:1"/>
-                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:2"/>
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:2:1:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:2:1:2"/>
             </Exp_Comparison>
         </Hypothesis>
         <Simple_Goal>
@@ -354,9 +569,9 @@
                 <Exp_Comparison op=":">
                     <Binary_Exp op="&lt;&lt;|" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:1">
                         <Nary_Exp op="{" typref="0">
-                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:2:1:1:1"/>
+                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:3:1:1:2:1:1:1"/>
                         </Nary_Exp>
-                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:2:1:2"/>
+                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:3:1:1:2:1:2"/>
                     </Binary_Exp>
                     <Binary_Exp op="+-&gt;" typref="3">
                         <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:1:2:1"/>
@@ -371,14 +586,32 @@
                 <Exp_Comparison op=":">
                     <Binary_Exp op="&lt;&lt;|" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:2:1">
                         <Nary_Exp op="{" typref="0">
-                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:2:2:1:1:1"/>
+                            <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:3:1:2:2:1:1:1"/>
                         </Nary_Exp>
-                        <Id value="energia_ligada" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:2:2:1:2"/>
+                        <Id value="energia_ligada" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:3:1:2:2:1:2"/>
                     </Binary_Exp>
                     <Binary_Exp op="+-&gt;" typref="3">
                         <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:2:2:1"/>
                         <Id value="NAT" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:2:2:2"/>
                     </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Invariant is preserved</Tag>
+            <Goal>
+                <Exp_Comparison op="&lt;:">
+                    <Unary_Exp op="dom" typref="0">
+                        <Binary_Exp op="&lt;&lt;|" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:1:1">
+                            <Nary_Exp op="{" typref="0">
+                                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:3:1:1:2:1:1:1"/>
+                            </Nary_Exp>
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:4:3:1:1:2:1:2"/>
+                        </Binary_Exp>
+                    </Unary_Exp>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:5:1:3:2:1"/>
+                    </Unary_Exp>
                 </Exp_Comparison>
             </Goal>
         </Simple_Goal>
@@ -477,6 +710,225 @@
                         </Unary_Exp>
                         <Unary_Exp op="ran" typref="0">
                             <Id value="energia_ligada" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:2:3:1:2:1:2:1:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="6612033875304587598">
+        <Tag>WellDefinedness_curar_dano</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:1:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:2:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:2:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:3:1"/>
+                <Id value="NAT1" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:2:1:3:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Unary_Pred op="not">
+                <Exp_Comparison op="&lt;=i">
+                    <Binary_Exp op="(" typref="1">
+                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:1"/>
+                        <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:2"/>
+                    </Binary_Exp>
+                    <Id value="valor_cura" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:2"/>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:1:1:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:3:3:1:3:1:2:1:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+    </Proof_Obligation>
+    <Proof_Obligation goalHash="13472949338906118352">
+        <Tag>WellDefinedness_consultar_hp_restante</Tag>
+        <Definition name="B definitions"/>
+        <Definition name="ctx"/>
+        <Definition name="cst"/>
+        <Definition name="lprp"/>
+        <Definition name="inprp"/>
+        <Definition name="inext"/>
+        <Definition name="seext"/>
+        <Definition name="inv"/>
+        <Definition name="ass"/>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:3:1:1:1"/>
+                <Id value="CARTA" typref="0" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:3:1:1:2"/>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Hypothesis>
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:3:1:2:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:3:1:2:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Hypothesis>
+        <Local_Hyp num="1">
+            <Exp_Comparison op=":">
+                <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:1:1:1"/>
+                <Unary_Exp op="dom" typref="0">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:1:1:2:1"/>
+                </Unary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="2">
+            <Exp_Comparison op="&gt;i">
+                <Binary_Exp op="(" typref="1">
+                    <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:1:1"/>
+                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:1:2"/>
+                </Binary_Exp>
+                <Binary_Exp op="(" typref="1">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:2:1"/>
+                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:2:2"/>
+                </Binary_Exp>
+            </Exp_Comparison>
+        </Local_Hyp>
+        <Local_Hyp num="3">
+            <Unary_Pred op="not">
+                <Exp_Comparison op=":">
+                    <Id value="cc" typref="1" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:1:1:1"/>
+                    <Unary_Exp op="dom" typref="0">
+                        <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:1:1:2:1"/>
+                    </Unary_Exp>
+                </Exp_Comparison>
+            </Unary_Pred>
+        </Local_Hyp>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:2:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:2:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:1:1:2:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:2:1:2:1:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:2:1:2:1:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:2:1:2:1:1:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="1"/>
+            <Ref_Hyp num="2"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:2:1:2:1:2:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:2:1:2:1:2:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="dano" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:2:1:2:1:2:1:2:1"/>
+                        </Unary_Exp>
+                    </Binary_Exp>
+                </Exp_Comparison>
+            </Goal>
+        </Simple_Goal>
+        <Simple_Goal>
+            <Tag>Operation is well defined</Tag>
+            <Ref_Hyp num="3"/>
+            <Goal>
+                <Exp_Comparison op=":">
+                    <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:3:1:2:1:1"/>
+                    <Binary_Exp op="+-&gt;" typref="3">
+                        <Unary_Exp op="dom" typref="0">
+                            <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:3:1:2:1:1"/>
+                        </Unary_Exp>
+                        <Unary_Exp op="ran" typref="0">
+                            <Id value="hp_base" typref="2" tag="C:\AtelierB_Workspace\Pokemon\bdp\cards.bxml:1:7:5:4:1:3:1:2:1:1"/>
                         </Unary_Exp>
                     </Binary_Exp>
                 </Exp_Comparison>

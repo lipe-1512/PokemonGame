@@ -1,12 +1,27 @@
 THEORY ProofList IS
-_f(1) & _f(2) & _f(5) & _f(6) & WellDefinedness_adicionar_energia.1,(_f(13) & _f(19) => _f(21));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & WellDefinedness_aplicar_dano.1,(_f(9) & _f(19) => _f(20));
-_f(1) & _f(2) & _f(5) & _f(6) & Operation_resetar_carta.2,(_f(3) => _f(18));
-_f(1) & _f(2) & _f(5) & _f(6) & Operation_resetar_carta.1,(_f(3) => _f(17));
-_f(1) & _f(2) & _f(5) & _f(6) & Operation_adicionar_energia.2,(_f(14) & _f(3) => _f(16));
-_f(1) & _f(2) & _f(5) & _f(6) & Operation_adicionar_energia.1,(_f(13) & _f(3) => _f(15));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_aplicar_dano.2,(_f(10) & _f(3) => _f(12));
-_f(1) & _f(2) & _f(5) & _f(6) & _f(7) & _f(8) & Operation_aplicar_dano.1,(_f(9) & _f(3) => _f(11));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & WellDefinedness_consultar_hp_restante.5,(_f(11) & _f(28) => _f(32));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & WellDefinedness_consultar_hp_restante.4,(_f(10) & _f(31) & _f(28) => _f(29));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & WellDefinedness_consultar_hp_restante.3,(_f(10) & _f(31) & _f(28) => _f(32));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & WellDefinedness_consultar_hp_restante.2,(_f(10) & _f(28) => _f(29));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & WellDefinedness_consultar_hp_restante.1,(_f(10) & _f(28) => _f(32));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(10) & _f(20) & WellDefinedness_curar_dano.2,(_f(22) & _f(28) => _f(29));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(10) & _f(20) & WellDefinedness_curar_dano.1,(_f(28) => _f(29));
+_f(1) & _f(2) & _f(6) & _f(7) & WellDefinedness_adicionar_energia.1,(_f(16) & _f(28) => _f(30));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & _f(9) & WellDefinedness_aplicar_dano.1,(_f(10) & _f(28) => _f(29));
+_f(1) & _f(2) & _f(6) & _f(7) & Operation_resetar_carta.3,(_f(3) => _f(24));
+_f(1) & _f(2) & _f(6) & _f(7) & Operation_resetar_carta.2,(_f(3) => _f(27));
+_f(1) & _f(2) & _f(6) & _f(7) & Operation_resetar_carta.1,(_f(3) => _f(23));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(10) & _f(20) & Operation_curar_dano.4,(_f(22) & _f(3) => _f(26));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(10) & _f(20) & Operation_curar_dano.3,(_f(22) & _f(3) => _f(25));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(10) & _f(20) & Operation_curar_dano.2,(_f(21) & _f(3) => _f(24));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(10) & _f(20) & Operation_curar_dano.1,(_f(21) & _f(3) => _f(23));
+_f(1) & _f(2) & _f(6) & _f(7) & Operation_adicionar_energia.2,(_f(17) & _f(3) => _f(19));
+_f(1) & _f(2) & _f(6) & _f(7) & Operation_adicionar_energia.1,(_f(16) & _f(3) => _f(18));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & _f(9) & Operation_aplicar_dano.4,(_f(11) & _f(3) => _f(15));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & _f(9) & Operation_aplicar_dano.3,(_f(11) & _f(3) => _f(14));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & _f(9) & Operation_aplicar_dano.2,(_f(10) & _f(3) => _f(13));
+_f(1) & _f(2) & _f(6) & _f(7) & _f(8) & _f(9) & Operation_aplicar_dano.1,(_f(10) & _f(3) => _f(12));
+_f(1) & _f(2) & Initialisation.2,(_f(3) => _f(5));
 _f(1) & _f(2) & Initialisation.1,(_f(3) => _f(4))
 END
 &
@@ -15,23 +30,34 @@ THEORY Formulas IS
 ((1..3)*{TIPO_CARTA}): FIN(NATURAL*{TIPO_CARTA})& not(((1..3)*{TIPO_CARTA}) = {}) & ((1..3)*{ESTAGIO}): FIN(NATURAL*{ESTAGIO})& not(((1..3)*{ESTAGIO}) = {}) & CARTA: FIN(INTEGER) & not(CARTA = {}) & tipo_da_carta : CARTA +-> ((1..3)*{TIPO_CARTA}) & dom(tipo_da_carta) = CARTA & ((tipo_da_carta) : (((CARTA) --> (((1..3)*{TIPO_CARTA}))))) & ((estagio_pokemon) : (((CARTA) +-> (((1..3)*{ESTAGIO}))))) & ((hp_base) : (((CARTA) +-> ((NAT-{0}))))) & ((dom(estagio_pokemon)) = (((tipo_da_carta)~ )[({(1|->TIPO_CARTA)})])) & ((dom(hp_base)) = (((tipo_da_carta)~ )[({(1|->TIPO_CARTA)})]));
 "Invariant is preserved";
 (({}) : (((CARTA) +-> (NAT))));
-((dano) : (((CARTA) +-> (NAT)))) & ((energia_ligada) : (((CARTA) +-> (NAT))));
+dom({}) : POW( dom(hp_base));
+((dano) : (((CARTA) +-> (NAT)))) & ((energia_ligada) : (((CARTA) +-> (NAT)))) & dom(dano) : POW( dom(hp_base));
 ((cc) : (CARTA));
 ((cc) : (dom(hp_base)));
 ((valor) : ((NAT-{0})));
 ((cc) : (dom(dano)));
 not(((cc) : (dom(dano))));
 ((((dano) <+ (({((cc) |-> (((dano )(cc) + valor)))})))) : (((CARTA) +-> (NAT))));
+dom(((dano) <+ (({((cc) |-> (((dano )(cc) + valor)))})))) : POW( dom(hp_base));
 ((((dano) <+ (({((cc) |-> (valor))})))) : (((CARTA) +-> (NAT))));
+dom(((dano) <+ (({((cc) |-> (valor))})))) : POW( dom(hp_base));
 ((cc) : (dom(energia_ligada)));
 not(((cc) : (dom(energia_ligada))));
 ((((energia_ligada) <+ (({((cc) |-> (((energia_ligada )(cc) + 1)))})))) : (((CARTA) +-> (NAT))));
 ((((energia_ligada) <+ (({((cc) |-> (1))})))) : (((CARTA) +-> (NAT))));
+((valor_cura) : ((NAT-{0})));
+((dano )(cc) <= valor_cura);
+not(((dano )(cc) <= valor_cura));
 ((((({cc})) <<| (dano))) : (((CARTA) +-> (NAT))));
+dom(((({cc})) <<| (dano))) : POW( dom(hp_base));
+((((dano) <+ (({((cc) |-> (((dano )(cc) - valor_cura)))})))) : (((CARTA) +-> (NAT))));
+dom(((dano) <+ (({((cc) |-> (((dano )(cc) - valor_cura)))})))) : POW( dom(hp_base));
 ((((({cc})) <<| (energia_ligada))) : (((CARTA) +-> (NAT))));
 "Operation is well defined";
 ((dano) : (((dom(dano)) +-> (ran(dano)))));
-((energia_ligada) : (((dom(energia_ligada)) +-> (ran(energia_ligada)))))
+((energia_ligada) : (((dom(energia_ligada)) +-> (ran(energia_ligada)))));
+((dano )(cc) +1 <= (hp_base )(cc));
+((hp_base) : (((dom(hp_base)) +-> (ran(hp_base)))))
 END
 &
 THEORY EnumerateX IS

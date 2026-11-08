@@ -55,7 +55,7 @@ THEORY ListInvariantX IS
   Gluing_Seen_List_Invariant(Machine(jogoPokemon))==(btrue);
   Gluing_List_Invariant(Machine(jogoPokemon))==(btrue);
   Abstract_List_Invariant(Machine(jogoPokemon))==(btrue);
-  Expanded_List_Invariant(Machine(jogoPokemon))==(dano: CARTA +-> NAT & energia_ligada: CARTA +-> NAT & deck: JOGADOR --> seq(CARTA) & mao: JOGADOR --> POW(CARTA) & ativo: JOGADOR +-> CARTA & banco: JOGADOR --> POW(CARTA) & premios: JOGADOR --> POW(CARTA) & descarte: JOGADOR --> seq(CARTA) & !pp.(pp: JOGADOR => card(banco(pp))<=max_cartas_banco) & !pp.(pp: JOGADOR => card(premios(pp))<=max_cartas_premio));
+  Expanded_List_Invariant(Machine(jogoPokemon))==(dano: CARTA +-> NAT & energia_ligada: CARTA +-> NAT & dom(dano) <: dom(hp_base) & deck: JOGADOR --> seq(CARTA) & mao: JOGADOR --> POW(CARTA) & ativo: JOGADOR +-> CARTA & banco: JOGADOR --> seq(CARTA) & premios: JOGADOR --> seq(CARTA) & descarte: JOGADOR --> seq(CARTA) & ran(ativo) <: dom(hp_base) & !pp.(pp: JOGADOR => size(banco(pp))<=max_cartas_banco) & !pp.(pp: JOGADOR => size(premios(pp))<=max_cartas_premio));
   Context_List_Invariant(Machine(jogoPokemon))==(btrue);
   List_Invariant(Machine(jogoPokemon))==(turno: JOGADOR & energia_jogada_turno: BOOL)
 END
@@ -76,7 +76,7 @@ THEORY ListExclusivityX IS
 END
 &
 THEORY ListInitialisationX IS
-  Expanded_List_Initialisation(Machine(jogoPokemon))==(dano,energia_ligada:={},{};(@(deck$0).(deck$0: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_deck} ==> deck:=deck$0) || mao:={jogador1|->{},jogador2|->{}} || ativo:={} || banco:={jogador1|->{},jogador2|->{}} || premios:={jogador1|->{},jogador2|->{}} || descarte:={jogador1|-><>,jogador2|-><>});turno,energia_jogada_turno:=jogador1,FALSE);
+  Expanded_List_Initialisation(Machine(jogoPokemon))==(dano,energia_ligada:={},{};(@(deck$0).(deck$0: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_deck} ==> deck:=deck$0) || mao:={jogador1|->{},jogador2|->{}} || ativo:={} || banco:={jogador1|-><>,jogador2|-><>} || @(premios$0).(premios$0: JOGADOR --> {ss | ss: seq(CARTA) & size(ss) = max_cartas_premio} ==> premios:=premios$0) || descarte:={jogador1|-><>,jogador2|-><>});turno,energia_jogada_turno:=jogador1,FALSE);
   Context_List_Initialisation(Machine(jogoPokemon))==(skip);
   List_Initialisation(Machine(jogoPokemon))==(turno:=jogador1 || energia_jogada_turno:=FALSE)
 END
@@ -98,55 +98,67 @@ THEORY ListConstraintsX IS
 END
 &
 THEORY ListOperationsX IS
-  Internal_List_Operations(Machine(jogoPokemon))==(comprar_carta_turno,baixar_pokemon,jogar_energia,atacar_oponente,passar_turno);
-  List_Operations(Machine(jogoPokemon))==(comprar_carta_turno,baixar_pokemon,jogar_energia,atacar_oponente,passar_turno)
+  Internal_List_Operations(Machine(jogoPokemon))==(comprar_carta_turno,baixar_pokemon,jogar_energia,usar_treinador_cura,atacar_oponente,passar_turno,consultar_vencedor);
+  List_Operations(Machine(jogoPokemon))==(comprar_carta_turno,baixar_pokemon,jogar_energia,usar_treinador_cura,atacar_oponente,passar_turno,consultar_vencedor)
 END
 &
 THEORY ListInputX IS
   List_Input(Machine(jogoPokemon),comprar_carta_turno)==(pp);
   List_Input(Machine(jogoPokemon),baixar_pokemon)==(pp,cc);
   List_Input(Machine(jogoPokemon),jogar_energia)==(pp,cc_energia,cc_alvo);
+  List_Input(Machine(jogoPokemon),usar_treinador_cura)==(pp,cc_treinador,cc_alvo,valor_cura);
   List_Input(Machine(jogoPokemon),atacar_oponente)==(pp,valor_dano);
-  List_Input(Machine(jogoPokemon),passar_turno)==(pp)
+  List_Input(Machine(jogoPokemon),passar_turno)==(pp);
+  List_Input(Machine(jogoPokemon),consultar_vencedor)==(pp)
 END
 &
 THEORY ListOutputX IS
   List_Output(Machine(jogoPokemon),comprar_carta_turno)==(?);
   List_Output(Machine(jogoPokemon),baixar_pokemon)==(?);
   List_Output(Machine(jogoPokemon),jogar_energia)==(?);
+  List_Output(Machine(jogoPokemon),usar_treinador_cura)==(?);
   List_Output(Machine(jogoPokemon),atacar_oponente)==(?);
-  List_Output(Machine(jogoPokemon),passar_turno)==(?)
+  List_Output(Machine(jogoPokemon),passar_turno)==(?);
+  List_Output(Machine(jogoPokemon),consultar_vencedor)==(vencedor)
 END
 &
 THEORY ListHeaderX IS
   List_Header(Machine(jogoPokemon),comprar_carta_turno)==(comprar_carta_turno(pp));
   List_Header(Machine(jogoPokemon),baixar_pokemon)==(baixar_pokemon(pp,cc));
   List_Header(Machine(jogoPokemon),jogar_energia)==(jogar_energia(pp,cc_energia,cc_alvo));
+  List_Header(Machine(jogoPokemon),usar_treinador_cura)==(usar_treinador_cura(pp,cc_treinador,cc_alvo,valor_cura));
   List_Header(Machine(jogoPokemon),atacar_oponente)==(atacar_oponente(pp,valor_dano));
-  List_Header(Machine(jogoPokemon),passar_turno)==(passar_turno(pp))
+  List_Header(Machine(jogoPokemon),passar_turno)==(passar_turno(pp));
+  List_Header(Machine(jogoPokemon),consultar_vencedor)==(vencedor <-- consultar_vencedor(pp))
 END
 &
 THEORY ListOperationGuardX END
 &
 THEORY ListPreconditionX IS
-  List_Precondition(Machine(jogoPokemon),comprar_carta_turno)==(pp: JOGADOR & pp = turno);
-  List_Precondition(Machine(jogoPokemon),baixar_pokemon)==(pp: JOGADOR & pp = turno & cc: CARTA & cc: mao(pp));
-  List_Precondition(Machine(jogoPokemon),jogar_energia)==(pp: JOGADOR & pp = turno & cc_energia: CARTA & cc_energia: mao(pp) & cc_alvo: CARTA & tipo_da_carta(cc_energia) = Energia & energia_jogada_turno = FALSE & (cc_alvo = ativo(pp) or cc_alvo: banco(pp)));
-  List_Precondition(Machine(jogoPokemon),atacar_oponente)==(pp: JOGADOR & pp = turno & valor_dano: NAT1 & pp: dom(ativo));
-  List_Precondition(Machine(jogoPokemon),passar_turno)==(pp: JOGADOR & pp = turno)
+  List_Precondition(Machine(jogoPokemon),comprar_carta_turno)==(pp: JOGADOR & pp = turno & size(deck(pp))>0);
+  List_Precondition(Machine(jogoPokemon),baixar_pokemon)==(pp: JOGADOR & pp = turno & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(estagio_pokemon) & estagio_pokemon(cc) = Basico & size(banco(pp))<max_cartas_banco);
+  List_Precondition(Machine(jogoPokemon),jogar_energia)==(pp: JOGADOR & pp = turno & cc_energia: CARTA & cc_energia: mao(pp) & cc_alvo: CARTA & tipo_da_carta(cc_energia) = Energia & energia_jogada_turno = FALSE & (pp: dom(ativo) & cc_alvo = ativo(pp) or cc_alvo: ran(banco(pp))));
+  List_Precondition(Machine(jogoPokemon),usar_treinador_cura)==(pp: JOGADOR & pp = turno & cc_treinador: CARTA & cc_treinador: mao(pp) & tipo_da_carta(cc_treinador) = Treinador & cc_alvo: CARTA & cc_alvo: dom(dano) & valor_cura: NAT1 & (pp: dom(ativo) & cc_alvo = ativo(pp) or cc_alvo: ran(banco(pp))));
+  List_Precondition(Machine(jogoPokemon),atacar_oponente)==(pp: JOGADOR & pp = turno & valor_dano: NAT1 & pp: dom(ativo) & #op.(op: JOGADOR & op/=pp & op: dom(ativo)));
+  List_Precondition(Machine(jogoPokemon),passar_turno)==(pp: JOGADOR & pp = turno);
+  List_Precondition(Machine(jogoPokemon),consultar_vencedor)==(pp: JOGADOR)
 END
 &
 THEORY ListSubstitutionX IS
+  Expanded_List_Substitution(Machine(jogoPokemon),consultar_vencedor)==(pp: JOGADOR | @oponente.(oponente: JOGADOR & oponente/=pp ==> (size(premios(pp)) = 0 or size(deck(oponente)) = 0 ==> vencedor:=pp [] not(size(premios(pp)) = 0 or size(deck(oponente)) = 0) ==> vencedor:=oponente)));
   Expanded_List_Substitution(Machine(jogoPokemon),passar_turno)==(pp: JOGADOR & pp = turno | pp = jogador1 ==> turno:=jogador2 [] not(pp = jogador1) ==> turno:=jogador1 || energia_jogada_turno:=FALSE);
-  Expanded_List_Substitution(Machine(jogoPokemon),atacar_oponente)==(pp: JOGADOR & pp = turno & valor_dano: NAT1 & pp: dom(ativo) | @oponente.(oponente: JOGADOR & oponente/=pp & oponente: dom(ativo) ==> (ativo(oponente): CARTA & ativo(oponente): dom(hp_base) & valor_dano: NAT1 | ativo(oponente): dom(dano) ==> dano:=dano<+{ativo(oponente)|->dano(ativo(oponente))+valor_dano} [] not(ativo(oponente): dom(dano)) ==> dano:=dano<+{ativo(oponente)|->valor_dano})));
-  Expanded_List_Substitution(Machine(jogoPokemon),jogar_energia)==(pp: JOGADOR & pp = turno & cc_energia: CARTA & cc_energia: mao(pp) & cc_alvo: CARTA & tipo_da_carta(cc_energia) = Energia & energia_jogada_turno = FALSE & (cc_alvo = ativo(pp) or cc_alvo: banco(pp)) & cc_alvo: CARTA & pp: JOGADOR & cc_energia: mao(pp) | cc_alvo: dom(energia_ligada) ==> energia_ligada:=energia_ligada<+{cc_alvo|->energia_ligada(cc_alvo)+1} [] not(cc_alvo: dom(energia_ligada)) ==> energia_ligada:=energia_ligada<+{cc_alvo|->1} || mao:=mao<+{pp|->mao(pp)-{cc_energia}} || energia_jogada_turno:=TRUE);
-  Expanded_List_Substitution(Machine(jogoPokemon),baixar_pokemon)==(pp: JOGADOR & pp = turno & cc: CARTA & cc: mao(pp) & pp: JOGADOR & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & estagio_pokemon(cc) = Basico & card(banco(pp))<max_cartas_banco | banco,mao:=banco<+{pp|->(banco(pp)\/{cc})},mao<+{pp|->mao(pp)-{cc}});
-  Expanded_List_Substitution(Machine(jogoPokemon),comprar_carta_turno)==(pp: JOGADOR & pp = turno & pp: JOGADOR & size(deck(pp))>0 | mao,deck:=mao<+{pp|->(mao(pp)\/{first(deck(pp))})},deck<+{pp|->tail(deck(pp))});
+  Expanded_List_Substitution(Machine(jogoPokemon),atacar_oponente)==(pp: JOGADOR & pp = turno & valor_dano: NAT1 & pp: dom(ativo) & #op.(op: JOGADOR & op/=pp & op: dom(ativo)) | @oponente.(oponente: JOGADOR & oponente/=pp & oponente: dom(ativo) ==> (ativo(oponente): CARTA & ativo(oponente): dom(hp_base) & valor_dano: NAT1 | ativo(oponente): dom(dano) ==> dano:=dano<+{ativo(oponente)|->dano(ativo(oponente))+valor_dano} [] not(ativo(oponente): dom(dano)) ==> dano:=dano<+{ativo(oponente)|->valor_dano})));
+  Expanded_List_Substitution(Machine(jogoPokemon),usar_treinador_cura)==(pp: JOGADOR & pp = turno & cc_treinador: CARTA & cc_treinador: mao(pp) & tipo_da_carta(cc_treinador) = Treinador & cc_alvo: CARTA & cc_alvo: dom(dano) & valor_cura: NAT1 & (pp: dom(ativo) & cc_alvo = ativo(pp) or cc_alvo: ran(banco(pp))) & cc_alvo: CARTA & cc_alvo: dom(dano) & valor_cura: NAT1 & pp: JOGADOR & cc_treinador: CARTA & cc_treinador: mao(pp) | dano(cc_alvo)<=valor_cura ==> dano:={cc_alvo}<<|dano [] not(dano(cc_alvo)<=valor_cura) ==> dano:=dano<+{cc_alvo|->dano(cc_alvo)-valor_cura} || mao:=mao<+{pp|->mao(pp)-{cc_treinador}});
+  Expanded_List_Substitution(Machine(jogoPokemon),jogar_energia)==(pp: JOGADOR & pp = turno & cc_energia: CARTA & cc_energia: mao(pp) & cc_alvo: CARTA & tipo_da_carta(cc_energia) = Energia & energia_jogada_turno = FALSE & (pp: dom(ativo) & cc_alvo = ativo(pp) or cc_alvo: ran(banco(pp))) & cc_alvo: CARTA & pp: JOGADOR & cc_energia: CARTA & cc_energia: mao(pp) | cc_alvo: dom(energia_ligada) ==> energia_ligada:=energia_ligada<+{cc_alvo|->energia_ligada(cc_alvo)+1} [] not(cc_alvo: dom(energia_ligada)) ==> energia_ligada:=energia_ligada<+{cc_alvo|->1} || mao:=mao<+{pp|->mao(pp)-{cc_energia}} || energia_jogada_turno:=TRUE);
+  Expanded_List_Substitution(Machine(jogoPokemon),baixar_pokemon)==(pp: JOGADOR & pp = turno & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(estagio_pokemon) & estagio_pokemon(cc) = Basico & size(banco(pp))<max_cartas_banco & pp: JOGADOR & cc: CARTA & cc: mao(pp) & tipo_da_carta(cc) = Pokemon & cc: dom(estagio_pokemon) & estagio_pokemon(cc) = Basico & size(banco(pp))<max_cartas_banco | banco,mao:=banco<+{pp|->(banco(pp)^[cc])},mao<+{pp|->mao(pp)-{cc}});
+  Expanded_List_Substitution(Machine(jogoPokemon),comprar_carta_turno)==(pp: JOGADOR & pp = turno & size(deck(pp))>0 & pp: JOGADOR & size(deck(pp))>0 | mao,deck:=mao<+{pp|->(mao(pp)\/{first(deck(pp))})},deck<+{pp|->tail(deck(pp))});
   List_Substitution(Machine(jogoPokemon),comprar_carta_turno)==(comprar_carta_jogador(pp));
   List_Substitution(Machine(jogoPokemon),baixar_pokemon)==(mover_mao_para_banco(pp,cc));
   List_Substitution(Machine(jogoPokemon),jogar_energia)==(adicionar_energia(cc_alvo) || remover_carta_mao(pp,cc_energia) || energia_jogada_turno:=TRUE);
+  List_Substitution(Machine(jogoPokemon),usar_treinador_cura)==(curar_dano(cc_alvo,valor_cura) || remover_carta_mao(pp,cc_treinador));
   List_Substitution(Machine(jogoPokemon),atacar_oponente)==(ANY oponente WHERE oponente: JOGADOR & oponente/=pp & oponente: dom(ativo) THEN aplicar_dano(ativo(oponente),valor_dano) END);
-  List_Substitution(Machine(jogoPokemon),passar_turno)==(IF pp = jogador1 THEN turno:=jogador2 ELSE turno:=jogador1 END || energia_jogada_turno:=FALSE)
+  List_Substitution(Machine(jogoPokemon),passar_turno)==(IF pp = jogador1 THEN turno:=jogador2 ELSE turno:=jogador1 END || energia_jogada_turno:=FALSE);
+  List_Substitution(Machine(jogoPokemon),consultar_vencedor)==(ANY oponente WHERE oponente: JOGADOR & oponente/=pp THEN IF size(premios(pp)) = 0 or size(deck(oponente)) = 0 THEN vencedor:=pp ELSE vencedor:=oponente END END)
 END
 &
 THEORY ListConstantsX IS
@@ -192,22 +204,24 @@ THEORY ListANYVarX IS
   List_ANY_Var(Machine(jogoPokemon),comprar_carta_turno)==(?);
   List_ANY_Var(Machine(jogoPokemon),baixar_pokemon)==(?);
   List_ANY_Var(Machine(jogoPokemon),jogar_energia)==(?);
+  List_ANY_Var(Machine(jogoPokemon),usar_treinador_cura)==(?);
   List_ANY_Var(Machine(jogoPokemon),atacar_oponente)==(Var(oponente) == etype(JOGADOR,?,?));
-  List_ANY_Var(Machine(jogoPokemon),passar_turno)==(?)
+  List_ANY_Var(Machine(jogoPokemon),passar_turno)==(?);
+  List_ANY_Var(Machine(jogoPokemon),consultar_vencedor)==(Var(oponente) == etype(JOGADOR,?,?))
 END
 &
 THEORY ListOfIdsX IS
-  List_Of_Ids(Machine(jogoPokemon)) == (? | max_cartas_deck,max_cartas_banco,max_cartas_premio,JOGADOR,jogador1,jogador2,tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | energia_jogada_turno,turno | descarte,premios,banco,ativo,mao,deck,energia_ligada,dano | comprar_carta_turno,baixar_pokemon,jogar_energia,atacar_oponente,passar_turno | ? | included(Machine(cards)),included(Machine(Jogadores)) | ? | jogoPokemon);
+  List_Of_Ids(Machine(jogoPokemon)) == (? | max_cartas_deck,max_cartas_banco,max_cartas_premio,JOGADOR,jogador1,jogador2,tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | energia_jogada_turno,turno | descarte,premios,banco,ativo,mao,deck,energia_ligada,dano | comprar_carta_turno,baixar_pokemon,jogar_energia,usar_treinador_cura,atacar_oponente,passar_turno,consultar_vencedor | ? | included(Machine(cards)),included(Machine(Jogadores)) | ? | jogoPokemon);
   List_Of_HiddenCst_Ids(Machine(jogoPokemon)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(jogoPokemon)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio,tipo_da_carta,estagio_pokemon,hp_base);
   List_Of_VisibleVar_Ids(Machine(jogoPokemon)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(jogoPokemon)) == (seen(Machine(cards)): (tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | ? | energia_ligada,dano | ? | ? | ? | ? | ? | ?));
-  List_Of_Ids(Machine(Jogadores)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio,JOGADOR,jogador1,jogador2 | ? | descarte,premios,banco,ativo,mao,deck | ? | comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo | ? | seen(Machine(cards)) | ? | Jogadores);
+  List_Of_Ids(Machine(Jogadores)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio,JOGADOR,jogador1,jogador2 | ? | descarte,premios,banco,ativo,mao,deck | ? | comprar_carta_jogador,mover_mao_para_banco,remover_carta_mao,definir_ativo,evoluir_pokemon_banco,coletar_premio | ? | seen(Machine(cards)) | ? | Jogadores);
   List_Of_HiddenCst_Ids(Machine(Jogadores)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(Jogadores)) == (max_cartas_deck,max_cartas_banco,max_cartas_premio);
   List_Of_VisibleVar_Ids(Machine(Jogadores)) == (? | ?);
   List_Of_Ids_SeenBNU(Machine(Jogadores)) == (?: ?);
-  List_Of_Ids(Machine(cards)) == (tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | ? | energia_ligada,dano | ? | aplicar_dano,adicionar_energia,resetar_carta | ? | ? | ? | cards);
+  List_Of_Ids(Machine(cards)) == (tipo_da_carta,estagio_pokemon,hp_base,TIPO_CARTA,ESTAGIO,CARTA,Pokemon,Energia,Treinador,Basico,Estagio1,Estagio2 | ? | energia_ligada,dano | ? | aplicar_dano,adicionar_energia,curar_dano,resetar_carta,consultar_hp_restante | ? | ? | ? | cards);
   List_Of_HiddenCst_Ids(Machine(cards)) == (? | ?);
   List_Of_VisibleCst_Ids(Machine(cards)) == (tipo_da_carta,estagio_pokemon,hp_base);
   List_Of_VisibleVar_Ids(Machine(cards)) == (? | ?);
@@ -223,11 +237,12 @@ THEORY ConstantsEnvX IS
 END
 &
 THEORY VariablesEnvX IS
-  Variables(Machine(jogoPokemon)) == (Type(dano) == Mvl(SetOf(atype(CARTA,?,?)*btype(INTEGER,?,?)));Type(energia_ligada) == Mvl(SetOf(atype(CARTA,?,?)*btype(INTEGER,?,?)));Type(deck) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(mao) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(ativo) == Mvl(SetOf(etype(JOGADOR,?,?)*atype(CARTA,?,?)));Type(banco) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(premios) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(descarte) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(energia_jogada_turno) == Mvl(btype(BOOL,?,?));Type(turno) == Mvl(etype(JOGADOR,?,?)))
+  Variables(Machine(jogoPokemon)) == (Type(dano) == Mvl(SetOf(atype(CARTA,?,?)*btype(INTEGER,?,?)));Type(energia_ligada) == Mvl(SetOf(atype(CARTA,?,?)*btype(INTEGER,?,?)));Type(deck) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(mao) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(atype(CARTA,"[CARTA","]CARTA"))));Type(ativo) == Mvl(SetOf(etype(JOGADOR,?,?)*atype(CARTA,?,?)));Type(banco) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(premios) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(descarte) == Mvl(SetOf(etype(JOGADOR,0,1)*SetOf(btype(INTEGER,?,?)*atype(CARTA,?,?))));Type(energia_jogada_turno) == Mvl(btype(BOOL,?,?));Type(turno) == Mvl(etype(JOGADOR,?,?)))
 END
 &
 THEORY OperationsEnvX IS
-  Operations(Machine(jogoPokemon)) == (Type(passar_turno) == Cst(No_type,etype(JOGADOR,?,?));Type(atacar_oponente) == Cst(No_type,etype(JOGADOR,?,?)*btype(INTEGER,?,?));Type(jogar_energia) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?)*atype(CARTA,?,?));Type(baixar_pokemon) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(comprar_carta_turno) == Cst(No_type,etype(JOGADOR,?,?)))
+  Operations(Machine(jogoPokemon)) == (Type(consultar_vencedor) == Cst(etype(JOGADOR,?,?),etype(JOGADOR,?,?));Type(passar_turno) == Cst(No_type,etype(JOGADOR,?,?));Type(atacar_oponente) == Cst(No_type,etype(JOGADOR,?,?)*btype(INTEGER,?,?));Type(usar_treinador_cura) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?)*atype(CARTA,?,?)*btype(INTEGER,?,?));Type(jogar_energia) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?)*atype(CARTA,?,?));Type(baixar_pokemon) == Cst(No_type,etype(JOGADOR,?,?)*atype(CARTA,?,?));Type(comprar_carta_turno) == Cst(No_type,etype(JOGADOR,?,?)));
+  Observers(Machine(jogoPokemon)) == (Type(consultar_vencedor) == Cst(etype(JOGADOR,?,?),etype(JOGADOR,?,?)))
 END
 &
 THEORY TCIntRdX IS

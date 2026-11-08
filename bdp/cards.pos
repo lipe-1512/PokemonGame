@@ -1,57 +1,126 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Proof_Obligations xmlns="https://www.atelierb.eu/Formats/pog" version="1.0">
-    <Proof_Obligation>
-        <Tag>Initialisation</Tag>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-    </Proof_Obligation>
-    <Proof_Obligation>
-        <Tag>Operation_aplicar_dano</Tag>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-    </Proof_Obligation>
-    <Proof_Obligation>
-        <Tag>Operation_adicionar_energia</Tag>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-    </Proof_Obligation>
-    <Proof_Obligation>
-        <Tag>Operation_resetar_carta</Tag>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-        <Simple_Goal status="Unproved">
-            <Tag>Invariant is preserved</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-    </Proof_Obligation>
-    <Proof_Obligation>
-        <Tag>WellDefinedness_aplicar_dano</Tag>
-        <Simple_Goal status="Unproved">
-            <Tag>Operation is well defined</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-    </Proof_Obligation>
-    <Proof_Obligation>
-        <Tag>WellDefinedness_adicionar_energia</Tag>
-        <Simple_Goal status="Unproved">
-            <Tag>Operation is well defined</Tag>
-            <Proof_State proofState="Unproved" methodList="?" passList="Force(0),?"/>
-        </Simple_Goal>
-    </Proof_Obligation>
+<?xml version='1.0' encoding='UTF-8'?>
+<Proof_Obligations version="1.0" author="pmi2Pos" xmlns="https://www.atelierb.eu/Formats/pog">
+<Proof_Obligation>
+<Tag>Initialisation</Tag>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>Operation_aplicar_dano</Tag>
+<Simple_Goal status="Unproved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="?" proofState="Unproved" passList="Force(0),(?; Rapide; 0; 1)"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(0)" passList="Force(0),(?; Rapide)"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>Operation_adicionar_energia</Tag>
+<Simple_Goal status="Unproved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="?" proofState="Unproved" passList="Force(0),(?; Rapide; 0; 1)"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>Operation_curar_dano</Tag>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(0)" passList="Force(0),(?; Rapide)"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>Operation_resetar_carta</Tag>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Invariant is preserved</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinedness_aplicar_dano</Tag>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinedness_adicionar_energia</Tag>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinedness_curar_dano</Tag>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
+<Proof_Obligation>
+<Tag>WellDefinedness_consultar_hp_restante</Tag>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+<Simple_Goal status="Proved">
+<Tag>Operation is well defined</Tag>
+<Proof_State methodList="pr" proofState="Proved(Rapide)" passList="Force(Rapide),?"/>
+</Simple_Goal>
+</Proof_Obligation>
 </Proof_Obligations>

@@ -1,14 +1,10 @@
-/* cards
- * Author: felip
- * Creation date: 06/11/2026
- */
 MACHINE
     cards
 
 SETS
     TIPO_CARTA = {Pokemon, Energia, Treinador};
     ESTAGIO = {Basico, Estagio1, Estagio2};
-    CARTA // Conjunto abstrato com todas as cartas do jogo
+    CARTA
 
 CONSTANTS
     tipo_da_carta,
@@ -28,7 +24,8 @@ VARIABLES
 
 INVARIANT
     dano : CARTA +-> NAT &
-    energia_ligada : CARTA +-> NAT
+    energia_ligada : CARTA +-> NAT &
+    dom(dano) <: dom(hp_base)
 
 INITIALISATION
     dano := {} ||
@@ -59,12 +56,40 @@ OPERATIONS
         END
     END;
 
+    curar_dano(cc, valor_cura) =
+    PRE
+        cc : CARTA &
+        cc : dom(dano) &
+        valor_cura : NAT1
+    THEN
+        IF dano(cc) <= valor_cura THEN
+            dano := {cc} <<| dano
+        ELSE
+            dano(cc) := dano(cc) - valor_cura
+        END
+    END;
+
     resetar_carta(cc) =
     PRE
         cc : CARTA
     THEN
         dano := {cc} <<| dano ||
         energia_ligada := {cc} <<| energia_ligada
+    END;
+
+    hp_restante <-- consultar_hp_restante(cc) =
+    PRE
+        cc : CARTA &
+        cc : dom(hp_base)
+    THEN
+        IF cc : dom(dano) THEN
+            IF hp_base(cc) > dano(cc) THEN
+                hp_restante := hp_base(cc) - dano(cc)
+            ELSE
+                hp_restante := 0
+            END
+        ELSE
+            hp_restante := hp_base(cc)
+        END
     END
 END
-
