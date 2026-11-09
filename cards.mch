@@ -23,8 +23,8 @@ VARIABLES
     energia_ligada
 
 INVARIANT
-    dano : CARTA +-> NAT &
-    energia_ligada : CARTA +-> NAT &
+    dano : CARTA +-> NATURAL &
+    energia_ligada : CARTA +-> NATURAL &
     dom(dano) <: dom(hp_base)
 
 INITIALISATION
