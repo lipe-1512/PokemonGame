@@ -4,7 +4,7 @@ MACHINE
 SETS
     TIPO_CARTA = {Pokemon, Energia, Treinador};
     ESTAGIO = {Basico, Estagio1, Estagio2};
-    CARTA
+    CARTA = {squirtle, wartotle, blastoise, elekid, electabuzz, electivire, energia_raio, energia_agua, pocao}
 
 CONSTANTS
     tipo_da_carta,
@@ -12,9 +12,33 @@ CONSTANTS
     hp_base
 
 PROPERTIES
-    tipo_da_carta : CARTA --> TIPO_CARTA &
-    estagio_pokemon : CARTA +-> ESTAGIO &
-    hp_base : CARTA +-> NAT1 &
+    tipo_da_carta = {
+        squirtle |-> Pokemon,
+        wartotle |-> Pokemon,
+        blastoise |-> Pokemon,
+        elekid |-> Pokemon,
+        electabuzz |-> Pokemon,
+        electivire |-> Pokemon,
+        energia_raio |-> Energia,
+        energia_agua |-> Energia,
+        pocao |-> Treinador
+    } &
+    estagio_pokemon = {
+        squirtle |-> Basico,
+        wartotle |-> Estagio1,
+        blastoise |-> Estagio2,
+        elekid |-> Basico,
+        electabuzz |-> Estagio1,
+        electivire |-> Estagio2
+    } &
+    hp_base = {
+        squirtle |-> 60,
+        wartotle |-> 100,
+        blastoise |-> 150,
+        elekid |-> 70,
+        electabuzz |-> 110,
+        electivire |-> 160
+    } &
     dom(estagio_pokemon) = tipo_da_carta~[{Pokemon}] &
     dom(hp_base) = tipo_da_carta~[{Pokemon}]
 

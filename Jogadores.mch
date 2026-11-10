@@ -1,11 +1,11 @@
 MACHINE
     Jogadores
+    
+INCLUDES
+    decks
 
 SEES
     cards
-
-SETS
-    JOGADOR = {jogador1, jogador2}
 
 CONSTANTS
     max_cartas_deck,
@@ -13,12 +13,11 @@ CONSTANTS
     max_cartas_premio
 
 PROPERTIES
-    max_cartas_deck = 60 &
-    max_cartas_banco = 5 &
-    max_cartas_premio = 6
+    max_cartas_deck = 5 &
+    max_cartas_banco = 2 &
+    max_cartas_premio = 2
 
 VARIABLES
-    deck,
     mao,
     ativo,
     banco,
@@ -26,7 +25,6 @@ VARIABLES
     descarte
 
 INVARIANT
-    deck : JOGADOR --> seq(CARTA) &
     mao : JOGADOR --> POW(CARTA) &
     ativo : JOGADOR +-> CARTA &
     banco : JOGADOR --> seq(CARTA) &
@@ -37,7 +35,6 @@ INVARIANT
     !(pp).(pp : JOGADOR => size(premios(pp)) <= max_cartas_premio)
 
 INITIALISATION
-    deck :: JOGADOR --> {ss | ss : seq(CARTA) & size(ss) = max_cartas_deck} ||
     mao := {jogador1 |-> {}, jogador2 |-> {}} ||
     ativo := {} ||
     banco := {jogador1 |-> [], jogador2 |-> []} ||
@@ -48,10 +45,12 @@ OPERATIONS
     comprar_carta_jogador(pp) =
     PRE
         pp : JOGADOR &
-        size(deck(pp)) > 0
+        size(decks_jogadores(pp)) > 0
     THEN
-        mao(pp) := mao(pp) \/ {first(deck(pp))} ||
-        deck(pp) := tail(deck(pp))
+        ANY cc WHERE cc = first(decks_jogadores(pp)) THEN
+            mao(pp) := mao(pp) \/ {cc} ||
+            puxar_carta_deck(pp) 
+        END
     END;
 
     mover_mao_para_banco(pp, cc) =

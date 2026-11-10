@@ -22,7 +22,7 @@ OPERATIONS
     PRE
         pp : JOGADOR &
         pp = turno &
-        size(deck(pp)) > 0
+        size(decks_jogadores(pp)) > 0
     THEN
         comprar_carta_jogador(pp)
     END;
@@ -104,7 +104,7 @@ OPERATIONS
         pp : JOGADOR
     THEN
         ANY oponente WHERE oponente : JOGADOR & oponente /= pp THEN
-            IF size(premios(pp)) = 0 or size(deck(oponente)) = 0 THEN
+            IF size(premios(pp)) = 0 or size(decks_jogadores(oponente)) = 0 THEN
                 vencedor := pp
             ELSE
                 vencedor := oponente
