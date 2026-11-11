@@ -4,6 +4,9 @@ MACHINE
 INCLUDES
     cards,
     Jogadores
+    
+PROMOTES
+    definir_ativo
 
 VARIABLES
     turno,
@@ -101,10 +104,25 @@ OPERATIONS
 
     vencedor <-- consultar_vencedor(pp) =
     PRE
-        pp : JOGADOR
+        pp : JOGADOR &
+        #(op).(
+            op : JOGADOR &
+            op /= pp &
+            (
+                size(premios(pp)) = 0 or
+                size(deck(op)) = 0 or
+                size(premios(op)) = 0 or
+                size(deck(pp)) = 0
+            )
+        )
     THEN
-        ANY oponente WHERE oponente : JOGADOR & oponente /= pp THEN
-            IF size(premios(pp)) = 0 or size(deck(oponente)) = 0 THEN
+        ANY oponente WHERE
+            oponente : JOGADOR &
+            oponente /= pp
+        THEN
+            IF size(premios(pp)) = 0 or
+               size(deck(oponente)) = 0
+            THEN
                 vencedor := pp
             ELSE
                 vencedor := oponente
