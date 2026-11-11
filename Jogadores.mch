@@ -100,13 +100,26 @@ OPERATIONS
         pp : JOGADOR &
         idx : dom(banco(pp)) &
         cc_nova : CARTA &
-        cc_nova : ran(mao(pp)) &
-        tipo_da_carta(cc_nova) = Pokemon &
-        cc_nova : dom(estagio_pokemon) &
-        estagio_pokemon(cc_nova) /= Basico
+        cc_nova : ran(mao(pp))
     THEN
         LET cc_antiga BE cc_antiga = banco(pp)(idx) IN
             banco(pp) := banco(pp) <+ {idx |-> cc_nova} ||
+            descarte(pp) := descarte(pp) ^ [cc_antiga] ||
+            ANY indx WHERE indx : dom(mao(pp)) & mao(pp)(indx) = cc_nova THEN    
+                mao(pp) := (mao(pp) /|\ (indx - 1)) ^ (mao(pp) \|/ indx)
+            END
+        END
+    END;
+    
+    evoluir_pokemon_ativo(pp, cc_nova) =
+    PRE
+        pp : JOGADOR &
+        pp : dom(ativo) &
+        cc_nova : CARTA &
+        cc_nova : ran(mao(pp))
+    THEN
+        LET cc_antiga BE cc_antiga = ativo(pp) IN
+            ativo(pp) := cc_nova ||
             descarte(pp) := descarte(pp) ^ [cc_antiga] ||
             ANY indx WHERE indx : dom(mao(pp)) & mao(pp)(indx) = cc_nova THEN    
                 mao(pp) := (mao(pp) /|\ (indx - 1)) ^ (mao(pp) \|/ indx)

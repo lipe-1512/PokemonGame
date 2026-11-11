@@ -9,7 +9,10 @@ SETS
 CONSTANTS
     tipo_da_carta,
     estagio_pokemon,
-    hp_base
+    hp_base,
+    dano_ataque,
+    custo_dano,
+    id_evolutivo
 
 PROPERTIES
     tipo_da_carta = {
@@ -39,8 +42,35 @@ PROPERTIES
         electabuzz |-> 110,
         electivire |-> 160
     } &
+    dano_ataque = {
+        squirtle |-> 30,
+        wartotle |-> 50,
+        blastoise |-> 150,
+        elekid |-> 40,
+        electabuzz |-> 80,
+        electivire |-> 150
+    } &
+    custo_dano = {
+        squirtle |-> 1,
+        wartotle |-> 2,
+        blastoise |-> 2,
+        elekid |-> 1,
+        electabuzz |-> 2,
+        electivire |-> 2
+    } &
+    id_evolutivo = {
+        squirtle |-> 1,
+        wartotle |-> 1,
+        blastoise |-> 1,
+        elekid |-> 2,
+        electabuzz |-> 2,
+        electivire |-> 2
+    } &
     dom(estagio_pokemon) = tipo_da_carta~[{Pokemon}] &
-    dom(hp_base) = tipo_da_carta~[{Pokemon}]
+    dom(hp_base) = tipo_da_carta~[{Pokemon}] &
+    dom(dano_ataque) = tipo_da_carta~[{Pokemon}] &
+    dom(custo_dano) = tipo_da_carta~[{Pokemon}] &
+    dom(id_evolutivo) = tipo_da_carta~[{Pokemon}]
 
 VARIABLES
     dano,

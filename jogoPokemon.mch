@@ -34,8 +34,23 @@ OPERATIONS
         comprar_carta_jogador(pp) ||
         fase_atual := fase_principal
     END;
+    
+    definir_pokemon_ativo(pp, cc) =
+    PRE
+        pp : JOGADOR &
+        pp = turno &
+        pp /: dom(ativo) &
+        cc : CARTA &
+        cc : ran(mao(pp)) &
+        tipo_da_carta(cc) = Pokemon &
+        cc : dom(hp_base) &
+        estagio_pokemon(cc) = Basico &  
+        fase_atual = fase_principal    
+    THEN
+        definir_ativo(pp, cc)
+    END;
 
-    baixar_pokemon(pp, cc) =
+    baixar_pokemon_banco(pp, cc) =
     PRE
         pp : JOGADOR &
         pp = turno &
@@ -84,25 +99,64 @@ OPERATIONS
         remover_carta_mao(pp, cc_treinador)
     END;
 
-    atacar_oponente(pp, valor_dano) =
+    atacar_oponente(pp) =
     PRE
         pp : JOGADOR &
         pp = turno &
-        valor_dano : NAT1 &
         pp : dom(ativo) &
+        ativo(pp) : dom(dano_ataque) &
+        ativo(pp) : dom(custo_dano) &
+        fase_atual = fase_principal &
         #(op).(op : JOGADOR & op /= pp & op : dom(ativo)) &
-        fase_atual /= fase_compra
+        (ativo(pp) : dom(energia_ligada) & energia_ligada(ativo(pp)) >= custo_dano(ativo(pp)))
     THEN
         ANY oponente WHERE oponente : JOGADOR & oponente /= pp & oponente : dom(ativo) THEN
-            aplicar_dano(ativo(oponente), valor_dano)
+            aplicar_dano(ativo(oponente), dano_ataque(ativo(pp)))
         END ||
         fase_atual := fase_batalha
     END;
 
+    evoluir_banco(pp, idx, cc_nova) =
+    PRE
+        pp : JOGADOR &
+        pp = turno &
+        fase_atual = fase_principal &
+        idx : dom(banco(pp)) &
+        cc_nova : CARTA &
+        cc_nova : ran(mao(pp)) &
+        tipo_da_carta(cc_nova) = Pokemon &
+        banco(pp)(idx) : dom(id_evolutivo) & 
+        cc_nova : dom(id_evolutivo) &
+        id_evolutivo(banco(pp)(idx)) = id_evolutivo(cc_nova) &
+        ((estagio_pokemon(banco(pp)(idx)) = Basico   & estagio_pokemon(cc_nova) = Estagio1) or
+         (estagio_pokemon(banco(pp)(idx)) = Estagio1 & estagio_pokemon(cc_nova) = Estagio2))
+    THEN
+        evoluir_pokemon_banco(pp, idx, cc_nova)
+    END;
+    
+    evoluir_ativo(pp, cc_nova) =
+    PRE
+        pp : JOGADOR &
+        pp = turno &
+        fase_atual = fase_principal &
+        pp : dom(ativo) &
+        cc_nova : CARTA &
+        cc_nova : ran(mao(pp)) &
+        tipo_da_carta(cc_nova) = Pokemon &
+        ativo(pp) : dom(id_evolutivo) & 
+        cc_nova : dom(id_evolutivo) &
+        id_evolutivo(ativo(pp)) = id_evolutivo(cc_nova) &
+        ((estagio_pokemon(ativo(pp)) = Basico   & estagio_pokemon(cc_nova) = Estagio1) or
+         (estagio_pokemon(ativo(pp)) = Estagio1 & estagio_pokemon(cc_nova) = Estagio2))
+    THEN
+        evoluir_pokemon_ativo(pp, cc_nova)
+    END;
+    
     passar_turno(pp) =
     PRE
         pp : JOGADOR &
         pp = turno &
+        pp : dom(ativo) &
         fase_atual /= fase_compra
     THEN
         IF pp = jogador1 THEN
