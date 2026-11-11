@@ -11,8 +11,8 @@ CONSTANTS
 PROPERTIES
     deck_1 : seq(CARTA) &
     deck_2 : seq(CARTA) &
-    deck_1 = [squirtle, energia_agua, energia_agua, wartotle, energia_agua] &
-    deck_2 = [elekid, energia_raio, energia_raio, wartotle, energia_raio]
+    deck_1 = [squirtle, energia_agua, energia_agua, wartotle, energia_agua, squirtle, energia_agua, energia_agua, wartotle, energia_agua] &
+    deck_2 = [elekid, energia_raio, energia_raio, wartotle, energia_raio, elekid, energia_raio, energia_raio, wartotle, energia_raio]
 
 SETS
     JOGADOR = {jogador1, jogador2}
@@ -24,7 +24,7 @@ INVARIANT
     decks_jogadores : JOGADOR --> seq(CARTA)
 
 INITIALISATION
-    decks_jogadores := { jogador1 |-> deck_1, jogador2 |-> deck_2 }
+    decks_jogadores := { jogador1 |-> (deck_1 \|/ 5), jogador2 |-> (deck_2 \|/ 5) }
 
 OPERATIONS
     puxar_carta_deck(pp) =
