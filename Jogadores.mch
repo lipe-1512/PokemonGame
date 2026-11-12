@@ -13,9 +13,9 @@ CONSTANTS
     max_cartas_premio
 
 PROPERTIES
-    max_cartas_deck = 10 &
-    max_cartas_banco = 2 &
-    max_cartas_premio = 2
+    max_cartas_deck = 20 &
+    max_cartas_banco = 5 &
+    max_cartas_premio = 6
 
 VARIABLES
     mao,
@@ -38,7 +38,7 @@ INITIALISATION
     mao := {jogador1 |-> (deck_1 /|\ 5), jogador2 |-> (deck_2 /|\ 5)} ||
     ativo := {} ||
     banco := {jogador1 |-> [], jogador2 |-> []} ||
-    premios :: JOGADOR --> {ss | ss : seq(CARTA) & size(ss) = max_cartas_premio} ||
+    premios := { jogador1 |-> ((deck_1 \|/ 5) /|\ 6), jogador2 |-> ((deck_2 \|/ 5) /|\ 6) } ||
     descarte := {jogador1 |-> [], jogador2 |-> []}
 
 OPERATIONS
@@ -93,6 +93,14 @@ OPERATIONS
         ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN 
             mao(pp) := (mao(pp) /|\ (idx - 1)) ^ (mao(pp) \|/ idx)
         END
+    END;
+    
+    remover_ativo(pp) =
+    PRE
+        pp : JOGADOR &
+        pp : dom(ativo)
+    THEN
+        ativo := {pp} <<| ativo
     END;
 
     evoluir_pokemon_banco(pp, idx, cc_nova) =

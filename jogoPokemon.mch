@@ -2,8 +2,10 @@ MACHINE
     jogoPokemon
 
 INCLUDES
-    cards,
     Jogadores
+    
+SEES
+    cards 
     
 SETS
     FASE = {fase_compra, fase_principal, fase_batalha}
@@ -121,21 +123,34 @@ OPERATIONS
         remover_carta_mao(pp, cc_energia) ||
         energia_jogada_turno := TRUE
     END;
-
-    usar_treinador_cura(pp, cc_treinador, cc_alvo, valor_cura) =
+    
+    usar_pocao_ativo(pp, cc_treinador) =
     PRE
         pp : JOGADOR &
         pp = turno &
         cc_treinador : CARTA &
         cc_treinador : ran(mao(pp)) &
         tipo_da_carta(cc_treinador) = Treinador &
-        cc_alvo : CARTA &
-        cc_alvo : dom(dano) &
-        valor_cura : NAT1 &
-        ((pp : dom(ativo) & cc_alvo = ativo(pp)) or cc_alvo : ran(banco(pp))) &
+        pp : dom(dano_ativo) &
         fase_atual = fase_principal
     THEN
-        curar_dano(cc_alvo, valor_cura) ||
+        dano_ativo := {pp} <<| dano_ativo ||
+        remover_carta_mao(pp, cc_treinador)
+    END;
+
+    usar_pocao_banco(pp, cc_treinador, idx) =
+    PRE
+        pp : JOGADOR &
+        pp = turno &
+        cc_treinador : CARTA &
+        cc_treinador : ran(mao(pp)) &
+        tipo_da_carta(cc_treinador) = Treinador &
+        idx : NAT1 &
+        idx : dom(banco(pp)) &
+        (pp |-> idx) : dom(dano_banco) &
+        fase_atual = fase_principal
+    THEN
+        dano_banco := {pp |-> idx} <<| dano_banco ||
         remover_carta_mao(pp, cc_treinador)
     END;
     

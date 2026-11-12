@@ -11,8 +11,8 @@ CONSTANTS
 PROPERTIES
     deck_1 : seq(CARTA) &
     deck_2 : seq(CARTA) &
-    deck_1 = [squirtle, energia_agua, energia_agua, wartotle, energia_agua, squirtle, energia_agua, energia_agua, wartotle, energia_agua] &
-    deck_2 = [elekid, energia_raio, energia_raio, wartotle, energia_raio, elekid, energia_raio, energia_raio, wartotle, energia_raio]
+    deck_1 = [squirtle, energia_agua, energia_agua, wartotle, energia_agua, squirtle, energia_agua, energia_agua, wartotle, energia_agua, squirtle, energia_agua, energia_agua, wartotle, energia_agua, squirtle, energia_agua, energia_agua, wartotle, energia_agua] &
+    deck_2 = [elekid, energia_raio, energia_raio, wartotle, energia_raio, elekid, energia_raio, energia_raio, wartotle, energia_raio, elekid, energia_raio, energia_raio, wartotle, energia_raio, elekid, energia_raio, energia_raio, wartotle, energia_raio]
 
 SETS
     JOGADOR = {jogador1, jogador2}
