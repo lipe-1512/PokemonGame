@@ -15,6 +15,7 @@ CONSTANTS
     id_evolutivo
 
 PROPERTIES
+    tipo_da_carta : CARTA --> TIPO_CARTA &
     tipo_da_carta = {
         squirtle |-> Pokemon,
         wartotle |-> Pokemon,
@@ -26,6 +27,7 @@ PROPERTIES
         energia_agua |-> Energia,
         pocao |-> Treinador
     } &
+    estagio_pokemon : tipo_da_carta~[{Pokemon}] --> ESTAGIO &
     estagio_pokemon = {
         squirtle |-> Basico,
         wartotle |-> Estagio1,
@@ -66,7 +68,6 @@ PROPERTIES
         electabuzz |-> 2,
         electivire |-> 2
     } &
-    dom(estagio_pokemon) = tipo_da_carta~[{Pokemon}] &
     dom(hp_base) = tipo_da_carta~[{Pokemon}] &
     dom(dano_ataque) = tipo_da_carta~[{Pokemon}] &
     dom(custo_dano) = tipo_da_carta~[{Pokemon}] &

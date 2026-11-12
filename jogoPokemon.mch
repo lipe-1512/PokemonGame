@@ -11,17 +11,33 @@ SETS
 VARIABLES
     turno,
     energia_jogada_turno,
-    fase_atual
+    fase_atual,
+    dano_ativo,
+    energia_ativa,
+    dano_banco,
+    energia_banco
 
 INVARIANT
     turno : JOGADOR &
     energia_jogada_turno : BOOL &
-    fase_atual : FASE
+    fase_atual : FASE &
+    dano_ativo : JOGADOR +-> NATURAL &
+    energia_ativa : JOGADOR +-> NATURAL &
+    dano_banco : JOGADOR * NAT1 +-> NATURAL &
+    energia_banco : JOGADOR * NAT1 +-> NATURAL &
+    dom(dano_ativo) <: dom(ativo) &
+    dom(energia_ativa) <: dom(ativo) &
+    !(pp, idx).(pp : JOGADOR & idx: NAT1 & (pp |-> idx) : dom(dano_banco) => (idx : dom(banco(pp)))) &
+    !(pp, idx).(pp : JOGADOR & idx: NAT1 & (pp |-> idx) : dom(energia_banco) => (idx : dom(banco(pp))))
 
 INITIALISATION
     turno := jogador1 ||
     energia_jogada_turno := FALSE ||
-    fase_atual := fase_compra
+    fase_atual := fase_compra ||
+    dano_ativo := {} ||
+    energia_ativa := {} ||
+    dano_banco := {} ||
+    energia_banco := {}
 
 OPERATIONS
     comprar_carta_turno(pp) =
@@ -64,20 +80,44 @@ OPERATIONS
     THEN
         mover_mao_para_banco(pp, cc)
     END;
-
-    jogar_energia(pp, cc_energia, cc_alvo) =
+    
+    jogar_energia_ativo(pp, cc_energia) =
     PRE
         pp : JOGADOR &
         pp = turno &
         cc_energia : CARTA &
         cc_energia : ran(mao(pp)) &
-        cc_alvo : CARTA &
         tipo_da_carta(cc_energia) = Energia &
         energia_jogada_turno = FALSE &
-        ((pp : dom(ativo) & cc_alvo = ativo(pp)) or cc_alvo : ran(banco(pp))) &
+        pp : dom(ativo) &
         fase_atual = fase_principal
     THEN
-        adicionar_energia(cc_alvo) ||
+        IF pp : dom(energia_ativa) THEN
+            energia_ativa(pp) := energia_ativa(pp) + 1
+        ELSE
+            energia_ativa(pp) := 1
+        END ||
+        remover_carta_mao(pp, cc_energia) ||
+        energia_jogada_turno := TRUE
+    END;
+    
+    jogar_energia_banco(pp, cc_energia, idx) =
+    PRE
+        pp : JOGADOR &
+        pp = turno &
+        cc_energia : CARTA &
+        cc_energia : ran(mao(pp)) &
+        tipo_da_carta(cc_energia) = Energia &
+        energia_jogada_turno = FALSE &
+        idx : NAT1 &
+        idx : dom(banco(pp)) &
+        fase_atual = fase_principal
+    THEN
+        IF (pp |-> idx) : dom(energia_banco) THEN
+            energia_banco(pp |-> idx) := energia_banco(pp |-> idx) + 1
+        ELSE
+            energia_banco(pp |-> idx) := 1
+        END ||
         remover_carta_mao(pp, cc_energia) ||
         energia_jogada_turno := TRUE
     END;
@@ -98,7 +138,7 @@ OPERATIONS
         curar_dano(cc_alvo, valor_cura) ||
         remover_carta_mao(pp, cc_treinador)
     END;
-
+    
     atacar_oponente(pp) =
     PRE
         pp : JOGADOR &
@@ -108,10 +148,14 @@ OPERATIONS
         ativo(pp) : dom(custo_dano) &
         fase_atual = fase_principal &
         #(op).(op : JOGADOR & op /= pp & op : dom(ativo)) &
-        (ativo(pp) : dom(energia_ligada) & energia_ligada(ativo(pp)) >= custo_dano(ativo(pp)))
+        (pp : dom(energia_ativa) & energia_ativa(pp) >= custo_dano(ativo(pp)))
     THEN
         ANY oponente WHERE oponente : JOGADOR & oponente /= pp & oponente : dom(ativo) THEN
-            aplicar_dano(ativo(oponente), dano_ataque(ativo(pp)))
+            IF oponente : dom(dano_ativo) THEN
+                dano_ativo(oponente) := dano_ativo(oponente) + dano_ataque(ativo(pp))
+            ELSE
+                dano_ativo(oponente) := dano_ataque(ativo(pp))
+            END
         END ||
         fase_atual := fase_batalha
     END;
@@ -180,4 +224,6 @@ OPERATIONS
             END
         END
     END
+    
+    
 END
