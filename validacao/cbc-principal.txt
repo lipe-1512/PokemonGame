@@ -1,0 +1,5 @@
+% unused_constants(1,[max_cartas_deck])
+% Starting Constraint-Based Check for all Operations: 
+% Runtime: 62 ms (with gc: 62 ms, walltime: 69 ms)
+No cbc counter example for jogoPokemon.Jogadores.puxar_carta_deck
+*** exiting multiple error blocks (2 -> 0) for time_out_with_enum_warning_one_solution ***

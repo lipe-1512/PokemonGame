@@ -1,6 +1,6 @@
 MACHINE
     Jogadores
-    
+
 INCLUDES
     decks
 
@@ -31,6 +31,7 @@ INVARIANT
     premios : JOGADOR --> seq(CARTA) &
     descarte : JOGADOR --> seq(CARTA) &
     ran(ativo) <: dom(hp_base) &
+    !(pp).(pp : JOGADOR => ran(banco(pp)) <: dom(hp_base)) &
     !(pp).(pp : JOGADOR => size(banco(pp)) <= max_cartas_banco) &
     !(pp).(pp : JOGADOR => size(premios(pp)) <= max_cartas_premio)
 
@@ -49,7 +50,7 @@ OPERATIONS
     THEN
         ANY cc WHERE cc = first(decks_jogadores(pp)) THEN
             mao(pp) := mao(pp) ^ [cc] ||
-            puxar_carta_deck(pp) 
+            puxar_carta_deck(pp)
         END
     END;
 
@@ -63,7 +64,7 @@ OPERATIONS
         estagio_pokemon(cc) = Basico &
         size(banco(pp)) < max_cartas_banco
     THEN
-        ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN    
+        ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN
             banco(pp) := banco(pp) ^ [cc] ||
             mao(pp) := (mao(pp) /|\ (idx - 1)) ^ (mao(pp) \|/ idx)
         END
@@ -75,7 +76,7 @@ OPERATIONS
         cc : CARTA &
         cc : ran(mao(pp))
     THEN
-        ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN 
+        ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN
             mao(pp) := (mao(pp) /|\ (idx - 1)) ^ (mao(pp) \|/ idx)
         END
     END;
@@ -90,16 +91,17 @@ OPERATIONS
         cc : dom(hp_base)
     THEN
         ativo(pp) := cc ||
-        ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN 
+        ANY idx WHERE idx : dom(mao(pp)) & mao(pp)(idx) = cc THEN
             mao(pp) := (mao(pp) /|\ (idx - 1)) ^ (mao(pp) \|/ idx)
         END
     END;
-    
+
     remover_ativo(pp) =
     PRE
         pp : JOGADOR &
         pp : dom(ativo)
     THEN
+        descarte(pp) := descarte(pp) ^ [ativo(pp)] ||
         ativo := {pp} <<| ativo
     END;
 
@@ -108,31 +110,44 @@ OPERATIONS
         pp : JOGADOR &
         idx : dom(banco(pp)) &
         cc_nova : CARTA &
+        cc_nova : dom(hp_base) &
         cc_nova : ran(mao(pp))
     THEN
         LET cc_antiga BE cc_antiga = banco(pp)(idx) IN
             banco(pp) := banco(pp) <+ {idx |-> cc_nova} ||
             descarte(pp) := descarte(pp) ^ [cc_antiga] ||
-            ANY indx WHERE indx : dom(mao(pp)) & mao(pp)(indx) = cc_nova THEN    
+            ANY indx WHERE indx : dom(mao(pp)) & mao(pp)(indx) = cc_nova THEN
                 mao(pp) := (mao(pp) /|\ (indx - 1)) ^ (mao(pp) \|/ indx)
             END
         END
     END;
-    
+
     evoluir_pokemon_ativo(pp, cc_nova) =
     PRE
         pp : JOGADOR &
         pp : dom(ativo) &
         cc_nova : CARTA &
+        cc_nova : dom(hp_base) &
         cc_nova : ran(mao(pp))
     THEN
         LET cc_antiga BE cc_antiga = ativo(pp) IN
             ativo(pp) := cc_nova ||
             descarte(pp) := descarte(pp) ^ [cc_antiga] ||
-            ANY indx WHERE indx : dom(mao(pp)) & mao(pp)(indx) = cc_nova THEN    
+            ANY indx WHERE indx : dom(mao(pp)) & mao(pp)(indx) = cc_nova THEN
                 mao(pp) := (mao(pp) /|\ (indx - 1)) ^ (mao(pp) \|/ indx)
             END
         END
+    END;
+
+    promover_banco_para_ativo(pp, idx) =
+    PRE
+        pp : JOGADOR &
+        pp /: dom(ativo) &
+        idx : dom(banco(pp)) &
+        banco(pp)(idx) : dom(hp_base)
+    THEN
+        ativo(pp) := banco(pp)(idx) ||
+        banco(pp) := (banco(pp) /|\ (idx - 1)) ^ (banco(pp) \|/ idx)
     END;
 
     coletar_premio(pp) =

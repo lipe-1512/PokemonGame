@@ -1,0 +1,1302 @@
+{
+  "svg": "pokemon.svg",
+  "definitions": [
+    {
+      "name": "carta_nome",
+      "value": "{squirtle|->\"Squirtle\",wartotle|->\"Wartortle\",blastoise|->\"Blastoise\",elekid|->\"Elekid\",electabuzz|->\"Electabuzz\",electivire|->\"Electivire\",energia_raio|->\"Energia Raio\",energia_agua|->\"Energia Água\",pocao|->\"Poção\"}"
+    }
+  ],
+  "items": [
+    {
+      "id": "turn",
+      "attr": "text",
+      "value": "IF turno=jogador1 THEN \"Vez do Jogador 1\" ELSE \"Vez do Jogador 2\" END"
+    },
+    {
+      "id": "phase",
+      "attr": "text",
+      "value": "IF fase_atual=fase_compra THEN \"Compra de uma carta\" ELSIF fase_atual=fase_principal THEN \"Ações principais\" ELSIF fase_atual=fase_batalha THEN \"Após o ataque\" ELSIF fase_atual=fase_reposicao THEN \"Escolha um Pokémon do banco para repor o ativo\" ELSE \"Partida encerrada\" END"
+    },
+    {
+      "id": "result",
+      "attr": "text",
+      "value": "IF ganhador={} THEN \"Partida em andamento\" ELSIF jogador1:ganhador THEN \"Vitória do Jogador 1\" ELSE \"Vitória do Jogador 2\" END"
+    },
+    {
+      "id": "energyflag1",
+      "attr": "text",
+      "value": "IF turno=jogador1 & energia_jogada_turno=TRUE THEN \"Energia do turno utilizada\" ELSE \"\" END"
+    },
+    {
+      "id": "active1",
+      "attr": "text",
+      "value": "IF jogador1:dom(ativo) THEN carta_nome(ativo(jogador1)) ELSE \"Sem ativo\" END"
+    },
+    {
+      "id": "hp1",
+      "attr": "text",
+      "value": "IF jogador1:dom(ativo) THEN IF (IF jogador1:dom(dano_ativo) THEN dano_ativo(jogador1) ELSE 0 END) >= hp_base(ativo(jogador1)) THEN 0 ELSE hp_base(ativo(jogador1)) - (IF jogador1:dom(dano_ativo) THEN dano_ativo(jogador1) ELSE 0 END) END ELSE 0 END"
+    },
+    {
+      "id": "energy1",
+      "attr": "text",
+      "value": "IF jogador1:dom(energia_ativa) THEN energia_ativa(jogador1) ELSE 0 END"
+    },
+    {
+      "id": "count1_0",
+      "attr": "text",
+      "value": "size(decks_jogadores(jogador1))"
+    },
+    {
+      "id": "count1_1",
+      "attr": "text",
+      "value": "size(premios(jogador1))"
+    },
+    {
+      "id": "count1_2",
+      "attr": "text",
+      "value": "size(descarte(jogador1))"
+    },
+    {
+      "id": "bc1_1",
+      "attr": "text",
+      "value": "IF 1:dom(banco(jogador1)) THEN carta_nome(banco(jogador1)(1)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be1_1",
+      "attr": "text",
+      "value": "IF (jogador1|->1):dom(energia_banco) THEN energia_banco(jogador1|->1) ELSE 0 END"
+    },
+    {
+      "id": "bc1_2",
+      "attr": "text",
+      "value": "IF 2:dom(banco(jogador1)) THEN carta_nome(banco(jogador1)(2)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be1_2",
+      "attr": "text",
+      "value": "IF (jogador1|->2):dom(energia_banco) THEN energia_banco(jogador1|->2) ELSE 0 END"
+    },
+    {
+      "id": "bc1_3",
+      "attr": "text",
+      "value": "IF 3:dom(banco(jogador1)) THEN carta_nome(banco(jogador1)(3)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be1_3",
+      "attr": "text",
+      "value": "IF (jogador1|->3):dom(energia_banco) THEN energia_banco(jogador1|->3) ELSE 0 END"
+    },
+    {
+      "id": "bc1_4",
+      "attr": "text",
+      "value": "IF 4:dom(banco(jogador1)) THEN carta_nome(banco(jogador1)(4)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be1_4",
+      "attr": "text",
+      "value": "IF (jogador1|->4):dom(energia_banco) THEN energia_banco(jogador1|->4) ELSE 0 END"
+    },
+    {
+      "id": "bc1_5",
+      "attr": "text",
+      "value": "IF 5:dom(banco(jogador1)) THEN carta_nome(banco(jogador1)(5)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be1_5",
+      "attr": "text",
+      "value": "IF (jogador1|->5):dom(energia_banco) THEN energia_banco(jogador1|->5) ELSE 0 END"
+    },
+    {
+      "id": "handcount1",
+      "attr": "text",
+      "value": "size(mao(jogador1))"
+    },
+    {
+      "id": "htext1_1",
+      "attr": "text",
+      "value": "IF 1:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(1)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_1",
+      "attr": "opacity",
+      "value": "IF 1:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_2",
+      "attr": "text",
+      "value": "IF 2:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(2)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_2",
+      "attr": "opacity",
+      "value": "IF 2:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_3",
+      "attr": "text",
+      "value": "IF 3:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(3)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_3",
+      "attr": "opacity",
+      "value": "IF 3:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_4",
+      "attr": "text",
+      "value": "IF 4:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(4)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_4",
+      "attr": "opacity",
+      "value": "IF 4:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_5",
+      "attr": "text",
+      "value": "IF 5:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(5)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_5",
+      "attr": "opacity",
+      "value": "IF 5:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_6",
+      "attr": "text",
+      "value": "IF 6:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(6)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_6",
+      "attr": "opacity",
+      "value": "IF 6:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_7",
+      "attr": "text",
+      "value": "IF 7:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(7)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_7",
+      "attr": "opacity",
+      "value": "IF 7:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_8",
+      "attr": "text",
+      "value": "IF 8:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(8)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_8",
+      "attr": "opacity",
+      "value": "IF 8:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_9",
+      "attr": "text",
+      "value": "IF 9:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(9)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_9",
+      "attr": "opacity",
+      "value": "IF 9:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_10",
+      "attr": "text",
+      "value": "IF 10:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(10)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_10",
+      "attr": "opacity",
+      "value": "IF 10:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_11",
+      "attr": "text",
+      "value": "IF 11:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(11)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_11",
+      "attr": "opacity",
+      "value": "IF 11:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_12",
+      "attr": "text",
+      "value": "IF 12:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(12)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_12",
+      "attr": "opacity",
+      "value": "IF 12:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_13",
+      "attr": "text",
+      "value": "IF 13:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(13)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_13",
+      "attr": "opacity",
+      "value": "IF 13:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_14",
+      "attr": "text",
+      "value": "IF 14:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(14)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_14",
+      "attr": "opacity",
+      "value": "IF 14:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_15",
+      "attr": "text",
+      "value": "IF 15:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(15)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_15",
+      "attr": "opacity",
+      "value": "IF 15:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_16",
+      "attr": "text",
+      "value": "IF 16:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(16)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_16",
+      "attr": "opacity",
+      "value": "IF 16:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_17",
+      "attr": "text",
+      "value": "IF 17:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(17)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_17",
+      "attr": "opacity",
+      "value": "IF 17:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_18",
+      "attr": "text",
+      "value": "IF 18:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(18)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_18",
+      "attr": "opacity",
+      "value": "IF 18:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_19",
+      "attr": "text",
+      "value": "IF 19:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(19)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_19",
+      "attr": "opacity",
+      "value": "IF 19:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext1_20",
+      "attr": "text",
+      "value": "IF 20:dom(mao(jogador1)) THEN carta_nome(mao(jogador1)(20)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox1_20",
+      "attr": "opacity",
+      "value": "IF 20:dom(mao(jogador1)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "energyflag2",
+      "attr": "text",
+      "value": "IF turno=jogador2 & energia_jogada_turno=TRUE THEN \"Energia do turno utilizada\" ELSE \"\" END"
+    },
+    {
+      "id": "active2",
+      "attr": "text",
+      "value": "IF jogador2:dom(ativo) THEN carta_nome(ativo(jogador2)) ELSE \"Sem ativo\" END"
+    },
+    {
+      "id": "hp2",
+      "attr": "text",
+      "value": "IF jogador2:dom(ativo) THEN IF (IF jogador2:dom(dano_ativo) THEN dano_ativo(jogador2) ELSE 0 END) >= hp_base(ativo(jogador2)) THEN 0 ELSE hp_base(ativo(jogador2)) - (IF jogador2:dom(dano_ativo) THEN dano_ativo(jogador2) ELSE 0 END) END ELSE 0 END"
+    },
+    {
+      "id": "energy2",
+      "attr": "text",
+      "value": "IF jogador2:dom(energia_ativa) THEN energia_ativa(jogador2) ELSE 0 END"
+    },
+    {
+      "id": "count2_0",
+      "attr": "text",
+      "value": "size(decks_jogadores(jogador2))"
+    },
+    {
+      "id": "count2_1",
+      "attr": "text",
+      "value": "size(premios(jogador2))"
+    },
+    {
+      "id": "count2_2",
+      "attr": "text",
+      "value": "size(descarte(jogador2))"
+    },
+    {
+      "id": "bc2_1",
+      "attr": "text",
+      "value": "IF 1:dom(banco(jogador2)) THEN carta_nome(banco(jogador2)(1)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be2_1",
+      "attr": "text",
+      "value": "IF (jogador2|->1):dom(energia_banco) THEN energia_banco(jogador2|->1) ELSE 0 END"
+    },
+    {
+      "id": "bc2_2",
+      "attr": "text",
+      "value": "IF 2:dom(banco(jogador2)) THEN carta_nome(banco(jogador2)(2)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be2_2",
+      "attr": "text",
+      "value": "IF (jogador2|->2):dom(energia_banco) THEN energia_banco(jogador2|->2) ELSE 0 END"
+    },
+    {
+      "id": "bc2_3",
+      "attr": "text",
+      "value": "IF 3:dom(banco(jogador2)) THEN carta_nome(banco(jogador2)(3)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be2_3",
+      "attr": "text",
+      "value": "IF (jogador2|->3):dom(energia_banco) THEN energia_banco(jogador2|->3) ELSE 0 END"
+    },
+    {
+      "id": "bc2_4",
+      "attr": "text",
+      "value": "IF 4:dom(banco(jogador2)) THEN carta_nome(banco(jogador2)(4)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be2_4",
+      "attr": "text",
+      "value": "IF (jogador2|->4):dom(energia_banco) THEN energia_banco(jogador2|->4) ELSE 0 END"
+    },
+    {
+      "id": "bc2_5",
+      "attr": "text",
+      "value": "IF 5:dom(banco(jogador2)) THEN carta_nome(banco(jogador2)(5)) ELSE \"Vazio\" END"
+    },
+    {
+      "id": "be2_5",
+      "attr": "text",
+      "value": "IF (jogador2|->5):dom(energia_banco) THEN energia_banco(jogador2|->5) ELSE 0 END"
+    },
+    {
+      "id": "handcount2",
+      "attr": "text",
+      "value": "size(mao(jogador2))"
+    },
+    {
+      "id": "htext2_1",
+      "attr": "text",
+      "value": "IF 1:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(1)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_1",
+      "attr": "opacity",
+      "value": "IF 1:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_2",
+      "attr": "text",
+      "value": "IF 2:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(2)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_2",
+      "attr": "opacity",
+      "value": "IF 2:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_3",
+      "attr": "text",
+      "value": "IF 3:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(3)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_3",
+      "attr": "opacity",
+      "value": "IF 3:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_4",
+      "attr": "text",
+      "value": "IF 4:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(4)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_4",
+      "attr": "opacity",
+      "value": "IF 4:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_5",
+      "attr": "text",
+      "value": "IF 5:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(5)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_5",
+      "attr": "opacity",
+      "value": "IF 5:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_6",
+      "attr": "text",
+      "value": "IF 6:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(6)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_6",
+      "attr": "opacity",
+      "value": "IF 6:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_7",
+      "attr": "text",
+      "value": "IF 7:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(7)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_7",
+      "attr": "opacity",
+      "value": "IF 7:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_8",
+      "attr": "text",
+      "value": "IF 8:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(8)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_8",
+      "attr": "opacity",
+      "value": "IF 8:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_9",
+      "attr": "text",
+      "value": "IF 9:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(9)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_9",
+      "attr": "opacity",
+      "value": "IF 9:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_10",
+      "attr": "text",
+      "value": "IF 10:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(10)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_10",
+      "attr": "opacity",
+      "value": "IF 10:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_11",
+      "attr": "text",
+      "value": "IF 11:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(11)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_11",
+      "attr": "opacity",
+      "value": "IF 11:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_12",
+      "attr": "text",
+      "value": "IF 12:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(12)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_12",
+      "attr": "opacity",
+      "value": "IF 12:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_13",
+      "attr": "text",
+      "value": "IF 13:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(13)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_13",
+      "attr": "opacity",
+      "value": "IF 13:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_14",
+      "attr": "text",
+      "value": "IF 14:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(14)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_14",
+      "attr": "opacity",
+      "value": "IF 14:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_15",
+      "attr": "text",
+      "value": "IF 15:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(15)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_15",
+      "attr": "opacity",
+      "value": "IF 15:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_16",
+      "attr": "text",
+      "value": "IF 16:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(16)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_16",
+      "attr": "opacity",
+      "value": "IF 16:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_17",
+      "attr": "text",
+      "value": "IF 17:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(17)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_17",
+      "attr": "opacity",
+      "value": "IF 17:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_18",
+      "attr": "text",
+      "value": "IF 18:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(18)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_18",
+      "attr": "opacity",
+      "value": "IF 18:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_19",
+      "attr": "text",
+      "value": "IF 19:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(19)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_19",
+      "attr": "opacity",
+      "value": "IF 19:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "htext2_20",
+      "attr": "text",
+      "value": "IF 20:dom(mao(jogador2)) THEN carta_nome(mao(jogador2)(20)) ELSE \"\" END"
+    },
+    {
+      "id": "hbox2_20",
+      "attr": "opacity",
+      "value": "IF 20:dom(mao(jogador2)) THEN \"1\" ELSE \"0.20\" END"
+    },
+    {
+      "id": "hbox2_1",
+      "attr": "fill",
+      "value": "IF 1:dom(mao(jogador2)) THEN IF mao(jogador2)(1)=energia_agua or mao(jogador2)(1):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(1)=energia_raio or mao(jogador2)(1):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_2",
+      "attr": "fill",
+      "value": "IF 2:dom(mao(jogador2)) THEN IF mao(jogador2)(2)=energia_agua or mao(jogador2)(2):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(2)=energia_raio or mao(jogador2)(2):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_3",
+      "attr": "fill",
+      "value": "IF 3:dom(mao(jogador2)) THEN IF mao(jogador2)(3)=energia_agua or mao(jogador2)(3):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(3)=energia_raio or mao(jogador2)(3):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_4",
+      "attr": "fill",
+      "value": "IF 4:dom(mao(jogador2)) THEN IF mao(jogador2)(4)=energia_agua or mao(jogador2)(4):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(4)=energia_raio or mao(jogador2)(4):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_5",
+      "attr": "fill",
+      "value": "IF 5:dom(mao(jogador2)) THEN IF mao(jogador2)(5)=energia_agua or mao(jogador2)(5):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(5)=energia_raio or mao(jogador2)(5):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_6",
+      "attr": "fill",
+      "value": "IF 6:dom(mao(jogador2)) THEN IF mao(jogador2)(6)=energia_agua or mao(jogador2)(6):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(6)=energia_raio or mao(jogador2)(6):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_7",
+      "attr": "fill",
+      "value": "IF 7:dom(mao(jogador2)) THEN IF mao(jogador2)(7)=energia_agua or mao(jogador2)(7):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(7)=energia_raio or mao(jogador2)(7):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_8",
+      "attr": "fill",
+      "value": "IF 8:dom(mao(jogador2)) THEN IF mao(jogador2)(8)=energia_agua or mao(jogador2)(8):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(8)=energia_raio or mao(jogador2)(8):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_9",
+      "attr": "fill",
+      "value": "IF 9:dom(mao(jogador2)) THEN IF mao(jogador2)(9)=energia_agua or mao(jogador2)(9):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(9)=energia_raio or mao(jogador2)(9):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_10",
+      "attr": "fill",
+      "value": "IF 10:dom(mao(jogador2)) THEN IF mao(jogador2)(10)=energia_agua or mao(jogador2)(10):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(10)=energia_raio or mao(jogador2)(10):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_11",
+      "attr": "fill",
+      "value": "IF 11:dom(mao(jogador2)) THEN IF mao(jogador2)(11)=energia_agua or mao(jogador2)(11):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(11)=energia_raio or mao(jogador2)(11):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_12",
+      "attr": "fill",
+      "value": "IF 12:dom(mao(jogador2)) THEN IF mao(jogador2)(12)=energia_agua or mao(jogador2)(12):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(12)=energia_raio or mao(jogador2)(12):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_13",
+      "attr": "fill",
+      "value": "IF 13:dom(mao(jogador2)) THEN IF mao(jogador2)(13)=energia_agua or mao(jogador2)(13):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(13)=energia_raio or mao(jogador2)(13):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_14",
+      "attr": "fill",
+      "value": "IF 14:dom(mao(jogador2)) THEN IF mao(jogador2)(14)=energia_agua or mao(jogador2)(14):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(14)=energia_raio or mao(jogador2)(14):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_15",
+      "attr": "fill",
+      "value": "IF 15:dom(mao(jogador2)) THEN IF mao(jogador2)(15)=energia_agua or mao(jogador2)(15):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(15)=energia_raio or mao(jogador2)(15):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_16",
+      "attr": "fill",
+      "value": "IF 16:dom(mao(jogador2)) THEN IF mao(jogador2)(16)=energia_agua or mao(jogador2)(16):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(16)=energia_raio or mao(jogador2)(16):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_17",
+      "attr": "fill",
+      "value": "IF 17:dom(mao(jogador2)) THEN IF mao(jogador2)(17)=energia_agua or mao(jogador2)(17):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(17)=energia_raio or mao(jogador2)(17):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_18",
+      "attr": "fill",
+      "value": "IF 18:dom(mao(jogador2)) THEN IF mao(jogador2)(18)=energia_agua or mao(jogador2)(18):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(18)=energia_raio or mao(jogador2)(18):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_19",
+      "attr": "fill",
+      "value": "IF 19:dom(mao(jogador2)) THEN IF mao(jogador2)(19)=energia_agua or mao(jogador2)(19):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(19)=energia_raio or mao(jogador2)(19):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox2_20",
+      "attr": "fill",
+      "value": "IF 20:dom(mao(jogador2)) THEN IF mao(jogador2)(20)=energia_agua or mao(jogador2)(20):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador2)(20)=energia_raio or mao(jogador2)(20):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "bench2_1",
+      "attr": "fill",
+      "value": "IF 1:dom(banco(jogador2)) THEN IF banco(jogador2)(1)=energia_agua or banco(jogador2)(1):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador2)(1)=energia_raio or banco(jogador2)(1):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench2_2",
+      "attr": "fill",
+      "value": "IF 2:dom(banco(jogador2)) THEN IF banco(jogador2)(2)=energia_agua or banco(jogador2)(2):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador2)(2)=energia_raio or banco(jogador2)(2):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench2_3",
+      "attr": "fill",
+      "value": "IF 3:dom(banco(jogador2)) THEN IF banco(jogador2)(3)=energia_agua or banco(jogador2)(3):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador2)(3)=energia_raio or banco(jogador2)(3):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench2_4",
+      "attr": "fill",
+      "value": "IF 4:dom(banco(jogador2)) THEN IF banco(jogador2)(4)=energia_agua or banco(jogador2)(4):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador2)(4)=energia_raio or banco(jogador2)(4):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench2_5",
+      "attr": "fill",
+      "value": "IF 5:dom(banco(jogador2)) THEN IF banco(jogador2)(5)=energia_agua or banco(jogador2)(5):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador2)(5)=energia_raio or banco(jogador2)(5):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "activeframe2",
+      "attr": "fill",
+      "value": "IF jogador2:dom(ativo) THEN IF ativo(jogador2)=energia_agua or ativo(jogador2):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF ativo(jogador2)=energia_raio or ativo(jogador2):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#443518\" END"
+    },
+    {
+      "id": "prize2_1",
+      "attr": "opacity",
+      "value": "IF 1<=size(premios(jogador2)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize2_2",
+      "attr": "opacity",
+      "value": "IF 2<=size(premios(jogador2)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize2_3",
+      "attr": "opacity",
+      "value": "IF 3<=size(premios(jogador2)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize2_4",
+      "attr": "opacity",
+      "value": "IF 4<=size(premios(jogador2)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize2_5",
+      "attr": "opacity",
+      "value": "IF 5<=size(premios(jogador2)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize2_6",
+      "attr": "opacity",
+      "value": "IF 6<=size(premios(jogador2)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "playerAccent2",
+      "attr": "opacity",
+      "value": "IF turno=jogador2 & ganhador={} THEN \"1\" ELSE \"0.35\" END"
+    },
+    {
+      "id": "hbox1_1",
+      "attr": "fill",
+      "value": "IF 1:dom(mao(jogador1)) THEN IF mao(jogador1)(1)=energia_agua or mao(jogador1)(1):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(1)=energia_raio or mao(jogador1)(1):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_2",
+      "attr": "fill",
+      "value": "IF 2:dom(mao(jogador1)) THEN IF mao(jogador1)(2)=energia_agua or mao(jogador1)(2):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(2)=energia_raio or mao(jogador1)(2):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_3",
+      "attr": "fill",
+      "value": "IF 3:dom(mao(jogador1)) THEN IF mao(jogador1)(3)=energia_agua or mao(jogador1)(3):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(3)=energia_raio or mao(jogador1)(3):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_4",
+      "attr": "fill",
+      "value": "IF 4:dom(mao(jogador1)) THEN IF mao(jogador1)(4)=energia_agua or mao(jogador1)(4):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(4)=energia_raio or mao(jogador1)(4):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_5",
+      "attr": "fill",
+      "value": "IF 5:dom(mao(jogador1)) THEN IF mao(jogador1)(5)=energia_agua or mao(jogador1)(5):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(5)=energia_raio or mao(jogador1)(5):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_6",
+      "attr": "fill",
+      "value": "IF 6:dom(mao(jogador1)) THEN IF mao(jogador1)(6)=energia_agua or mao(jogador1)(6):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(6)=energia_raio or mao(jogador1)(6):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_7",
+      "attr": "fill",
+      "value": "IF 7:dom(mao(jogador1)) THEN IF mao(jogador1)(7)=energia_agua or mao(jogador1)(7):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(7)=energia_raio or mao(jogador1)(7):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_8",
+      "attr": "fill",
+      "value": "IF 8:dom(mao(jogador1)) THEN IF mao(jogador1)(8)=energia_agua or mao(jogador1)(8):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(8)=energia_raio or mao(jogador1)(8):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_9",
+      "attr": "fill",
+      "value": "IF 9:dom(mao(jogador1)) THEN IF mao(jogador1)(9)=energia_agua or mao(jogador1)(9):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(9)=energia_raio or mao(jogador1)(9):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_10",
+      "attr": "fill",
+      "value": "IF 10:dom(mao(jogador1)) THEN IF mao(jogador1)(10)=energia_agua or mao(jogador1)(10):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(10)=energia_raio or mao(jogador1)(10):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_11",
+      "attr": "fill",
+      "value": "IF 11:dom(mao(jogador1)) THEN IF mao(jogador1)(11)=energia_agua or mao(jogador1)(11):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(11)=energia_raio or mao(jogador1)(11):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_12",
+      "attr": "fill",
+      "value": "IF 12:dom(mao(jogador1)) THEN IF mao(jogador1)(12)=energia_agua or mao(jogador1)(12):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(12)=energia_raio or mao(jogador1)(12):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_13",
+      "attr": "fill",
+      "value": "IF 13:dom(mao(jogador1)) THEN IF mao(jogador1)(13)=energia_agua or mao(jogador1)(13):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(13)=energia_raio or mao(jogador1)(13):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_14",
+      "attr": "fill",
+      "value": "IF 14:dom(mao(jogador1)) THEN IF mao(jogador1)(14)=energia_agua or mao(jogador1)(14):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(14)=energia_raio or mao(jogador1)(14):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_15",
+      "attr": "fill",
+      "value": "IF 15:dom(mao(jogador1)) THEN IF mao(jogador1)(15)=energia_agua or mao(jogador1)(15):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(15)=energia_raio or mao(jogador1)(15):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_16",
+      "attr": "fill",
+      "value": "IF 16:dom(mao(jogador1)) THEN IF mao(jogador1)(16)=energia_agua or mao(jogador1)(16):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(16)=energia_raio or mao(jogador1)(16):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_17",
+      "attr": "fill",
+      "value": "IF 17:dom(mao(jogador1)) THEN IF mao(jogador1)(17)=energia_agua or mao(jogador1)(17):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(17)=energia_raio or mao(jogador1)(17):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_18",
+      "attr": "fill",
+      "value": "IF 18:dom(mao(jogador1)) THEN IF mao(jogador1)(18)=energia_agua or mao(jogador1)(18):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(18)=energia_raio or mao(jogador1)(18):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_19",
+      "attr": "fill",
+      "value": "IF 19:dom(mao(jogador1)) THEN IF mao(jogador1)(19)=energia_agua or mao(jogador1)(19):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(19)=energia_raio or mao(jogador1)(19):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "hbox1_20",
+      "attr": "fill",
+      "value": "IF 20:dom(mao(jogador1)) THEN IF mao(jogador1)(20)=energia_agua or mao(jogador1)(20):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF mao(jogador1)(20)=energia_raio or mao(jogador1)(20):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#26364e\" END"
+    },
+    {
+      "id": "bench1_1",
+      "attr": "fill",
+      "value": "IF 1:dom(banco(jogador1)) THEN IF banco(jogador1)(1)=energia_agua or banco(jogador1)(1):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador1)(1)=energia_raio or banco(jogador1)(1):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench1_2",
+      "attr": "fill",
+      "value": "IF 2:dom(banco(jogador1)) THEN IF banco(jogador1)(2)=energia_agua or banco(jogador1)(2):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador1)(2)=energia_raio or banco(jogador1)(2):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench1_3",
+      "attr": "fill",
+      "value": "IF 3:dom(banco(jogador1)) THEN IF banco(jogador1)(3)=energia_agua or banco(jogador1)(3):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador1)(3)=energia_raio or banco(jogador1)(3):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench1_4",
+      "attr": "fill",
+      "value": "IF 4:dom(banco(jogador1)) THEN IF banco(jogador1)(4)=energia_agua or banco(jogador1)(4):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador1)(4)=energia_raio or banco(jogador1)(4):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "bench1_5",
+      "attr": "fill",
+      "value": "IF 5:dom(banco(jogador1)) THEN IF banco(jogador1)(5)=energia_agua or banco(jogador1)(5):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF banco(jogador1)(5)=energia_raio or banco(jogador1)(5):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#202d43\" END"
+    },
+    {
+      "id": "activeframe1",
+      "attr": "fill",
+      "value": "IF jogador1:dom(ativo) THEN IF ativo(jogador1)=energia_agua or ativo(jogador1):{squirtle,wartotle,blastoise} THEN \"#164967\" ELSIF ativo(jogador1)=energia_raio or ativo(jogador1):{elekid,electabuzz,electivire} THEN \"#63501f\" ELSE \"#49395f\" END ELSE \"#16404e\" END"
+    },
+    {
+      "id": "prize1_1",
+      "attr": "opacity",
+      "value": "IF 1<=size(premios(jogador1)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize1_2",
+      "attr": "opacity",
+      "value": "IF 2<=size(premios(jogador1)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize1_3",
+      "attr": "opacity",
+      "value": "IF 3<=size(premios(jogador1)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize1_4",
+      "attr": "opacity",
+      "value": "IF 4<=size(premios(jogador1)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize1_5",
+      "attr": "opacity",
+      "value": "IF 5<=size(premios(jogador1)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "prize1_6",
+      "attr": "opacity",
+      "value": "IF 6<=size(premios(jogador1)) THEN \"1\" ELSE \"0.19\" END"
+    },
+    {
+      "id": "playerAccent1",
+      "attr": "opacity",
+      "value": "IF turno=jogador1 & ganhador={} THEN \"1\" ELSE \"0.35\" END"
+    }
+  ],
+  "events": [
+    {
+      "id": "action1_0",
+      "event": "comprar_carta_turno",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_1",
+      "event": "atacar_oponente",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_2",
+      "event": "passar_turno",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_3",
+      "event": "definir_pokemon_ativo",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_4",
+      "event": "baixar_pokemon_banco",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_5",
+      "event": "resolver_nocaute",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_6",
+      "event": "jogar_energia_ativo",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_7",
+      "event": "jogar_energia_banco",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_8",
+      "event": "repor_pokemon_ativo",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_9",
+      "event": "evoluir_ativo",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_10",
+      "event": "evoluir_banco",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_11",
+      "event": "usar_pocao_ativo",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action1_12",
+      "event": "usar_pocao_banco",
+      "predicates": [
+        "pp=jogador1"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_0",
+      "event": "comprar_carta_turno",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_1",
+      "event": "atacar_oponente",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_2",
+      "event": "passar_turno",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_3",
+      "event": "definir_pokemon_ativo",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_4",
+      "event": "baixar_pokemon_banco",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_5",
+      "event": "resolver_nocaute",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_6",
+      "event": "jogar_energia_ativo",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_7",
+      "event": "jogar_energia_banco",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_8",
+      "event": "repor_pokemon_ativo",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_9",
+      "event": "evoluir_ativo",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_10",
+      "event": "evoluir_banco",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_11",
+      "event": "usar_pocao_ativo",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    },
+    {
+      "id": "action2_12",
+      "event": "usar_pocao_banco",
+      "predicates": [
+        "pp=jogador2"
+      ],
+      "items": [
+        {
+          "attr": "opacity",
+          "enabled": "1",
+          "disabled": "0.28"
+        }
+      ]
+    }
+  ]
+}

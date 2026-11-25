@@ -1,0 +1,38 @@
+% unused_constants(1,[max_cartas_deck])
+% Runtime for SOLUTION for SETUP_CONSTANTS: 46 ms (walltime: 48 ms)
+% Runtime to FINALISE SETUP_CONSTANTS: 16 ms (walltime: 0 ms)
+Model checking time: 828 ms (870 ms walltime)
+States analysed: 500
+Transitions fired: 1449
+No counter example Found, not all states visited
+
+Coverage Information:
+CATEGORY HITS
+STATES 1262
+deadlocked 0
+invariant_violated 0
+live 501
+open 761
+invariant_not_checked 761
+total 1262
+------------- 
+TOTAL_TRANSITIONS 1449
+COVERED_OPERATIONS 14
+INITIALISATION 1
+SETUP_CONSTANTS 1
+atacar_oponente 180
+baixar_pokemon_banco 115
+comprar_carta_turno 158
+consultar_vencedor 20
+definir_pokemon_ativo 6
+evoluir_ativo 158
+evoluir_banco 21
+jogar_energia_ativo 410
+jogar_energia_banco 54
+passar_turno 296
+repor_pokemon_ativo 18
+resolver_nocaute 11
+UNCOVERED_OPERATIONS 2
+usar_pocao_ativo -
+usar_pocao_banco -
+

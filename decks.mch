@@ -16,15 +16,16 @@ PROPERTIES
 
 SETS
     JOGADOR = {jogador1, jogador2}
-    
+
 VARIABLES
     decks_jogadores
 
 INVARIANT
     decks_jogadores : JOGADOR --> seq(CARTA)
 
+/* Cinco cartas na mao e seis premios ficam fora da pilha de compra. */
 INITIALISATION
-    decks_jogadores := { jogador1 |-> (deck_1 \|/ 5), jogador2 |-> (deck_2 \|/ 5) }
+    decks_jogadores := { jogador1 |-> (deck_1 \|/ 11), jogador2 |-> (deck_2 \|/ 11) }
 
 OPERATIONS
     puxar_carta_deck(pp) =

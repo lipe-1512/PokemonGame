@@ -1,0 +1,27 @@
+/* Constants */
+   tipo_da_carta = {(squirtle|->Pokemon),(wartotle|->Pokemon),(blastoise|->Pokemon),(elekid|->Pokemon),(electabuzz|->Pokemon),(electivire|->Pokemon),(energia_raio|->Energia),(energia_agua|->Energia),(pocao|->Treinador)}
+ & estagio_pokemon = {(squirtle|->Basico),(wartotle|->Estagio1),(blastoise|->Estagio2),(elekid|->Basico),(electabuzz|->Estagio1),(electivire|->Estagio2)}
+ & hp_base = {(squirtle|->60),(wartotle|->100),(blastoise|->150),(elekid|->70),(electabuzz|->110),(electivire|->160)}
+ & dano_ataque = {(squirtle|->30),(wartotle|->50),(blastoise|->150),(elekid|->40),(electabuzz|->80),(electivire|->150)}
+ & custo_dano = {(squirtle|->1),(wartotle|->2),(blastoise|->2),(elekid|->1),(electabuzz|->2),(electivire|->2)}
+ & id_evolutivo = {(squirtle|->1),(wartotle|->1),(blastoise|->1),(elekid|->2),(electabuzz|->2),(electivire|->2)}
+ & deck_1 = [squirtle,energia_agua,energia_agua,wartotle,energia_agua,squirtle,energia_agua,energia_agua,wartotle,energia_agua,squirtle,energia_agua,energia_agua,wartotle,energia_agua,squirtle,energia_agua,energia_agua,wartotle,energia_agua]
+ & deck_2 = [elekid,energia_raio,energia_raio,wartotle,energia_raio,elekid,energia_raio,energia_raio,wartotle,energia_raio,elekid,energia_raio,energia_raio,wartotle,energia_raio,elekid,energia_raio,energia_raio,wartotle,energia_raio]
+ & max_cartas_deck = 20
+ & max_cartas_banco = 5
+ & max_cartas_premio = 6
+/* Variables */
+ & ativo = {}
+ & banco = {(jogador1|->{}),(jogador2|->{})}
+ & dano_ativo = {}
+ & dano_banco = {}
+ & decks_jogadores = {(jogador1|->{(1|->energia_agua),(2|->energia_agua),(3|->wartotle),(4|->energia_agua),(5|->squirtle),(6|->energia_agua),(7|->energia_agua),(8|->wartotle),(9|->energia_agua)}),(jogador2|->{(1|->energia_raio),(2|->energia_raio),(3|->wartotle),(4|->energia_raio),(5|->elekid),(6|->energia_raio),(7|->energia_raio),(8|->wartotle),(9|->energia_raio)})}
+ & descarte = {(jogador1|->{}),(jogador2|->{})}
+ & energia_ativa = {}
+ & energia_banco = {}
+ & energia_jogada_turno = FALSE
+ & fase_atual = fase_compra
+ & ganhador = {}
+ & mao = {(jogador1|->{(1|->squirtle),(2|->energia_agua),(3|->energia_agua),(4|->wartotle),(5|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->energia_raio),(3|->energia_raio),(4|->wartotle),(5|->energia_raio)})}
+ & premios = {(jogador1|->{(1|->squirtle),(2|->energia_agua),(3|->energia_agua),(4|->wartotle),(5|->energia_agua),(6|->squirtle)}),(jogador2|->{(1|->elekid),(2|->energia_raio),(3|->energia_raio),(4|->wartotle),(5|->energia_raio),(6|->elekid)})}
+ & turno = jogador1

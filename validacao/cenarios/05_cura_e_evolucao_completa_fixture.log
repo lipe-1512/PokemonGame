@@ -1,0 +1,223 @@
+% unused_constants(1,[max_cartas_deck])
+% Runtime for SOLUTION for SETUP_CONSTANTS: 46 ms (walltime: 49 ms)
+% Runtime to FINALISE SETUP_CONSTANTS: 0 ms (walltime: 0 ms)
+
+ProB Interactive Expression and Predicate Evaluator 
+Type ":help" for more information.
+Expression Value = 
+"STEP_0000"
+Added new user-initiated transition to 3 via: comprar_carta_turno(jogador1)
+Successfully executed statement leading to state: 3
+Execution result: TRUE
+Updates:
+       mao = {(jogador1|->{(1|->squirtle),(2|->squirtle),(3|->pocao),(4|->wartotle),(5|->blastoise),(6|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->elekid),(4|->electabuzz),(5|->pocao)})} &
+       decks_jogadores = {(jogador1|->{(1|->energia_agua),(2|->pocao),(3|->energia_agua),(4|->energia_agua),(5|->squirtle),(6|->energia_agua),(7|->energia_agua),(8|->pocao)}),(jogador2|->{(1|->energia_raio),(2|->energia_raio)... &
+       fase_atual = fase_principal
+
+Expression Value = 
+"STEP_0001"
+Predicate is TRUE
+Expression Value = 
+"STEP_0002"
+Successfully executed statement leading to state: 4
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->squirtle)} &
+       mao = {(jogador1|->{(1|->squirtle),(2|->pocao),(3|->wartotle),(4|->blastoise),(5|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->elekid),(4|->electabuzz),(5|->pocao)})}
+
+Expression Value = 
+"STEP_0003"
+Predicate is TRUE
+Expression Value = 
+"STEP_0004"
+Successfully executed statement leading to state: 6
+Execution result: TRUE
+Updates:
+       banco = {(jogador1|->{(1|->squirtle)}),(jogador2|->{})} &
+       mao = {(jogador1|->{(1|->pocao),(2|->wartotle),(3|->blastoise),(4|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->elekid),(4|->electabuzz),(5|->pocao)})}
+
+Expression Value = 
+"STEP_0005"
+Predicate is TRUE
+Expression Value = 
+"STEP_0006"
+Successfully executed statement leading to state: 10
+Execution result: TRUE
+Updates:
+       energia_ativa = {(jogador1|->1)} &
+       mao = {(jogador1|->{(1|->pocao),(2|->wartotle),(3|->blastoise)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->elekid),(4|->electabuzz),(5|->pocao)})} &
+       energia_jogada_turno = TRUE
+
+Expression Value = 
+"STEP_0007"
+Predicate is TRUE
+Expression Value = 
+"STEP_0008"
+Successfully executed statement leading to state: 17
+Execution result: TRUE
+Updates:
+       turno = jogador2 &
+       energia_jogada_turno = FALSE &
+       fase_atual = fase_compra
+
+Expression Value = 
+"STEP_0009"
+Predicate is TRUE
+Expression Value = 
+"STEP_0010"
+Successfully executed statement leading to state: 18
+Execution result: TRUE
+Updates:
+       mao = {(jogador1|->{(1|->pocao),(2|->wartotle),(3|->blastoise)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->elekid),(4|->electabuzz),(5|->pocao),(6|->energia_raio)})} &
+       decks_jogadores = {(jogador1|->{(1|->energia_agua),(2|->pocao),(3|->energia_agua),(4|->energia_agua),(5|->squirtle),(6|->energia_agua),(7|->energia_agua),(8|->pocao)}),(jogador2|->{(1|->energia_raio),(2|->pocao),(3|->e... &
+       fase_atual = fase_principal
+
+Expression Value = 
+"STEP_0011"
+Predicate is TRUE
+Expression Value = 
+"STEP_0012"
+Successfully executed statement leading to state: 19
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->squirtle),(jogador2|->elekid)} &
+       mao = {(jogador1|->{(1|->pocao),(2|->wartotle),(3|->blastoise)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao),(5|->energia_raio)})}
+
+Expression Value = 
+"STEP_0013"
+Predicate is TRUE
+Expression Value = 
+"STEP_0014"
+Successfully executed statement leading to state: 22
+Execution result: TRUE
+Updates:
+       energia_ativa = {(jogador1|->1),(jogador2|->1)} &
+       mao = {(jogador1|->{(1|->pocao),(2|->wartotle),(3|->blastoise)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})} &
+       energia_jogada_turno = TRUE
+
+Expression Value = 
+"STEP_0015"
+Predicate is TRUE
+Expression Value = 
+"STEP_0016"
+Successfully executed statement leading to state: 26
+Execution result: TRUE
+Updates:
+       dano_ativo = {(jogador1|->40)} &
+       fase_atual = fase_batalha
+
+Expression Value = 
+"STEP_0017"
+Predicate is TRUE
+Expression Value = 
+"STEP_0018"
+Successfully executed statement leading to state: 29
+Execution result: TRUE
+Updates:
+       turno = jogador1 &
+       energia_jogada_turno = FALSE &
+       fase_atual = fase_compra
+
+Expression Value = 
+"STEP_0019"
+Predicate is TRUE
+Expression Value = 
+"STEP_0020"
+Successfully executed statement leading to state: 30
+Execution result: TRUE
+Updates:
+       mao = {(jogador1|->{(1|->pocao),(2|->wartotle),(3|->blastoise),(4|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})} &
+       decks_jogadores = {(jogador1|->{(1|->pocao),(2|->energia_agua),(3|->energia_agua),(4|->squirtle),(5|->energia_agua),(6|->energia_agua),(7|->pocao)}),(jogador2|->{(1|->energia_raio),(2|->pocao),(3|->energia_raio),(4|->e... &
+       fase_atual = fase_principal
+
+Expression Value = 
+"STEP_0021"
+Predicate is TRUE
+Expression Value = 
+"STEP_0022"
+Predicate is TRUE
+Expression Value = 
+"STEP_0023"
+Successfully executed statement leading to state: 33
+Execution result: TRUE
+Updates:
+       dano_ativo = {} &
+       mao = {(jogador1|->{(1|->wartotle),(2|->blastoise),(3|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})}
+
+Expression Value = 
+"STEP_0024"
+Predicate is TRUE
+Expression Value = 
+"STEP_0025"
+Predicate is TRUE
+Expression Value = 
+"STEP_0026"
+Successfully executed statement leading to state: 42
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->wartotle),(jogador2|->elekid)} &
+       descarte = {(jogador1|->{(1|->squirtle)}),(jogador2|->{})} &
+       mao = {(jogador1|->{(1|->blastoise),(2|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})}
+
+Expression Value = 
+"STEP_0027"
+Predicate is TRUE
+Expression Value = 
+"STEP_0028"
+Successfully executed statement leading to state: 46
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->blastoise),(jogador2|->elekid)} &
+       descarte = {(jogador1|->{(1|->squirtle),(2|->wartotle)}),(jogador2|->{})} &
+       mao = {(jogador1|->{(1|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})}
+
+Expression Value = 
+"STEP_0029"
+Predicate is TRUE
+Expression Value = 
+"STEP_0030"
+Successfully executed statement leading to state: 48
+Execution result: TRUE
+Updates:
+       energia_ativa = {(jogador1|->2),(jogador2|->1)} &
+       mao = {(jogador1|->{}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})} &
+       energia_jogada_turno = TRUE
+
+Expression Value = 
+"STEP_0031"
+Predicate is TRUE
+Expression Value = 
+"STEP_0032"
+Successfully executed statement leading to state: 51
+Execution result: TRUE
+Updates:
+       dano_ativo = {(jogador2|->150)} &
+       fase_atual = fase_batalha
+
+Expression Value = 
+"STEP_0033"
+Predicate is TRUE
+Expression Value = 
+"STEP_0034"
+Successfully executed statement leading to state: 53
+Execution result: TRUE
+Updates:
+       dano_ativo = {} &
+       energia_ativa = {(jogador1|->2)} &
+       energia_jogada_turno = FALSE &
+       descarte = {(jogador1|->{(1|->squirtle),(2|->wartotle)}),(jogador2|->{(1|->elekid)})} &
+       ativo = {(jogador1|->blastoise)} &
+       mao = {(jogador1|->{(1|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->elekid),(3|->electabuzz),(4|->pocao)})} &
+       premios = {(jogador1|->{(1|->energia_agua),(2|->energia_agua),(3|->energia_agua),(4|->energia_agua),(5|->energia_agua)}),(jogador2|->{(1|->energia_raio),(2|->energia_raio),(3|->energia_raio),(4|->energia_raio),... &
+       ganhador = {jogador1} &
+       fase_atual = fase_encerrada
+
+Expression Value = 
+"STEP_0035"
+Predicate is TRUE
+Expression Value = 
+"STEP_0036"
+Predicate is TRUE
+Bye.
+
+

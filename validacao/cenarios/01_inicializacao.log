@@ -1,0 +1,18 @@
+% unused_constants(1,[max_cartas_deck])
+% Runtime for SOLUTION for SETUP_CONSTANTS: 47 ms (walltime: 49 ms)
+% Runtime to FINALISE SETUP_CONSTANTS: 0 ms (walltime: 0 ms)
+
+ProB Interactive Expression and Predicate Evaluator 
+Type ":help" for more information.
+Expression Value = 
+"STEP_0000"
+Universally Quantified Predicate over pp is TRUE
+Expression Value = 
+"STEP_0001"
+Predicate is TRUE
+Expression Value = 
+"STEP_0002"
+Predicate is TRUE
+Bye.
+
+

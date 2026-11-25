@@ -1,0 +1,98 @@
+% unused_constants(1,[max_cartas_deck])
+% Runtime for SOLUTION for SETUP_CONSTANTS: 63 ms (walltime: 52 ms)
+% Runtime to FINALISE SETUP_CONSTANTS: 0 ms (walltime: 0 ms)
+
+ProB Interactive Expression and Predicate Evaluator 
+Type ":help" for more information.
+Expression Value = 
+"STEP_0000"
+Added new user-initiated transition to 3 via: comprar_carta_turno(jogador1)
+Successfully executed statement leading to state: 3
+Execution result: TRUE
+Updates:
+       mao = {(jogador1|->{(1|->squirtle),(2|->energia_agua),(3|->energia_agua),(4|->wartotle),(5|->energia_agua),(6|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->energia_raio),(3|->energia_raio),(4|->wartotle)... &
+       decks_jogadores = {(jogador1|->{(1|->energia_agua),(2|->wartotle),(3|->energia_agua),(4|->squirtle),(5|->energia_agua),(6|->energia_agua),(7|->wartotle),(8|->energia_agua)}),(jogador2|->{(1|->energia_raio),(2|->energia... &
+       fase_atual = fase_principal
+
+Expression Value = 
+"STEP_0001"
+Predicate is TRUE
+Expression Value = 
+"STEP_0002"
+Successfully executed statement leading to state: 4
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->squirtle)} &
+       mao = {(jogador1|->{(1|->energia_agua),(2|->energia_agua),(3|->wartotle),(4|->energia_agua),(5|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->energia_raio),(3|->energia_raio),(4|->wartotle),(5|->energia_r...
+
+Expression Value = 
+"STEP_0003"
+Predicate is TRUE
+Expression Value = 
+"STEP_0004"
+Successfully executed statement leading to state: 8
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->wartotle)} &
+       descarte = {(jogador1|->{(1|->squirtle)}),(jogador2|->{})} &
+       mao = {(jogador1|->{(1|->energia_agua),(2|->energia_agua),(3|->energia_agua),(4|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->energia_raio),(3|->energia_raio),(4|->wartotle),(5|->energia_raio)})}
+
+Expression Value = 
+"STEP_0005"
+Predicate is TRUE
+Expression Value = 
+"STEP_0006"
+Predicate is TRUE
+Expression Value = 
+"STEP_0007"
+Successfully executed statement leading to state: 11
+Execution result: TRUE
+Updates:
+       turno = jogador2 &
+       energia_jogada_turno = FALSE &
+       fase_atual = fase_compra
+
+Expression Value = 
+"STEP_0008"
+Predicate is TRUE
+Expression Value = 
+"STEP_0009"
+Successfully executed statement leading to state: 12
+Execution result: TRUE
+Updates:
+       mao = {(jogador1|->{(1|->energia_agua),(2|->energia_agua),(3|->energia_agua),(4|->energia_agua)}),(jogador2|->{(1|->elekid),(2|->energia_raio),(3|->energia_raio),(4|->wartotle),(5|->energia_raio),(6|->energ... &
+       decks_jogadores = {(jogador1|->{(1|->energia_agua),(2|->wartotle),(3|->energia_agua),(4|->squirtle),(5|->energia_agua),(6|->energia_agua),(7|->wartotle),(8|->energia_agua)}),(jogador2|->{(1|->energia_raio),(2|->wartotl... &
+       fase_atual = fase_principal
+
+Expression Value = 
+"STEP_0010"
+Predicate is TRUE
+Expression Value = 
+"STEP_0011"
+Successfully executed statement leading to state: 13
+Execution result: TRUE
+Updates:
+       ativo = {(jogador1|->wartotle),(jogador2|->elekid)} &
+       mao = {(jogador1|->{(1|->energia_agua),(2|->energia_agua),(3|->energia_agua),(4|->energia_agua)}),(jogador2|->{(1|->energia_raio),(2|->energia_raio),(3|->wartotle),(4|->energia_raio),(5|->energia_raio)})}
+
+Expression Value = 
+"STEP_0012"
+Predicate is TRUE
+Expression Value = 
+"STEP_0013"
+Could not execute statement: evoluir_ativo(jogador2,wartotle)
+Execution result: NOT-WELL-DEFINED (FALSE)
+Expression Value = 
+"STEP_0014"
+Predicate is TRUE
+Bye.
+
+
+! An error occurred in state 13: precondition_error !
+! Precondition violated: 
+! pp = turno & fase_atual = fase_principal & pp : dom(ativo) & cc_nova : ran(mao(pp)) & tipo_da_carta(cc_nova) = Pokemon & ativo(pp) : dom(id_evolutivo) & cc_nova : dom(id_evolutivo) & id_evolutivo(ativo(pp)) = id_evolutivo(cc_nova) & ((estagio_pokemon(ativo(pp)) = Basico & estagio_pokemon(cc_nova) = Estagio1) or (estagio_pokemon(ativo(pp)) = Estagio1 & estagio_pokemon(cc_nova) = Estagio2))
+! eval_codes State ID:13
+! Line: 210 Column: 8 until Line: 221 Column: 85 in file: C:\Users\Tulio\OneDrive\Documentos\CIn\8P\MF\PokemonGame\jogoPokemon.mch within call stack: 
+ 1: evoluir_ativo(jogador2,wartotle)
+ (Line:1 Col:0)
+ 2: checking user_executed_statement

@@ -1,0 +1,334 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1000" viewBox="0 0 1440 1000">
+
+<defs>
+  <linearGradient id="table" x2="0" y2="1">
+    <stop offset="0" stop-color="#29203d"/>
+    <stop offset="0.47" stop-color="#171f32"/>
+    <stop offset="1" stop-color="#102e3b"/>
+  </linearGradient>
+  <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+    <path d="M36 0H0V36" fill="none" stroke="#b4c7f0" stroke-opacity=".07"/>
+  </pattern>
+  <style>
+    text {font-family: 'Segoe UI', Arial, sans-serif}
+    .action {cursor:pointer}
+    .action:hover rect {stroke:#fff;stroke-width:2}
+  </style>
+</defs>
+
+<rect x="0" y="0" width="1440" height="1000" rx="0" fill="#0a101c" stroke="none"/>
+<rect x="24" y="90" width="1016" height="886" rx="18" fill="url(#table)" stroke="#344359"/>
+<rect x="24" y="90" width="1016" height="886" rx="18" fill="url(#grid)" stroke="none"/>
+<rect x="1060" y="90" width="356" height="886" rx="18" fill="#151e30" stroke="#344359"/>
+<text x="26" y="34" font-size="13" fill="#9badca" font-weight="700" text-anchor="start">POKÉMON · MÉTODOS FORMAIS</text>
+<text x="26" y="67" font-size="32" fill="#f1f5ff" font-weight="750" text-anchor="start">Arena de duelo</text>
+<text id="turn" x="422" y="42" font-size="19" fill="#f1f5ff" font-weight="700" text-anchor="start">Vez do Jogador 1</text>
+<text id="phase" x="422" y="66" font-size="15" fill="#c3d0e7" font-weight="500" text-anchor="start">Compra de uma carta</text>
+<text id="result" x="1414" y="56" font-size="17" fill="#f8d782" font-weight="700" text-anchor="end">Partida em andamento</text>
+<path d="M48 533H1016" stroke="#9bb3da" stroke-opacity=".38" stroke-dasharray="5 9"/>
+<path d="M274 517H471L490 533L471 549H274L255 533ZM593 517H790L809 533L790 549H593L574 533Z" fill="#132035" stroke="#3c5273"/>
+<text x="372" y="538" font-size="12" fill="#c4d2e8" font-weight="700" text-anchor="middle">CAMPO DE BATALHA</text>
+<text x="692" y="538" font-size="12" fill="#c4d2e8" font-weight="700" text-anchor="middle">ATIVOS FRENTE A FRENTE</text>
+<path d="M526 519l-8 15h12l-4 14 18-19h-13l7-10z" fill="#f8d782"/>
+<text x="49" y="121" font-size="17" fill="#f4c86a" font-weight="750" text-anchor="start">JOGADOR 2</text>
+<text x="207" y="121" font-size="13" fill="#c4d2e8" font-weight="750" text-anchor="start">MÃO</text>
+<text id="handcount2" x="247" y="121" font-size="13" fill="#f4c86a" font-weight="750" text-anchor="start">0</text>
+<text id="energyflag2" x="1009" y="121" font-size="13" fill="#f4c86a" font-weight="650" text-anchor="end"></text>
+<rect id="hbox2_1" x="49" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_1" x="94.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_2" x="146" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_2" x="191.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_3" x="243" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_3" x="288.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_4" x="340" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_4" x="385.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_5" x="437" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_5" x="482.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_6" x="534" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_6" x="579.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_7" x="631" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_7" x="676.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_8" x="728" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_8" x="773.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_9" x="825" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_9" x="870.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_10" x="922" y="133" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_10" x="967.5" y="161" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_11" x="49" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_11" x="94.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_12" x="146" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_12" x="191.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_13" x="243" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_13" x="288.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_14" x="340" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_14" x="385.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_15" x="437" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_15" x="482.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_16" x="534" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_16" x="579.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_17" x="631" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_17" x="676.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_18" x="728" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_18" x="773.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_19" x="825" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_19" x="870.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox2_20" x="922" y="187" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext2_20" x="967.5" y="215" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<text x="532" y="274" font-size="12" fill="#f4c86a" font-weight="750" text-anchor="middle">BANCO</text>
+<rect id="bench2_1" x="261" y="284" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="270" y="300" font-size="10" fill="#f4c86a" font-weight="700" text-anchor="start">01</text>
+<text id="bc2_1" x="312" y="318" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="299" y="335" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be2_1" x="340" y="335" font-size="11" fill="#f4c86a" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench2_2" x="372" y="284" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="381" y="300" font-size="10" fill="#f4c86a" font-weight="700" text-anchor="start">02</text>
+<text id="bc2_2" x="423" y="318" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="410" y="335" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be2_2" x="451" y="335" font-size="11" fill="#f4c86a" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench2_3" x="483" y="284" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="492" y="300" font-size="10" fill="#f4c86a" font-weight="700" text-anchor="start">03</text>
+<text id="bc2_3" x="534" y="318" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="521" y="335" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be2_3" x="562" y="335" font-size="11" fill="#f4c86a" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench2_4" x="594" y="284" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="603" y="300" font-size="10" fill="#f4c86a" font-weight="700" text-anchor="start">04</text>
+<text id="bc2_4" x="645" y="318" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="632" y="335" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be2_4" x="673" y="335" font-size="11" fill="#f4c86a" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench2_5" x="705" y="284" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="714" y="300" font-size="10" fill="#f4c86a" font-weight="700" text-anchor="start">05</text>
+<text id="bc2_5" x="756" y="318" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="743" y="335" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be2_5" x="784" y="335" font-size="11" fill="#f4c86a" font-weight="700" text-anchor="middle">0</text>
+<rect id="activeframe2" x="413" y="365" width="238" height="118" rx="12" fill="#443518" stroke="#f4c86a"/>
+<text x="532" y="387" font-size="11" fill="#f4c86a" font-weight="750" text-anchor="middle">POKÉMON ATIVO</text>
+<text id="active2" x="532" y="417" font-size="23" fill="#f1f5ff" font-weight="750" text-anchor="middle">Sem ativo</text>
+<rect x="433" y="430" width="94" height="39" rx="7" fill="#101b2c" stroke="none"/>
+<text x="480" y="445" font-size="10" fill="#bdcde6" font-weight="500" text-anchor="middle">HP restante</text>
+<text id="hp2" x="480" y="463" font-size="15" fill="#f4c86a" font-weight="750" text-anchor="middle">0</text>
+<rect x="537" y="430" width="94" height="39" rx="7" fill="#101b2c" stroke="none"/>
+<text x="584" y="445" font-size="10" fill="#bdcde6" font-weight="500" text-anchor="middle">Energias</text>
+<text id="energy2" x="584" y="463" font-size="15" fill="#f4c86a" font-weight="750" text-anchor="middle">0</text>
+<rect x="854" y="369" width="145" height="49" rx="7" fill="#1c2940" stroke="#485976"/>
+<rect x="847" y="365" width="145" height="49" rx="7" fill="#24314b" stroke="#59698a"/>
+<text x="860" y="395" font-size="13" fill="#d4def0" font-weight="700" text-anchor="start">Baralho</text>
+<text id="count2_0" x="977" y="396" font-size="18" fill="#f4c86a" font-weight="750" text-anchor="end">0</text>
+<rect x="61" y="365" width="156" height="118" rx="10" fill="#152135" stroke="#5e537b"/>
+<text x="74" y="389" font-size="13" fill="#d7c6f0" font-weight="700" text-anchor="start">Prêmios</text>
+<text id="count2_1" x="203" y="389" font-size="16" fill="#f4c86a" font-weight="750" text-anchor="end">0</text>
+<rect id="prize2_1" x="75" y="401" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize2_2" x="119" y="401" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize2_3" x="163" y="401" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize2_4" x="75" y="438" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize2_5" x="119" y="438" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize2_6" x="163" y="438" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect x="854" y="433" width="145" height="49" rx="7" fill="#1c2940" stroke="#485976"/>
+<rect x="847" y="429" width="145" height="49" rx="7" fill="#212939" stroke="#59698a"/>
+<text x="860" y="459" font-size="13" fill="#d4def0" font-weight="700" text-anchor="start">Descarte</text>
+<text id="count2_2" x="977" y="460" font-size="18" fill="#f4c86a" font-weight="750" text-anchor="end">0</text>
+<rect id="playerAccent2" x="1080" y="136" width="316" height="3" rx="2" fill="#f4c86a" stroke="none"/>
+<text x="1080" y="167" font-size="22" fill="#f4c86a" font-weight="750" text-anchor="start">Jogador 2</text>
+<g id="action2_0" class="action">
+<rect x="1080" y="185" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="208" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Comprar carta</text>
+</g>
+<g id="action2_1" class="action">
+<rect x="1239" y="185" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1314.5" y="208" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Atacar</text>
+</g>
+<g id="action2_2" class="action">
+<rect x="1080" y="229" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="252" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Passar turno</text>
+</g>
+<g id="action2_3" class="action">
+<rect x="1239" y="229" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1314.5" y="252" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Definir ativo</text>
+</g>
+<g id="action2_4" class="action">
+<rect x="1080" y="273" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="296" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Baixar no banco</text>
+</g>
+<g id="action2_5" class="action">
+<rect x="1239" y="273" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1314.5" y="296" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Resolver nocaute</text>
+</g>
+<g id="action2_6" class="action">
+<rect x="1080" y="317" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="340" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Energia no ativo</text>
+</g>
+<g id="action2_7" class="action">
+<rect x="1239" y="317" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1314.5" y="340" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Energia no banco</text>
+</g>
+<g id="action2_8" class="action">
+<rect x="1080" y="361" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="384" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Subir do banco</text>
+</g>
+<g id="action2_9" class="action">
+<rect x="1239" y="361" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1314.5" y="384" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Evoluir ativo</text>
+</g>
+<g id="action2_10" class="action">
+<rect x="1080" y="405" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="428" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Evoluir banco</text>
+</g>
+<g id="action2_11" class="action">
+<rect x="1239" y="405" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1314.5" y="428" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Poção no ativo</text>
+</g>
+<g id="action2_12" class="action">
+<rect x="1080" y="449" width="151" height="36" rx="7" fill="#443518" stroke="#f4c86a"/>
+<text x="1155.5" y="472" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Poção no banco</text>
+</g>
+<text x="49" y="836" font-size="17" fill="#68e0f7" font-weight="750" text-anchor="start">JOGADOR 1</text>
+<text x="207" y="836" font-size="13" fill="#c4d2e8" font-weight="750" text-anchor="start">MÃO</text>
+<text id="handcount1" x="247" y="836" font-size="13" fill="#68e0f7" font-weight="750" text-anchor="start">0</text>
+<text id="energyflag1" x="1009" y="836" font-size="13" fill="#68e0f7" font-weight="650" text-anchor="end"></text>
+<rect id="hbox1_1" x="49" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_1" x="94.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_2" x="146" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_2" x="191.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_3" x="243" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_3" x="288.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_4" x="340" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_4" x="385.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_5" x="437" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_5" x="482.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_6" x="534" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_6" x="579.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_7" x="631" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_7" x="676.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_8" x="728" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_8" x="773.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_9" x="825" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_9" x="870.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_10" x="922" y="847" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_10" x="967.5" y="875" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_11" x="49" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_11" x="94.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_12" x="146" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_12" x="191.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_13" x="243" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_13" x="288.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_14" x="340" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_14" x="385.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_15" x="437" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_15" x="482.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_16" x="534" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_16" x="579.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_17" x="631" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_17" x="676.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_18" x="728" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_18" x="773.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_19" x="825" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_19" x="870.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<rect id="hbox1_20" x="922" y="901" width="91" height="46" rx="6" fill="#26364e" stroke="#536583"/>
+<text id="htext1_20" x="967.5" y="929" font-size="11" fill="#f1f5ff" font-weight="700" text-anchor="middle"></text>
+<text x="532" y="701" font-size="12" fill="#68e0f7" font-weight="750" text-anchor="middle">BANCO</text>
+<rect id="bench1_1" x="261" y="711" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="270" y="727" font-size="10" fill="#68e0f7" font-weight="700" text-anchor="start">01</text>
+<text id="bc1_1" x="312" y="745" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="299" y="762" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be1_1" x="340" y="762" font-size="11" fill="#68e0f7" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench1_2" x="372" y="711" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="381" y="727" font-size="10" fill="#68e0f7" font-weight="700" text-anchor="start">02</text>
+<text id="bc1_2" x="423" y="745" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="410" y="762" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be1_2" x="451" y="762" font-size="11" fill="#68e0f7" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench1_3" x="483" y="711" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="492" y="727" font-size="10" fill="#68e0f7" font-weight="700" text-anchor="start">03</text>
+<text id="bc1_3" x="534" y="745" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="521" y="762" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be1_3" x="562" y="762" font-size="11" fill="#68e0f7" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench1_4" x="594" y="711" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="603" y="727" font-size="10" fill="#68e0f7" font-weight="700" text-anchor="start">04</text>
+<text id="bc1_4" x="645" y="745" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="632" y="762" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be1_4" x="673" y="762" font-size="11" fill="#68e0f7" font-weight="700" text-anchor="middle">0</text>
+<rect id="bench1_5" x="705" y="711" width="102" height="62" rx="8" fill="#202d43" stroke="#657792"/>
+<text x="714" y="727" font-size="10" fill="#68e0f7" font-weight="700" text-anchor="start">05</text>
+<text id="bc1_5" x="756" y="745" font-size="12" fill="#f1f5ff" font-weight="700" text-anchor="middle">Vazio</text>
+<text x="743" y="762" font-size="10" fill="#c4d2e8" font-weight="500" text-anchor="middle">Energias</text>
+<text id="be1_5" x="784" y="762" font-size="11" fill="#68e0f7" font-weight="700" text-anchor="middle">0</text>
+<rect id="activeframe1" x="413" y="555" width="238" height="118" rx="12" fill="#16404e" stroke="#68e0f7"/>
+<text x="532" y="577" font-size="11" fill="#68e0f7" font-weight="750" text-anchor="middle">POKÉMON ATIVO</text>
+<text id="active1" x="532" y="607" font-size="23" fill="#f1f5ff" font-weight="750" text-anchor="middle">Sem ativo</text>
+<rect x="433" y="620" width="94" height="39" rx="7" fill="#101b2c" stroke="none"/>
+<text x="480" y="635" font-size="10" fill="#bdcde6" font-weight="500" text-anchor="middle">HP restante</text>
+<text id="hp1" x="480" y="653" font-size="15" fill="#68e0f7" font-weight="750" text-anchor="middle">0</text>
+<rect x="537" y="620" width="94" height="39" rx="7" fill="#101b2c" stroke="none"/>
+<text x="584" y="635" font-size="10" fill="#bdcde6" font-weight="500" text-anchor="middle">Energias</text>
+<text id="energy1" x="584" y="653" font-size="15" fill="#68e0f7" font-weight="750" text-anchor="middle">0</text>
+<rect x="854" y="559" width="145" height="49" rx="7" fill="#1c2940" stroke="#485976"/>
+<rect x="847" y="555" width="145" height="49" rx="7" fill="#24314b" stroke="#59698a"/>
+<text x="860" y="585" font-size="13" fill="#d4def0" font-weight="700" text-anchor="start">Baralho</text>
+<text id="count1_0" x="977" y="586" font-size="18" fill="#68e0f7" font-weight="750" text-anchor="end">0</text>
+<rect x="61" y="555" width="156" height="118" rx="10" fill="#152135" stroke="#5e537b"/>
+<text x="74" y="579" font-size="13" fill="#d7c6f0" font-weight="700" text-anchor="start">Prêmios</text>
+<text id="count1_1" x="203" y="579" font-size="16" fill="#68e0f7" font-weight="750" text-anchor="end">0</text>
+<rect id="prize1_1" x="75" y="591" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize1_2" x="119" y="591" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize1_3" x="163" y="591" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize1_4" x="75" y="628" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize1_5" x="119" y="628" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect id="prize1_6" x="163" y="628" width="35" height="29" rx="5" fill="#483a65" stroke="#8875aa"/>
+<rect x="854" y="623" width="145" height="49" rx="7" fill="#1c2940" stroke="#485976"/>
+<rect x="847" y="619" width="145" height="49" rx="7" fill="#212939" stroke="#59698a"/>
+<text x="860" y="649" font-size="13" fill="#d4def0" font-weight="700" text-anchor="start">Descarte</text>
+<text id="count1_2" x="977" y="650" font-size="18" fill="#68e0f7" font-weight="750" text-anchor="end">0</text>
+<rect id="playerAccent1" x="1080" y="544" width="316" height="3" rx="2" fill="#68e0f7" stroke="none"/>
+<text x="1080" y="575" font-size="22" fill="#68e0f7" font-weight="750" text-anchor="start">Jogador 1</text>
+<g id="action1_0" class="action">
+<rect x="1080" y="593" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="616" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Comprar carta</text>
+</g>
+<g id="action1_1" class="action">
+<rect x="1239" y="593" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1314.5" y="616" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Atacar</text>
+</g>
+<g id="action1_2" class="action">
+<rect x="1080" y="637" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="660" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Passar turno</text>
+</g>
+<g id="action1_3" class="action">
+<rect x="1239" y="637" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1314.5" y="660" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Definir ativo</text>
+</g>
+<g id="action1_4" class="action">
+<rect x="1080" y="681" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="704" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Baixar no banco</text>
+</g>
+<g id="action1_5" class="action">
+<rect x="1239" y="681" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1314.5" y="704" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Resolver nocaute</text>
+</g>
+<g id="action1_6" class="action">
+<rect x="1080" y="725" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="748" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Energia no ativo</text>
+</g>
+<g id="action1_7" class="action">
+<rect x="1239" y="725" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1314.5" y="748" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Energia no banco</text>
+</g>
+<g id="action1_8" class="action">
+<rect x="1080" y="769" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="792" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Subir do banco</text>
+</g>
+<g id="action1_9" class="action">
+<rect x="1239" y="769" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1314.5" y="792" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Evoluir ativo</text>
+</g>
+<g id="action1_10" class="action">
+<rect x="1080" y="813" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="836" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Evoluir banco</text>
+</g>
+<g id="action1_11" class="action">
+<rect x="1239" y="813" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1314.5" y="836" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Poção no ativo</text>
+</g>
+<g id="action1_12" class="action">
+<rect x="1080" y="857" width="151" height="36" rx="7" fill="#16404e" stroke="#68e0f7"/>
+<text x="1155.5" y="880" font-size="12" fill="#f1f5ff" font-weight="650" text-anchor="middle">Poção no banco</text>
+</g>
+<text x="1080" y="945" font-size="12" fill="#c3d0e7" font-weight="500" text-anchor="start">Só as ações disponíveis ficam em destaque.</text>
+</svg>

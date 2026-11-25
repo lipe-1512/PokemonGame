@@ -1,0 +1,42 @@
+[
+  {
+    "cenario": "01_inicializacao",
+    "consultas_e_operacoes": 3,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "08_ativo_inicial_a_partir_do_banco",
+    "consultas_e_operacoes": 11,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "02_turnos_ataque_nocaute",
+    "consultas_e_operacoes": 48,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "03_evolucao_e_familia",
+    "consultas_e_operacoes": 15,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "04_esgotamento_baralho",
+    "consultas_e_operacoes": 80,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "05_cura_e_evolucao_completa_fixture",
+    "consultas_e_operacoes": 37,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "06_reposicao_e_reindexacao_fixture",
+    "consultas_e_operacoes": 46,
+    "resultado": "PASS"
+  },
+  {
+    "cenario": "07_vitoria_sexto_premio_fixture",
+    "consultas_e_operacoes": 99,
+    "resultado": "PASS"
+  }
+]
