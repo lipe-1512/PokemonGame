@@ -36,10 +36,13 @@ INVARIANT
     !(pp).(pp : JOGADOR => size(premios(pp)) <= max_cartas_premio)
 
 INITIALISATION
-    mao := {jogador1 |-> (deck_1 /|\ 5), jogador2 |-> (deck_2 /|\ 5)} ||
+    mao := {jogador1 |-> (baralho_1 /|\ 5), jogador2 |-> (baralho_2 /|\ 5)} ||
     ativo := {} ||
     banco := {jogador1 |-> [], jogador2 |-> []} ||
-    premios := { jogador1 |-> ((deck_1 \|/ 5) /|\ 6), jogador2 |-> ((deck_2 \|/ 5) /|\ 6) } ||
+    premios := {
+        jogador1 |-> ((baralho_1 \|/ 5) /|\ 6),
+        jogador2 |-> ((baralho_2 \|/ 5) /|\ 6)
+    } ||
     descarte := {jogador1 |-> [], jogador2 |-> []}
 
 OPERATIONS
@@ -108,6 +111,7 @@ OPERATIONS
     evoluir_pokemon_banco(pp, idx, cc_nova) =
     PRE
         pp : JOGADOR &
+        idx : NAT1 &
         idx : dom(banco(pp)) &
         cc_nova : CARTA &
         cc_nova : dom(hp_base) &
@@ -143,6 +147,7 @@ OPERATIONS
     PRE
         pp : JOGADOR &
         pp /: dom(ativo) &
+        idx : NAT1 &
         idx : dom(banco(pp)) &
         banco(pp)(idx) : dom(hp_base)
     THEN
@@ -157,5 +162,19 @@ OPERATIONS
     THEN
         mao(pp) := mao(pp) ^ (premios(pp) /|\ 1) ||
         premios(pp) := tail(premios(pp))
+    END;
+
+    descartar_ativo_e_coletar_premio(atacante, derrotado) =
+    PRE
+        atacante : JOGADOR &
+        derrotado : JOGADOR &
+        atacante /= derrotado &
+        derrotado : dom(ativo) &
+        size(premios(atacante)) > 0
+    THEN
+        descarte(derrotado) := descarte(derrotado) ^ [ativo(derrotado)] ||
+        ativo := {derrotado} <<| ativo ||
+        mao(atacante) := mao(atacante) ^ (premios(atacante) /|\ 1) ||
+        premios(atacante) := tail(premios(atacante))
     END
 END

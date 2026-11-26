@@ -1,0 +1,29 @@
+{
+  "name": "jogoPokemon",
+  "description": "",
+  "machines": [
+    {
+      "name": "jogoPokemon",
+      "description": "",
+      "location": "jogoPokemon.mch",
+      "lastUsedPreferenceName": "default",
+      "validationTasks": [],
+      "ltlPatterns": [],
+      "simulations": [],
+      "visBVisualisations": [
+        "visualizacao/pokemon.json"
+      ]
+    }
+  ],
+  "requirements": [],
+  "preferences": [],
+  "metadata": {
+    "fileType": "Project",
+    "formatVersion": 57,
+    "savedAt": "2026-11-26T00:55:55.930247300Z",
+    "creator": "User",
+    "proB2KernelVersion": "4.16.1",
+    "proBCliVersion": null,
+    "modelName": null
+  }
+}

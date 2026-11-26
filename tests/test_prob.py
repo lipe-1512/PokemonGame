@@ -24,6 +24,9 @@ def fixture(folder,one,two):
  s=(folder/'decks.mch').read_text(encoding='utf-8-sig')
  assert len(one)==len(two)==20
  for k,deck in [(1,one),(2,two)]:s=re.sub(rf'deck_{k} = \[[^\]]*\]',f'deck_{k} = ['+', '.join(deck)+']',s)
+ marker='\nSETS\n'
+ assert s.count(marker)==1
+ s=s.replace(marker,' &\n    ordem_1 = id(1..size(deck_1)) &\n    ordem_2 = id(1..size(deck_2))\n'+marker)
  (folder/'decks.mch').write_text(s,encoding='utf-8')
  return folder
 
@@ -56,40 +59,52 @@ cases=[]
 initial=Scenario('01_inicializacao')
 initial.check('!(pp).(pp:JOGADOR => size(mao(pp))=5 & size(premios(pp))=6 & size(decks_jogadores(pp))=9)')
 initial.check('ganhador = {} & fase_atual = fase_compra & ativo = {}')
+initial.check('!(pp).(pp:JOGADOR => ran(mao(pp)) /\\ estagio_pokemon~[{Basico}] /= {})')
+initial.check('mao(jogador1) ^ premios(jogador1) ^ decks_jogadores(jogador1) = baralho_1')
+initial.check('mao(jogador2) ^ premios(jogador2) ^ decks_jogadores(jogador2) = baralho_2')
+initial.check('!(cc).(cc:CARTA => card(baralho_1~[{cc}])=card(deck_1~[{cc}]) & card(baralho_2~[{cc}])=card(deck_2~[{cc}]))')
 initial.check('@INVARIANT');cases.append(initial)
+initial.do('comprar_carta_turno(jogador1)')
+initial.check('size(mao(jogador1))=6 & size(decks_jogadores(jogador1))=8')
+initial.check('(mao(jogador1) /|\\ 5) ^ premios(jogador1) ^ [last(mao(jogador1))] ^ decks_jogadores(jogador1) = baralho_1')
 
-s=Scenario('08_ativo_inicial_a_partir_do_banco')
-s.do('comprar_carta_turno(jogador1)').do('baixar_pokemon_banco(jogador1,squirtle)').do('jogar_energia_banco(jogador1,energia_agua,1)')
-s.do('repor_pokemon_ativo(jogador1,1)').check('ativo(jogador1)=squirtle & energia_ativa(jogador1)=1 & banco(jogador1)=[] & fase_atual=fase_principal')
-s.do('passar_turno(jogador1)');cases.append(s)
+with tempfile.TemporaryDirectory(prefix='pokemon-prob-',dir=logs) as directory:
+ tmp=Path(directory)
+ fixed=fixture(
+  tmp/'fixed',
+  ['squirtle','energia_agua','energia_agua','wartotle','energia_agua']*4,
+  ['elekid','energia_raio','energia_raio','wartotle','energia_raio']*4,
+ )
+ s=Scenario('08_ativo_inicial_a_partir_do_banco',fixed)
+ s.do('comprar_carta_turno(jogador1)').do('baixar_pokemon_banco(jogador1,squirtle)').do('jogar_energia_banco(jogador1,energia_agua,1)')
+ s.do('repor_pokemon_ativo(jogador1,1)').check('ativo(jogador1)=squirtle & energia_ativa(jogador1)=1 & banco(jogador1)=[] & fase_atual=fase_principal')
+ s.do('passar_turno(jogador1)');cases.append(s)
 
-s=Scenario('02_turnos_ataque_nocaute')
-s.do('comprar_carta_turno(jogador1)').do('comprar_carta_turno(jogador1)',False)
-s.do('definir_pokemon_ativo(jogador1,squirtle)').do('jogar_energia_ativo(jogador1,energia_agua)').do('jogar_energia_ativo(jogador1,energia_agua)',False)
-s.do('atacar_oponente(jogador1)',False).do('passar_turno(jogador1)').do('comprar_carta_turno(jogador1)',False)
-s.do('comprar_carta_turno(jogador2)').do('definir_pokemon_ativo(jogador2,elekid)').do('jogar_energia_ativo(jogador2,energia_raio)').do('atacar_oponente(jogador2)')
-s.do('atacar_oponente(jogador2)',False).do('passar_turno(jogador2)')
-s.do('comprar_carta_turno(jogador1)').do('atacar_oponente(jogador1)').do('passar_turno(jogador1)')
-s.do('comprar_carta_turno(jogador2)').do('atacar_oponente(jogador2)').do('passar_turno(jogador2)',False).do('resolver_nocaute(jogador2)')
-s.check('ganhador={jogador2} & fase_atual=fase_encerrada & jogador1 /: dom(ativo) & jogador1 /: dom(dano_ativo) & jogador1 /: dom(energia_ativa)')
-s.check('size(premios(jogador2))=5 & last(descarte(jogador1))=squirtle')
-s.do('comprar_carta_turno(jogador2)',False).do('passar_turno(jogador2)',False);cases.append(s)
+ s=Scenario('02_turnos_ataque_nocaute',fixed)
+ s.do('comprar_carta_turno(jogador1)').do('comprar_carta_turno(jogador1)',False)
+ s.do('definir_pokemon_ativo(jogador1,squirtle)').do('jogar_energia_ativo(jogador1,energia_agua)').do('jogar_energia_ativo(jogador1,energia_agua)',False)
+ s.do('atacar_oponente(jogador1)',False).do('passar_turno(jogador1)').do('comprar_carta_turno(jogador1)',False)
+ s.do('comprar_carta_turno(jogador2)').do('definir_pokemon_ativo(jogador2,elekid)').do('jogar_energia_ativo(jogador2,energia_raio)').do('atacar_oponente(jogador2)')
+ s.do('atacar_oponente(jogador2)',False).do('passar_turno(jogador2)')
+ s.do('comprar_carta_turno(jogador1)').do('atacar_oponente(jogador1)').do('passar_turno(jogador1)')
+ s.do('comprar_carta_turno(jogador2)').do('atacar_oponente(jogador2)').do('passar_turno(jogador2)',False).do('resolver_nocaute(jogador2)')
+ s.check('ganhador={jogador2} & fase_atual=fase_encerrada & jogador1 /: dom(ativo) & jogador1 /: dom(dano_ativo) & jogador1 /: dom(energia_ativa)')
+ s.check('size(premios(jogador2))=5 & last(descarte(jogador1))=squirtle')
+ s.do('comprar_carta_turno(jogador2)',False).do('passar_turno(jogador2)',False);cases.append(s)
 
-s=Scenario('03_evolucao_e_familia')
-s.do('comprar_carta_turno(jogador1)').do('definir_pokemon_ativo(jogador1,squirtle)').do('evoluir_ativo(jogador1,wartotle)').check('ativo(jogador1)=wartotle')
-s.do('passar_turno(jogador1)').do('comprar_carta_turno(jogador2)').do('definir_pokemon_ativo(jogador2,elekid)').do('evoluir_ativo(jogador2,wartotle)',False);cases.append(s)
+ s=Scenario('03_evolucao_e_familia',fixed)
+ s.do('comprar_carta_turno(jogador1)').do('definir_pokemon_ativo(jogador1,squirtle)').do('evoluir_ativo(jogador1,wartotle)').check('ativo(jogador1)=wartotle')
+ s.do('passar_turno(jogador1)').do('comprar_carta_turno(jogador2)').do('definir_pokemon_ativo(jogador2,elekid)').do('evoluir_ativo(jogador2,wartotle)',False);cases.append(s)
 
-s=Scenario('04_esgotamento_baralho')
-for turn in range(9):
- for who,card in [('jogador1','squirtle'),('jogador2','elekid')]:
-  s.do(f'comprar_carta_turno({who})')
-  if turn==0:s.do(f'definir_pokemon_ativo({who},{card})')
-  s.do(f'passar_turno({who})')
-s.check('ganhador={} & size(decks_jogadores(jogador1))=0 & size(decks_jogadores(jogador2))=0')
-s.do('comprar_carta_turno(jogador1)').check('ganhador={jogador2} & fase_atual=fase_encerrada');cases.append(s)
+ s=Scenario('04_esgotamento_baralho',fixed)
+ for turn in range(9):
+  for who,card in [('jogador1','squirtle'),('jogador2','elekid')]:
+   s.do(f'comprar_carta_turno({who})')
+   if turn==0:s.do(f'definir_pokemon_ativo({who},{card})')
+   s.do(f'passar_turno({who})')
+ s.check('ganhador={} & size(decks_jogadores(jogador1))=0 & size(decks_jogadores(jogador2))=0')
+ s.do('comprar_carta_turno(jogador1)').check('ganhador={jogador2} & fase_atual=fase_encerrada');cases.append(s)
 
-with tempfile.TemporaryDirectory(prefix='pokemon-prob-',dir=logs) as tmp:
- tmp=Path(tmp)
  rich=fixture(tmp/'rich',['squirtle','squirtle','pocao','wartotle','blastoise']+['energia_agua']*6+['energia_agua','energia_agua','pocao','energia_agua','energia_agua','squirtle','energia_agua','energia_agua','pocao'],['elekid','elekid','elekid','electabuzz','pocao']+['energia_raio']*6+['energia_raio','energia_raio','pocao','energia_raio','energia_raio','elekid','energia_raio','energia_raio','pocao'])
  s=Scenario('05_cura_e_evolucao_completa_fixture',rich)
  s.do('comprar_carta_turno(jogador1)').do('definir_pokemon_ativo(jogador1,squirtle)').do('baixar_pokemon_banco(jogador1,squirtle)').do('jogar_energia_ativo(jogador1,energia_agua)').do('passar_turno(jogador1)')

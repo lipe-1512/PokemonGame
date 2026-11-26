@@ -11,7 +11,9 @@ SETS
     FASE = {fase_compra, fase_principal, fase_batalha, fase_reposicao, fase_encerrada}
 
 DEFINITIONS
-    VISB_JSON_FILE == "visualizacao/pokemon.json"
+    VISB_JSON_FILE == "visualizacao/pokemon.json";
+    SET_PREF_RANDOMISE_ENUMERATION_ORDER == TRUE;
+    MAX_OPERATIONS_SETUP_CONSTANTS == 1
 
 VARIABLES
     turno,
@@ -26,7 +28,6 @@ VARIABLES
 INVARIANT
     ganhador <: JOGADOR &
     card(ganhador) <= 1 &
-    (fase_atual = fase_encerrada <=> ganhador /= {}) &
     turno : JOGADOR &
     energia_jogada_turno : BOOL &
     fase_atual : FASE &
@@ -34,6 +35,7 @@ INVARIANT
     energia_ativa : JOGADOR +-> NATURAL &
     dano_banco : JOGADOR * NAT1 +-> NATURAL &
     energia_banco : JOGADOR * NAT1 +-> NATURAL &
+    (fase_atual = fase_encerrada <=> ganhador /= {}) &
     dom(dano_ativo) <: dom(ativo) &
     dom(energia_ativa) <: dom(ativo) &
     !(pp, idx).(pp : JOGADOR & idx: NAT1 & (pp |-> idx) : dom(dano_banco) => (idx : dom(banco(pp)))) &
@@ -192,6 +194,7 @@ OPERATIONS
         pp : JOGADOR &
         pp = turno &
         fase_atual = fase_principal &
+        idx : NAT1 &
         idx : dom(banco(pp)) &
         cc_nova : CARTA &
         cc_nova : ran(mao(pp)) &
@@ -254,8 +257,7 @@ OPERATIONS
             oponente : JOGADOR & oponente /= pp & oponente : dom(ativo) &
             oponente : dom(dano_ativo) & dano_ativo(oponente) >= hp_base(ativo(oponente))
         THEN
-            remover_ativo(oponente) ||
-            coletar_premio(pp) ||
+            descartar_ativo_e_coletar_premio(pp, oponente) ||
             dano_ativo := {oponente} <<| dano_ativo ||
             energia_ativa := {oponente} <<| energia_ativa ||
             energia_jogada_turno := FALSE ||
@@ -275,6 +277,7 @@ OPERATIONS
         pp = turno &
         fase_atual : {fase_reposicao, fase_principal} &
         pp /: dom(ativo) &
+        idx : NAT1 &
         idx : dom(banco(pp))
     THEN
         LET remapeamento BE
